@@ -1,0 +1,25 @@
+<div class="site-header--0" data-name="Site Header" data-partial="site-header">
+  <a class="sp-link" href="{{ site.baseURL }}"{% if page.path == "" %} aria-current="page"{% endif %}>
+  <div class="site-header--1" data-name="Wordmark">
+    <div class="site-header--2" data-name="Mark">
+      <svg class="site-header--3" data-name="Stylus" viewBox="0 0 16 16"><path d="M0 16L16 0" fill="none" stroke="var(--label-tertiary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div class="site-header--4" data-name="Point"></div>
+    </div>
+    <div class="site-header--5" data-name="Name">silverpoint</div>
+  </div>
+  </a>
+  <div class="site-header--6" data-name="Nav">
+    <a class="sp-link" href="{{ site.baseURL }}#features">
+    <div class="site-header--7" data-name="Nav Features">Features</div>
+    </a>
+    <a class="sp-link" href="{{ site.baseURL }}docs/getting-started/"{% if page.path == "docs/getting-started/" %} aria-current="page"{% endif %}>
+    <div class="site-header--8" data-name="Nav Docs">Docs</div>
+    </a>
+    <a class="sp-link" href="https://github.com/KristopherGBaker/Silverpoint" rel="noopener">
+    <div class="site-header--9" data-name="Nav GitHub">GitHub</div>
+    </a>
+    <a class="sp-link" href="https://github.com/KristopherGBaker/Silverpoint/releases" rel="noopener">
+    {% include "partials/button.html" %}
+    </a>
+  </div>
+</div>

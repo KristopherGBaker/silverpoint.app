@@ -1,0 +1,14 @@
+{
+  "docs": {
+    "include": [
+      "getting-started.md",
+      "agent-conversation.md",
+      "skills.md",
+      "templates-and-styles.md",
+      "design-system-packages.md",
+      "lint-rules.md",
+      "hooks.md",
+      "plugins.md"
+    ]
+  }
+}

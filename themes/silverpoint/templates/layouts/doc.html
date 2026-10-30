@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block page_class %}doc-0{% endblock %}
+{% block main %}
+<div class="doc-1" data-name="Docs header rule"></div>
+<div class="doc-2" data-name="Docs body">
+  <div class="doc-3" data-name="Sidebar">
+    <div class="doc-4" data-name="Sidebar title">Documentation</div>
+    <div class="doc-5" data-name="Gap sidebar">
+
+    </div>
+    <div class="doc-6" data-name="Doc list">
+      {% for item in data.docs %}
+      <a class="sp-link" href="{{ site.baseURL }}{{ item.url|escape }}"{% if page.path == item.url %} aria-current="page"{% endif %}>
+        <div class="doc-7" data-name="Section Getting started" data-item="docs">
+          <div class="doc-8" data-name="Section label Getting started">{{ item.title|escape }}</div>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="doc-9" data-name="Article area">
+    <div class="doc-10" data-name="Article">
+      <div class="doc-11" data-name="Article head">
+        <div class="doc-12" data-name="Article title">{{ page.title }}</div>
+        <div class="doc-13" data-name="Article lead">{{ page.description }}</div>
+      </div>
+      <div class="doc-14" data-name="Article body" data-slot="page.content">
+        {{ page.content }}<!-- /page.content -->
+      </div>
+    </div>
+    <div class="doc-15" data-name="On this page">
+      <div class="doc-16" data-name="On this page title">On this page</div>
+      {% if page.toc %}
+      <div class="doc-17" data-name="Toc entries">
+        {% for item in page.toc %}
+        <a class="sp-link" href="#{{ item.anchor }}">
+          <div class="doc-18" data-name="Toc 1">{{ item.text }}</div>
+        </a>
+        {% endfor %}
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+<div class="doc-19" data-name="Docs footer rule"></div>
+{% endblock %}

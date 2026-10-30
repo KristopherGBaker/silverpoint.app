@@ -1,0 +1,16 @@
+{
+  "compatibleCore" : ">=0.3.0",
+  "generatedBy" : "silverpoint",
+  "head" : {
+    "replaceDefault" : true,
+    "scripts" : [
+
+    ],
+    "stylesheets" : [
+      "assets/tokens.css",
+      "assets/site.css"
+    ]
+  },
+  "name" : "silverpoint",
+  "version" : "1.0.0"
+}

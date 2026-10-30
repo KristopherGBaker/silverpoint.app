@@ -1,0 +1,11 @@
+{
+  "title": "Silverpoint",
+  "description": "The native Mac design canvas, with an AI designer built in.",
+  "baseURL": "https://silverpoint.app/",
+  "theme": "silverpoint",
+  "outputDir": "public",
+  "home": {
+    "template": "landing"
+  },
+  "collections": []
+}
