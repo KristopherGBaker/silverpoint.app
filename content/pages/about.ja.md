@@ -9,6 +9,10 @@ layout: article
 
 Silverpoint は、AI デザイナーを内蔵した Mac ネイティブのデザインキャンバスです。ベータの間は無料です。
 
+## 作っている人
+
+Silverpoint を作っているのは [Kristopher Baker](https://krisbaker.com/ja/) です。iOS を土台にしてきたプロダクトエンジニアで、東京の南、藤沢市に住んでいます。これまで Wolt（DoorDash）、SmartNews、Bodybuilding.com でコンシューマ向けアプリを作ってきました。Silverpoint は一人で作っているプロジェクトで、AI エージェントの力を借り、そのために作ったビルドハーネス [Sparra](https://krisbaker.com/ja/building/sparra/) で確かめながら開発しています。詳しくは [krisbaker.com](https://krisbaker.com/ja/) へ。
+
 ## アプリが送るもの
 
 - **選んだモデルへ。** メッセージを送ると、依頼とエージェントが必要とするドキュメントの部分が、設定で選んだモデルに送られます。お使いの Claude Code や Codex（それぞれ自身のサービスと通信します）、API キーのプロバイダ、あるいは Apple のオンデバイスモデルやローカルサーバーなら外部には何も送られません。

@@ -9,6 +9,10 @@ layout: article
 
 Silverpoint is a native Mac design canvas with an AI designer built in. It is free while it is in beta.
 
+## Who makes it
+
+Silverpoint is made by [Kristopher Baker](https://krisbaker.com/), a product engineer with deep iOS roots who lives in Fujisawa, near Tokyo. Before Silverpoint came years of consumer apps at Wolt (DoorDash), SmartNews and Bodybuilding.com. It is a one-person project, built with the help of AI agents and checked by [Sparra](https://krisbaker.com/building/sparra/), a build harness made for that. More at [krisbaker.com](https://krisbaker.com/).
+
 ## What the app sends
 
 - **To the model you choose.** When you send a message, your request and the parts of the document the agent needs go to the model you picked in setup: your Claude Code or Codex (which talk to their own services), the provider of your API key, or nothing at all with Apple's on-device model or a local server.
