@@ -188,9 +188,7 @@ toc: true
 }
 ```
 
-ドキュメントの隣にある決まったファイルなら、シェルは必要ありません。
-`{"id": "copy-tokens", "event": "afterExport", "filter": ["tokens"], "command": ["/bin/cp", "-f", "tokens.json", "../my-app/Design/tokens.json"]}`
-はドキュメントのフォルダで `cp` を実行します。
+ドキュメントの隣にある決まったファイルなら、シェルは必要ありません。`{"id": "copy-tokens", "event": "afterExport", "filter": ["tokens"], "command": ["/bin/cp", "-f", "tokens.json", "../my-app/Design/tokens.json"]}`はドキュメントのフォルダで `cp` を実行します。
 
 **書き出したばかりの Swift に `swift-format` をかける**（SwiftUI のコードターゲット）。ファイルは `$SILVERPOINT_HOOK_FILES` に改行区切りで（stdin には配列として）届くので、スペースを含むパスも `tr` と `xargs -0` を通り抜けます。
 
@@ -225,8 +223,7 @@ toc: true
 }
 ```
 
-代わりにフォルダ内のすべてをステージするなら、シェルは必要ありません:
-`{"id": "stage-all", "event": "afterExportCode", "command": ["/usr/bin/git", "add", "-A", "."], "cwd": "/Users/me/code/my-app/Sources/Design"}`。
+代わりにフォルダ内のすべてをステージするなら、シェルは必要ありません: `{"id": "stage-all", "event": "afterExportCode", "command": ["/usr/bin/git", "add", "-A", "."], "cwd": "/Users/me/code/my-app/Sources/Design"}`。
 
 ## 対象外
 

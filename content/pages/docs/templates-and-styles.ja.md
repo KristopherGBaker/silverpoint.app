@@ -68,8 +68,7 @@ Silverpoint にはスターター **テンプレート**（起動ウインドウ
 | `onDestructive` | `destructive` の上のテキストとアイコン |
 | `focus` | フォーカスリング |
 
-プリセットがもともと持っていた追加のロール（`accent2`、`accent3`、`success`、soft-pastel の 4 つの `pastels`）も残り、ダークの値も付いています。色の行は `- accent: #RRGGBB / #RRGGBB` の形で、2 つの値は見出しが示す順に並びます。見出しは `## Colors (mode: light /
-dark; define these with set_variables)` で、もともとダークな 2 つのプリセット（`dark-tech-glow`、`luxury-noir`）では `mode: dark / light` となり、最初の値がそのプリセット本来の見た目のままです。これらは `mode` テーマ軸を持つ変数として適用します。最初の値はそのまま（デフォルトのモード）、2 つ目の値にはもう一方のモードのタグを付けます。各プリセットの Colors セクションには例が 1 行あり、`get_style` はプリセットのほかの部分と一緒にそれを返します。
+プリセットがもともと持っていた追加のロール（`accent2`、`accent3`、`success`、soft-pastel の 4 つの `pastels`）も残り、ダークの値も付いています。色の行は `- accent: #RRGGBB / #RRGGBB` の形で、2 つの値は見出しが示す順に並びます。見出しは `## Colors (mode: light / dark; define these with set_variables)` で、もともとダークな 2 つのプリセット（`dark-tech-glow`、`luxury-noir`）では `mode: dark / light` となり、最初の値がそのプリセット本来の見た目のままです。これらは `mode` テーマ軸を持つ変数として適用します。最初の値はそのまま（デフォルトのモード）、2 つ目の値にはもう一方のモードのタグを付けます。各プリセットの Colors セクションには例が 1 行あり、`get_style` はプリセットのほかの部分と一緒にそれを返します。
 
 ```json
 {"op":"set_variables","variables":{"accent":{"type":"color","value":[{"value":"#7A1E2C"},{"value":"#E07A8A","theme":{"mode":"dark"}}]}},"themes":{"mode":["light","dark"]}}
@@ -97,8 +96,7 @@ dark; define these with set_variables)` で、もともとダークな 2 つの�
 「この見た目を Editorial という名前のスタイルとして保存して」と頼むと、エージェントは `name`、`title`、`summary`、`body`、`confirm` を付けて `save_style` を呼びます。共有カタログのツールの 1 つで、`save_skill` と同じ確認の流れです。
 
 - **アプリでは** 直接書き込みません。カードにテキスト（または置き換えるスタイルとの差分）が「保存」と「破棄」と一緒に表示され、「保存」で `<name>.md` をあなたのスタイルフォルダに書き込みます。
-- **MCP と `silverpoint call` では**、`confirm: true` がなければプレビュー（`{written: false, slug, title,
-  replaces, text, diff}`）を返し、何も書き込みません。付けると書き込み、`written: true` を返します。既存のスタイルを置き換えるとき、`replaces` は `user` か `bundled` です。
+- **MCP と `silverpoint call` では**、`confirm: true` がなければプレビュー（`{written: false, slug, title, replaces, text, diff}`）を返し、何も書き込みません。付けると書き込み、`written: true` を返します。既存のスタイルを置き換えるとき、`replaces` は `user` か `bundled` です。
 - 本文が空、または文字や数字をひとつも含まない名前はツールエラーで、何も書き込みません。スタイルフォルダのない構成（フォルダを渡さなかったライブラリの呼び出し元）も同様です。
 
 別の名前のファイル（`Neon Look.md`）から来たスタイルの上に保存すると、そのファイルを書き換えるので、読まれるのは保存したほうです。
@@ -145,8 +143,7 @@ dark; define these with set_variables)` で、もともとダークな 2 つの�
 | `type mood` | 組み合わせのムードの 1 つ（editorial、calm、technical、playful、luxurious、friendly、formal、bold） |
 | `avoid` | `; ` で区切ったアンチパターン 1〜3 個。理由が自明でないときはその理由も |
 
-ファミリーは `commerce`、`developer-tools`、`editorial-media`、`enterprise`、`finance`、`health-wellness`、`kids-education`、`productivity`、`social-community`、`travel-hospitality` です。それぞれに独自のパレットが `Resources/Palettes/<family>.md` にあり、ページ用プリセットと同じ形式です。`## Colors
-(mode: light / dark; define these with set_variables)` の下に同じ 10 個のロールが `#LIGHT / #DARK` の行で並び、`Apply as one batch_design operation:` の例が付きます。パレットはファミリーのためにデザインされていて（どの色も Tailwind の既定の色ではなく、アクセントが重なるものはありません）、両方のモードでプリセットと同じ確認を通ります。上のコントラストの組み合わせ、反転ではなくより暗いダークモード、操作ランナーを通して適用できる例、そしてライトとダークで問題のない `contrast` リントです。
+ファミリーは `commerce`、`developer-tools`、`editorial-media`、`enterprise`、`finance`、`health-wellness`、`kids-education`、`productivity`、`social-community`、`travel-hospitality` です。それぞれに独自のパレットが `Resources/Palettes/<family>.md` にあり、ページ用プリセットと同じ形式です。`## Colors (mode: light / dark; define these with set_variables)` の下に同じ 10 個のロールが `#LIGHT / #DARK` の行で並び、`Apply as one batch_design operation:` の例が付きます。パレットはファミリーのためにデザインされていて（どの色も Tailwind の既定の色ではなく、アクセントが重なるものはありません）、両方のモードでプリセットと同じ確認を通ります。上のコントラストの組み合わせ、反転ではなくより暗いダークモード、操作ランナーを通して適用できる例、そしてライトとダークで問題のない `contrast` リントです。
 
 `get_style` に `product` を付けて `name` を付けないと、そのプロダクトの方向性を返します。ファミリーを含む `Product:` の行、色と文字のムード、合うプリセットと組み合わせの索引行（解決済みのスタイルと組み合わせのとおりなので、ユーザーによる上書きの概要が表示されます）、アンチパターン、そしてファミリーのパレットの Colors セクションをそのまま返します。プロダクトはゆるく照合されます（`Habit Tracker` も `HABIT_TRACKER` も `habit-tracker` です）。不明なプロダクトは、すべてのファミリーとそのプロダクトを示すツールエラーになります。`name` を付けると、`get_style` はこれまでどおりそのスタイルを返して `product` を無視し、どちらもないと両方を挙げるエラーになります。`silverpoint styles --product <slug>` は同じテキストを出力し、`silverpoint styles --products` はプロダクトの種類をファミリー別に一覧にします（下のコマンドラインを参照）。`design-principles` は、スタイルを選ぶ前に `get_style {product}` を読むようエージェントに求めます。
 
@@ -164,8 +161,7 @@ dark; define these with set_variables)` で、もともとダークな 2 つの�
 
 これらのフォルダにあるものがエラーになることはありません。セルの数が違う行、slug、family、presets、pairings、avoid のどれかが空の行（title とムードは空でもかまいません）、そのレイヤーにすでにあるスラッグを持つ 2 つ目の行、空行（表の終わりになります）のあとの行、プロダクトの表がないファイルは、ファイル名と行番号を示す警告とともにスキップされます（`skipped mine.md line 5: has 4 cells, not 8`）。`## Colors` セクションがない、ロールが欠けている、またはロールが `#RRGGBB / #RRGGBB` の形で書かれていないパレットは、ファイル名とロールを示す警告とともにスキップされ、そのファミリーを引き受けないので、付属またはパッケージのパレットがそのまま使われます。確認されるのは構造だけで、付属のパレットが通るコントラストの確認はあなたのものには行われません。警告は `silverpoint styles --product` と `--products` で表示され（stderr）、エージェントと MCP は読み込めないものをスキップします。
 
-プロダクトは、どのレイヤーにもパレットがないファミリーを指定してもかまいません。その場合、方向性の最後は `Palette (<family>): no palette
-for this family.` になります。指定したプリセットや組み合わせが解決済みのスタイルや組み合わせにないときは一覧から外され、一覧の最後に `(not found, left out: <slug>, <slug>)` の行が 1 つ付きます。`get_style` は実行時にレイヤーを解決するので、ターンの合間に追加した行も次の呼び出しで使えます。ただし `product` の選択肢はツール一覧を作った時点のプロダクトの種類を示し、不明なプロダクトのエラーは解決済みのファミリーとそのプロダクトを示します。エージェント、MCP（`silverpoint mcp`）、`silverpoint call`、`silverpoint styles` はすべて同じフォルダを読みます。
+プロダクトは、どのレイヤーにもパレットがないファミリーを指定してもかまいません。その場合、方向性の最後は `Palette (<family>): no palette for this family.` になります。指定したプリセットや組み合わせが解決済みのスタイルや組み合わせにないときは一覧から外され、一覧の最後に `(not found, left out: <slug>, <slug>)` の行が 1 つ付きます。`get_style` は実行時にレイヤーを解決するので、ターンの合間に追加した行も次の呼び出しで使えます。ただし `product` の選択肢はツール一覧を作った時点のプロダクトの種類を示し、不明なプロダクトのエラーは解決済みのファミリーとそのプロダクトを示します。エージェント、MCP（`silverpoint mcp`）、`silverpoint call`、`silverpoint styles` はすべて同じフォルダを読みます。
 
 ## コマンドライン
 
@@ -174,7 +170,6 @@ for this family.` になります。指定したプリセットや組み合わ�
     silverpoint styles --products [--json]
     silverpoint templates [--json]
 
-`styles` は解決済みのスタイルを 1 行ずつ（ドキュメントを指定すると、それがリンクするパッケージのものも）`slug<TAB>source[ (overrides bundled)]<TAB>title` の形で、`--json` を付けると `{slug, title, summary, source, overrides}` の配列で一覧にします。`--show <name>` は `get_style` が返すテキストを出力します（不明な名前では終了コード 1）。`--product <slug>` は `get_style` に `product` を付けたときの結果を出力し（`--json` を付けると `{slug, title, family,
-body}`。不明なプロダクトではツールのエラーとともに終了コード 1）、`--products` はプロダクトの種類を `slug<TAB>family<TAB>title` の形でファミリー順、次にスラッグ順で一覧にします（`--json` を付けると `{slug, title, family}` の配列）。どちらも、一緒に使えるフラグは `--json` だけです。`templates` はユーザーテンプレートを 1 行に `name<TAB>absolute path` の形で、`--json` を付けると `{name, file}` の配列で一覧にします。フォルダがなければ何も表示せず終了コード 0 で終わります。警告は stderr に出力されます。どちらも読み取り専用で、`SILVERPOINT_STYLES_DIR` と `SILVERPOINT_TEMPLATES_DIR`（`--product` と `--products` はプロダクトフォルダの `SILVERPOINT_PRODUCTS_DIR`）に従い、対応していないフラグでは終了コード 2 で終わります。
+`styles` は解決済みのスタイルを 1 行ずつ（ドキュメントを指定すると、それがリンクするパッケージのものも）`slug<TAB>source[ (overrides bundled)]<TAB>title` の形で、`--json` を付けると `{slug, title, summary, source, overrides}` の配列で一覧にします。`--show <name>` は `get_style` が返すテキストを出力します（不明な名前では終了コード 1）。`--product <slug>` は `get_style` に `product` を付けたときの結果を出力し（`--json` を付けると `{slug, title, family, body}`。不明なプロダクトではツールのエラーとともに終了コード 1）、`--products` はプロダクトの種類を `slug<TAB>family<TAB>title` の形でファミリー順、次にスラッグ順で一覧にします（`--json` を付けると `{slug, title, family}` の配列）。どちらも、一緒に使えるフラグは `--json` だけです。`templates` はユーザーテンプレートを 1 行に `name<TAB>absolute path` の形で、`--json` を付けると `{name, file}` の配列で一覧にします。フォルダがなければ何も表示せず終了コード 0 で終わります。警告は stderr に出力されます。どちらも読み取り専用で、`SILVERPOINT_STYLES_DIR` と `SILVERPOINT_TEMPLATES_DIR`（`--product` と `--products` はプロダクトフォルダの `SILVERPOINT_PRODUCTS_DIR`）に従い、対応していないフラグでは終了コード 2 で終わります。
 
 これらの変数の古い `VELLUM_` の綴りも、ほかのすべての `SILVERPOINT_*` 変数と同じく引き続き使えます。

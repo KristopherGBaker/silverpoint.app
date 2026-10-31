@@ -41,8 +41,7 @@ Silverpoint のデザインチェック（`lint`、インスペクタの **デ�
 ### 同じ ID が 2 回あるとき
 
 - 1 つのレイヤーのドキュメントやファイルの中で ID が重複しているのは問題で、あとのルールはスキップされます。
-- ユーザーフォルダで 2 つのファイルが同じ ID を定義しているときは、名前で（バイト順に）先に並ぶファイルが優先されます。あとのファイルのルールはスキップされ、優先されたファイルの名前を挙げた問題として報告されます。`b.json: dup-id: skipped: a.json already defines the rule
-  "dup-id" (the first file in byte order wins)`
+- ユーザーフォルダで 2 つのファイルが同じ ID を定義しているときは、名前で（バイト順に）先に並ぶファイルが優先されます。あとのファイルのルールはスキップされ、優先されたファイルの名前を挙げた問題として報告されます。`b.json: dup-id: skipped: a.json already defines the rule "dup-id" (the first file in byte order wins)`
 - レイヤーをまたぐ場合は問題ではなく、上で説明した優先順位です。`silverpoint lint-rules` は、優先されたルールの横に `(overrides user)` または `(overrides library)` を表示します。
 
 ### 組み込みルールをオフにする

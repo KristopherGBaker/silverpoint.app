@@ -142,8 +142,7 @@ Silverpoint には 17 のスキルが同梱されています（`Packages/Silver
 
 アプリ内の各会話のログ（`~/Library/Logs/Silverpoint/agent/`、会話ごとに JSONL ファイル 1 つ）には、エージェントにどのスキルが提示され、どれが読まれたかが、どちらのバックエンド（API と Claude Code）でも記録されます。
 
-- **`skills` 行**は `conversation` 行のすぐあとに来ます。
-  `{"event":"skills","skills":[…],"promptVersion":"…"}`。解決されたスキルごとに 1 項目（オフのものも含む）があり、スラッグ順に並びます。
+- **`skills` 行**は `conversation` 行のすぐあとに来ます。`{"event":"skills","skills":[…],"promptVersion":"…"}`。解決されたスキルごとに 1 項目（オフのものも含む）があり、スラッグ順に並びます。
   - `slug` と `title`。
   - `source`：`bundled`、`package`、`user`、`document` のいずれかで、そのスラッグで勝ったレイヤー。
   - `enabled`：スキルがオフ（提示されない）のときは false。
