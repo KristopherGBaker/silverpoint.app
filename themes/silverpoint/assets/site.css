@@ -279,7 +279,7 @@ div[data-slot="page.content"] :not(pre) > code { background: var(--backdrop-deep
   .site-footer--0 { padding: 32px 40px 32px 40px; }
   .site-header--0 { padding: 20px 40px 20px 40px; }
 }
-@media (max-width: 390px) {
+@media (max-width: 600px) {
   .landing-0 { max-width: none; }
   .landing-9 { align-self: stretch; }
   .landing-11 { font-size: 40px; letter-spacing: -1px; }
