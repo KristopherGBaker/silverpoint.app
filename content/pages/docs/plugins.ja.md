@@ -212,6 +212,8 @@ stdin を読まずに終了するプラグインでも問題ありません（Si
 
 ## コマンドライン
 
+*ベータにはまだ含まれていません。`silverpoint` コマンドラインツールはダウンロード版に入っていないため、この節はソースからビルドした場合の説明です。*
+
     silverpoint plugins list [--json]
     silverpoint plugins install <folder> [--approve]
     silverpoint plugins remove <id>

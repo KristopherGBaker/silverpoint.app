@@ -212,6 +212,8 @@ Where problems show: the Design Check section lists them under the issues, `lint
 
 ## From the command line
 
+*Not in the beta yet: the `silverpoint` command-line tool doesn't ship in the download, so this section describes it for builds made from source.*
+
 ```text
 silverpoint lint-rules [<file.silverpoint>] [--json] [--check <file.json>]
 ```

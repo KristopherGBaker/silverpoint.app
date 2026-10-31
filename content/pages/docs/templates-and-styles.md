@@ -270,6 +270,8 @@ list was built, and the unknown-product error lists the resolved families and th
 
 ## Command line
 
+*Not in the beta yet: the `silverpoint` command-line tool doesn't ship in the download, so this section describes it for builds made from source.*
+
     silverpoint styles [<file.silverpoint>] [--json] [--show <name>]
     silverpoint styles --product <slug> [--json]
     silverpoint styles --products [--json]

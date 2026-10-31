@@ -165,6 +165,8 @@ Silverpoint にはスターター **テンプレート**（起動ウインドウ
 
 ## コマンドライン
 
+*ベータにはまだ含まれていません。`silverpoint` コマンドラインツールはダウンロード版に入っていないため、この節はソースからビルドした場合の説明です。*
+
     silverpoint styles [<file.silverpoint>] [--json] [--show <name>]
     silverpoint styles --product <slug> [--json]
     silverpoint styles --products [--json]

@@ -18,19 +18,19 @@
     },
     {
       "path" : "content/pages/docs/lint-rules.md",
-      "sha256" : "084c3cb402330f88056073b3b8e4fa730e1a63e0bb7c2ecc3a6bbbb897119cf3"
+      "sha256" : "91f93f0e9ec8ed37fc398fafd668b02d66baf85f407471f3c0d897dcc3ce73ab"
     },
     {
       "path" : "content/pages/docs/plugins.md",
-      "sha256" : "1a4f02c9572f9019bfccac431ae49383cacda622f4d623a95ad2e212cf1762b0"
+      "sha256" : "dbba8cf1fcfe4499ed2062756efb7d743ac4c5f71dfcd46e23503af02ec47b14"
     },
     {
       "path" : "content/pages/docs/skills.md",
-      "sha256" : "7e223828b9df47616ee45cb4ec637b22b0416613a28b71149a63aa0d2543a8f7"
+      "sha256" : "071246ccf2ad2523b398c9b4e62fce4198c11f602be2b7a7cac231f196c8dbe4"
     },
     {
       "path" : "content/pages/docs/templates-and-styles.md",
-      "sha256" : "8fd2d4efdf670ed622da224e5e7be46a852a6c654bab9980257e7245a5000fa5"
+      "sha256" : "66c5200b1ce940687cd374c1568fb28f982909f580c46a3bde05d01ffd018875"
     },
     {
       "path" : "data/docs.yml",

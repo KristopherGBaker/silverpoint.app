@@ -322,6 +322,8 @@ for the one-liners.
 
 ## Command line
 
+*Not in the beta yet: the `silverpoint` command-line tool doesn't ship in the download, so this section describes it for builds made from source.*
+
     silverpoint skills [<file.silverpoint>] [--json] [--show <name>]
     silverpoint tools [<file.silverpoint>] [--json]
     silverpoint instructions [<file.silverpoint>]

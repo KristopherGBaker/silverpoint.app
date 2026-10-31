@@ -297,6 +297,8 @@ Beyond approval, the only limits are its [permissions](#permissions): an approve
 
 ## The command line
 
+*Not in the beta yet: the `silverpoint` command-line tool doesn't ship in the download, so this section describes it for builds made from source.*
+
     silverpoint plugins list [--json]
     silverpoint plugins install <folder> [--approve]
     silverpoint plugins remove <id>

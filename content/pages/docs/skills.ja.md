@@ -177,6 +177,8 @@ Silverpoint には 17 のスキルが同梱されています（`Packages/Silver
 
 ## コマンドライン
 
+*ベータにはまだ含まれていません。`silverpoint` コマンドラインツールはダウンロード版に入っていないため、この節はソースからビルドした場合の説明です。*
+
     silverpoint skills [<file.silverpoint>] [--json] [--show <name>]
     silverpoint tools [<file.silverpoint>] [--json]
     silverpoint instructions [<file.silverpoint>]

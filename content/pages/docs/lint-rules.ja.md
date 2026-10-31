@@ -154,6 +154,8 @@ team.json: -: not valid JSON: ...
 
 ## コマンドラインから
 
+*ベータにはまだ含まれていません。`silverpoint` コマンドラインツールはダウンロード版に入っていないため、この節はソースからビルドした場合の説明です。*
+
 ```text
 silverpoint lint-rules [<file.silverpoint>] [--json] [--check <file.json>]
 ```
