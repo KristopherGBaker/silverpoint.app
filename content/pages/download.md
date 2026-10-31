@@ -1,7 +1,7 @@
 ---
 title: "Download the Silverpoint beta"
-description: "Free while it is in beta. A notarized app for macOS 26 or later that keeps itself up to date."
-summary: "Free while it is in beta. A notarized app for macOS 26 or later that keeps itself up to date."
+description: "Free while it is in beta. A notarized Mac app that keeps itself up to date."
+summary: "Free while it is in beta. A notarized Mac app that keeps itself up to date."
 layout: download
 ---
 
