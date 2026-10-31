@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block page_class %}article-0{% endblock %}
+{% block main %}
+<div class="article-1" data-name="Header rule"></div>
+<div class="article-2" data-name="Article hero">
+  <div class="article-3" data-name="Article hatch">
+    <svg class="article-4" data-name="Hatch lines" viewBox="0 0 1440 420"><path d="M1440 1600L3040 0M1392 1600L2992 0M1344 1600L2944 0M1296 1600L2896 0M1248 1600L2848 0M1200 1600L2800 0M1152 1600L2752 0M1104 1600L2704 0M1056 1600L2656 0M1008 1600L2608 0M960 1600L2560 0M912 1600L2512 0M864 1600L2464 0M816 1600L2416 0M768 1600L2368 0M720 1600L2320 0M672 1600L2272 0M624 1600L2224 0M576 1600L2176 0M528 1600L2128 0M480 1600L2080 0M432 1600L2032 0M384 1600L1984 0M336 1600L1936 0M288 1600L1888 0M240 1600L1840 0M192 1600L1792 0M144 1600L1744 0M96 1600L1696 0M48 1600L1648 0M0 1600L1600 0M-48 1600L1552 0M-96 1600L1504 0M-144 1600L1456 0M-192 1600L1408 0M-240 1600L1360 0M-288 1600L1312 0M-336 1600L1264 0M-384 1600L1216 0M-432 1600L1168 0M-480 1600L1120 0M-528 1600L1072 0M-576 1600L1024 0M-624 1600L976 0M-672 1600L928 0M-720 1600L880 0M-768 1600L832 0M-816 1600L784 0M-864 1600L736 0M-912 1600L688 0M-960 1600L640 0M-1008 1600L592 0M-1056 1600L544 0M-1104 1600L496 0M-1152 1600L448 0M-1200 1600L400 0M-1248 1600L352 0M-1296 1600L304 0M-1344 1600L256 0M-1392 1600L208 0M-1440 1600L160 0M-1488 1600L112 0M-1536 1600L64 0M-1584 1600L16 0M-1632 1600L-32 0" fill="none" stroke="var(--backdrop-line)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </div>
+  <div class="article-5" data-name="Article kicker">{{ site.title }}</div>
+  <div class="article-6" data-name="Article title">{{ page.title }}</div>
+  <div class="article-7" data-name="Article lead">{{ page.description }}</div>
+</div>
+<div class="article-8" data-name="Article rule"></div>
+<div class="article-9" data-name="Article page">
+  <div class="article-10" data-name="Article body" data-slot="page.content">
+    {{ page.content }}<!-- /page.content -->
+  </div>
+  <div class="article-11" data-name="On this page">
+    <div class="article-12" data-name="On this page title">{{ data.site.on_this_page|escape }}</div>
+    {% if page.toc %}
+    <div class="article-13" data-name="Toc entries">
+      {% for item in page.toc %}
+      <a class="sp-link" href="#{{ item.anchor }}">
+        <div class="article-14" data-name="Toc 1">{{ item.text }}</div>
+      </a>
+      {% endfor %}
+    </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

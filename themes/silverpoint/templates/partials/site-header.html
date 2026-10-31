@@ -1,5 +1,5 @@
 <div class="site-header--0" data-name="Site Header" data-partial="site-header">
-  <a class="sp-link" href="{{ site.baseURL }}"{% if page.path == "" %} aria-current="page"{% endif %}>
+  <a class="sp-link" href="{{ links.home }}"{% if page.path == "" or page.path == "ja/" %} aria-current="page"{% endif %}>
   <div class="site-header--1" data-name="Wordmark">
     <div class="site-header--2" data-name="Mark">
       <svg class="site-header--3" data-name="Stylus" viewBox="0 0 16 16"><path d="M0 16L16 0" fill="none" stroke="var(--label-tertiary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -9,17 +9,27 @@
   </div>
   </a>
   <div class="site-header--6" data-name="Nav">
-    <a class="sp-link" href="{{ site.baseURL }}#features">
-    <div class="site-header--7" data-name="Nav Features">Features</div>
+    <a class="sp-link" href="{{ links.home }}features/"{% if page.path == "features/" or page.path == "ja/features/" %} aria-current="page"{% endif %}>
+    <div class="site-header--7" data-name="Nav Features">{{ data.site.nav_features|escape }}</div>
     </a>
-    <a class="sp-link" href="{{ site.baseURL }}docs/getting-started/"{% if page.path == "docs/getting-started/" %} aria-current="page"{% endif %}>
-    <div class="site-header--8" data-name="Nav Docs">Docs</div>
+    <a class="sp-link" href="{{ links.home }}docs/getting-started/"{% if page.path == "docs/getting-started/" or page.path == "ja/docs/getting-started/" %} aria-current="page"{% endif %}>
+    <div class="site-header--8" data-name="Nav Docs">{{ data.site.nav_docs|escape }}</div>
     </a>
-    <a class="sp-link" href="https://github.com/KristopherGBaker/Silverpoint" rel="noopener">
-    <div class="site-header--9" data-name="Nav GitHub">GitHub</div>
+    <a class="sp-link" href="{{ links.home }}releases/"{% if page.path == "releases/" or page.path == "ja/releases/" %} aria-current="page"{% endif %}>
+    <div class="site-header--9" data-name="Nav Releases">{{ data.site.nav_releases|escape }}</div>
     </a>
-    <a class="sp-link" href="https://github.com/KristopherGBaker/Silverpoint/releases" rel="noopener">
-    {% include "partials/button.html" %}
+    <div class="site-header--10" data-name="Languages">
+      <a class="sp-link" href="{{ site.baseURL }}en/" hreflang="en"{% if page.lang == "en" %} aria-current="true"{% endif %}>
+      <div class="site-header--11" data-name="Language English">EN</div>
+      </a>
+      <a class="sp-link" href="{{ site.baseURL }}ja/" hreflang="ja"{% if page.lang == "ja" %} aria-current="true"{% endif %}>
+      <div class="site-header--12" data-name="Language Japanese">日本語</div>
+      </a>
+    </div>
+    <a class="sp-link" href="{{ links.home }}download/"{% if page.path == "download/" or page.path == "ja/download/" %} aria-current="page"{% endif %}>
+    <div class="site-header--13" data-name="Header download">
+      <div class="site-header--14" data-name="Label">{{ data.site.nav_download|escape }}</div>
+    </div>
     </a>
   </div>
 </div>

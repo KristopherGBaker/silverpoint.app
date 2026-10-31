@@ -7,5 +7,18 @@
   "home": {
     "template": "landing"
   },
-  "collections": []
+  "collections": [],
+  "i18n": {
+    "defaultLanguage": "en",
+    "languages": [
+      "en",
+      "ja"
+    ]
+  },
+  "translations": {
+    "ja": {
+      "title": "Silverpoint",
+      "description": "AI デザイナーを内蔵した、Mac ネイティブのデザインキャンバス。"
+    }
+  }
 }

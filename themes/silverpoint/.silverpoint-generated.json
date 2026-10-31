@@ -10,7 +10,7 @@
     },
     {
       "path" : "content/pages/docs/getting-started.md",
-      "sha256" : "8f2394935f7ecba399b3be62ae25d2ffeeb8802322301a183d0ac7c1f429e61d"
+      "sha256" : "7931ac59a73418bfeef70dad5ce1b8e9555d490522af2e481eaf849578edab07"
     },
     {
       "path" : "content/pages/docs/hooks.md",
@@ -37,8 +37,20 @@
       "sha256" : "13cd5b72b8f075325692f232abaf71fc404024ca769e6356d1716c7ae65c6324"
     },
     {
+      "path" : "data/download.yml",
+      "sha256" : "9de7e8df2265c29455d69fc9d36a9f85732c924178c0c03749b661206457188d"
+    },
+    {
       "path" : "data/features.yml",
-      "sha256" : "58a7a2f49e9b6a77837f8aacac367c12ce5c3e1dc2604bd9d932169cc4935793"
+      "sha256" : "2310c317ffbfe8f67b54fc19e37abea9cc1ec1382b255433de3976fcde4b8f13"
+    },
+    {
+      "path" : "data/home.yml",
+      "sha256" : "1e28dcd1af887fd9540c62a51ece568beef1429dc7d3c003fd6f7601ba5b14e9"
+    },
+    {
+      "path" : "data/site.yml",
+      "sha256" : "d5942e01fdba5821fdaae40e7887ae82473639e9617d8d682d1c1077643ccf7f"
     },
     {
       "path" : "themes/silverpoint/assets/images/agent-history-light.png",
@@ -62,7 +74,7 @@
     },
     {
       "path" : "themes/silverpoint/assets/site.css",
-      "sha256" : "d820ec62225a71ae701d3efb5b5a91a1638b887eda8188dc43784615d72c7978"
+      "sha256" : "a20db73d2e30706ef5182e677c8f3a7a312912339f3ace8f086ae3801ee51f3e"
     },
     {
       "path" : "themes/silverpoint/assets/tokens.css",
@@ -70,31 +82,43 @@
     },
     {
       "path" : "themes/silverpoint/templates/base.html",
-      "sha256" : "2a91641bd2b95c0c2ae4b4d3ac024a3aea2daef06c37a50b2d28be8d3dcfd395"
+      "sha256" : "de7fe90aa7bc0df8d42f8f0a45e36feafe17d9344ee4d591931976f0d1fc34d0"
+    },
+    {
+      "path" : "themes/silverpoint/templates/layouts/article.html",
+      "sha256" : "c44dc3e7a9c80bb9da14f1ac84934f4affe5dc9fe38e60dc6a7a136a9352643e"
     },
     {
       "path" : "themes/silverpoint/templates/layouts/doc.html",
-      "sha256" : "7870af7a959abebc8a40d3943515050564be1b3ca97a653a91ccf71c521c3967"
+      "sha256" : "12276ea1282ddc78611f245f81752d237c443975e35d3996e2f38490fa7af604"
+    },
+    {
+      "path" : "themes/silverpoint/templates/layouts/download.html",
+      "sha256" : "c25c75d86419615135e51e985cb4d8d1e0d1d33a613fe4c6c85ccb7c9ad810e0"
     },
     {
       "path" : "themes/silverpoint/templates/layouts/landing.html",
-      "sha256" : "fae5273203f296c0ac141c94f505f36e752b273e09fd79785a3b639a6817c141"
+      "sha256" : "69e68040994600a2a3b68bcada31c00dd410fdb804b6a6a7e07fed011fa98412"
     },
     {
       "path" : "themes/silverpoint/templates/layouts/page.html",
       "sha256" : "4644cc91c30120194b9807c48da7b7e2418c2708455b06ef86ea663177a02256"
     },
     {
-      "path" : "themes/silverpoint/templates/partials/button.html",
-      "sha256" : "3e05b4c5d3c2a3352344f338819287fe9eba57fcab11c2f507de330eb043c9f6"
+      "path" : "themes/silverpoint/templates/layouts/redirect.html",
+      "sha256" : "55fb80ddf61be09fa962ae82c59f67f0f59dc91fcfa16287457bd21cd5ebe716"
+    },
+    {
+      "path" : "themes/silverpoint/templates/partials/hatch.html",
+      "sha256" : "a4806a8c6e4792a2b630d409cea8ad055fce3b894b2fc2099cb6e1dc6d0e8891"
     },
     {
       "path" : "themes/silverpoint/templates/partials/site-footer.html",
-      "sha256" : "ecc4b47773f9f410b0eacb5ebab47fb1307e8e83d3a028a9fd58d73998c63357"
+      "sha256" : "e76540faa57bb46c676d1fb492544f3a756a86d022975bc625aa371ac4eca628"
     },
     {
       "path" : "themes/silverpoint/templates/partials/site-header.html",
-      "sha256" : "4cb5a4d00209f9975cb09e7802d317904272903308cbbcc5cc4a274b43792b70"
+      "sha256" : "5aad2615b3102268738aa50d5b03982adf1936f2b67460018140cd1af4608101"
     },
     {
       "path" : "themes/silverpoint/templates/partials/wordmark.html",

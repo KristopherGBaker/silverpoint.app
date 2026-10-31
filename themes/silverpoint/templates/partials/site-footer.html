@@ -1,17 +1,27 @@
 <div class="site-footer--0" data-name="Site Footer" data-partial="site-footer">
   <div class="site-footer--1" data-name="Footer brand">
+    <a class="sp-link" href="{{ links.home }}"{% if page.path == "" or page.path == "ja/" %} aria-current="page"{% endif %}>
     {% include "partials/wordmark.html" %}
-    <div class="site-footer--2" data-name="Footer note">Drawn in Silverpoint, with its own design system.</div>
+    </a>
+    <div class="site-footer--2" data-name="Footer note">{{ data.site.footer_note|escape }}</div>
   </div>
   <div class="site-footer--3" data-name="Footer links">
-    <a class="sp-link" href="{{ site.baseURL }}docs/getting-started/"{% if page.path == "docs/getting-started/" %} aria-current="page"{% endif %}>
-    <div class="site-footer--4" data-name="Footer Docs">Docs</div>
+    <a class="sp-link" href="{{ links.home }}docs/getting-started/"{% if page.path == "docs/getting-started/" or page.path == "ja/docs/getting-started/" %} aria-current="page"{% endif %}>
+    <div class="site-footer--4" data-name="Footer Docs">{{ data.site.footer_docs|escape }}</div>
     </a>
-    <a class="sp-link" href="https://github.com/KristopherGBaker/Silverpoint" rel="noopener">
-    <div class="site-footer--5" data-name="Footer GitHub">GitHub</div>
+    <a class="sp-link" href="{{ links.home }}about/"{% if page.path == "about/" or page.path == "ja/about/" %} aria-current="page"{% endif %}>
+    <div class="site-footer--5" data-name="Footer About">{{ data.site.footer_about|escape }}</div>
     </a>
-    <a class="sp-link" href="https://github.com/KristopherGBaker/Silverpoint/releases" rel="noopener">
-    <div class="site-footer--6" data-name="Footer Releases">Releases</div>
+    <a class="sp-link" href="{{ links.home }}releases/"{% if page.path == "releases/" or page.path == "ja/releases/" %} aria-current="page"{% endif %}>
+    <div class="site-footer--6" data-name="Footer Releases">{{ data.site.footer_releases|escape }}</div>
     </a>
+    <div class="site-footer--7" data-name="Footer languages">
+      <a class="sp-link" href="{{ site.baseURL }}en/" hreflang="en"{% if page.lang == "en" %} aria-current="true"{% endif %}>
+      <div class="site-footer--8" data-name="Footer English">English</div>
+      </a>
+      <a class="sp-link" href="{{ site.baseURL }}ja/" hreflang="ja"{% if page.lang == "ja" %} aria-current="true"{% endif %}>
+      <div class="site-footer--9" data-name="Footer Japanese">日本語</div>
+      </a>
+    </div>
   </div>
 </div>

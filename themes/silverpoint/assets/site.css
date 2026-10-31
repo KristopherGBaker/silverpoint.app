@@ -4,6 +4,21 @@ body { background: var(--backdrop-ground); font-family: -apple-system, BlinkMacS
 .sp-link { display: contents; color: inherit; text-decoration: none; }
 [data-slot="page.content"] img, [data-slot="page.content"] pre { max-width: 100%; }
 [data-slot="page.content"] pre { overflow: auto; }
+:lang(ja) { word-break: auto-phrase; line-break: strict; }
+div[data-slot="page.content"] { display: block; }
+div[data-slot="page.content"] > * + * { margin-top: 16px; }
+div[data-slot="page.content"] > :is(h1, h2):not(:first-child) { margin-top: 48px; }
+div[data-slot="page.content"] > :is(h3, h4, h5, h6):not(:first-child) { margin-top: 32px; }
+div[data-slot="page.content"] :is(ul, ol) { padding-left: 1.5em; }
+div[data-slot="page.content"] li + li { margin-top: 4px; }
+div[data-slot="page.content"] a { color: inherit; text-decoration: underline; text-underline-offset: 0.15em; }
+div[data-slot="page.content"] h2 { font-family: 'SF Pro', -apple-system, system-ui, sans-serif; font-size: 28px; font-weight: 600; letter-spacing: -0.4px; line-height: 1.2; color: var(--label); }
+div[data-slot="page.content"] h3 { font-family: 'SF Pro', -apple-system, system-ui, sans-serif; font-size: 21px; font-weight: 600; letter-spacing: -0.2px; line-height: 1.3; color: var(--label); }
+div[data-slot="page.content"] p, div[data-slot="page.content"] li, div[data-slot="page.content"] blockquote, div[data-slot="page.content"] td, div[data-slot="page.content"] th { font-family: 'SF Pro', -apple-system, system-ui, sans-serif; font-size: 17px; font-weight: 400; line-height: 1.6; color: var(--label-secondary); }
+div[data-slot="page.content"] code { font-family: 'SF Mono', ui-monospace, Menlo, monospace; font-size: 14px; font-weight: 400; line-height: 1.5; color: var(--label); }
+div[data-slot="page.content"] pre { background: var(--backdrop-deep); border-radius: 12px 12px 12px 12px; padding: 16px 20px 16px 20px; }
+div[data-slot="page.content"] pre code { background: none; padding: 0; }
+div[data-slot="page.content"] :not(pre) > code { background: var(--backdrop-deep); padding: 0.1em 0.35em; border-radius: 4px; }
 .landing-0 { position: relative; width: 100%; max-width: 1440px; margin: 0 auto; background: var(--backdrop-ground); display: flex; flex-direction: column; justify-content: flex-start; align-items: flex-start; overflow: hidden; }
 .landing-1 { position: relative; flex-shrink: 0; align-self: stretch; height: 1px; background: var(--separator); }
 .landing-4 { position: absolute; left: 0px; top: 0px; width: 100%; height: 1544px; overflow: visible; }
@@ -12,22 +27,22 @@ body { background: var(--backdrop-ground); font-family: -apple-system, BlinkMacS
 .landing-6 { position: absolute; left: 1298px; top: 297px; width: 16px; height: 16px; max-width: 100%; border: 1.5px solid var(--backdrop-accent); border-radius: 50%; }
 .landing-7 { position: absolute; left: 1303px; top: 302px; width: 6px; height: 6px; max-width: 100%; background: var(--backdrop-accent); border-radius: 50%; }
 .landing-8 { position: relative; flex-shrink: 0; font-family: 'SF Mono', -apple-system, system-ui, sans-serif; font-size: 13px; font-weight: 400; line-height: 1.3; white-space: pre-wrap; color: var(--label-tertiary); }
-.landing-9 { position: relative; flex-shrink: 0; font-family: 'SF Mono', -apple-system, system-ui, sans-serif; font-size: 13px; font-weight: 400; line-height: 1.3; white-space: pre; color: var(--label-tertiary); }
+.landing-9 { position: relative; flex-shrink: 0; font-family: 'SF Mono', -apple-system, system-ui, sans-serif; font-size: 13px; font-weight: 400; line-height: 1.3; white-space: pre-wrap; color: var(--label-tertiary); }
 .landing-10 { position: relative; flex-shrink: 0; width: 10px; height: 24px; max-width: 100%; }
 .landing-11 { position: relative; flex-shrink: 0; width: 920px; max-width: 100%; font-family: 'SF Pro', -apple-system, system-ui, sans-serif; font-size: 72px; font-weight: 700; letter-spacing: -2px; line-height: 1.05; white-space: pre-wrap; color: var(--label); }
 .landing-12 { position: relative; flex-shrink: 0; width: 10px; height: 28px; max-width: 100%; }
 .landing-13 { position: relative; flex-shrink: 0; width: 640px; max-width: 100%; font-family: 'SF Pro', -apple-system, system-ui, sans-serif; font-size: 21px; font-weight: 400; line-height: 1.5; white-space: pre-wrap; color: var(--label-secondary); }
 .landing-14 { position: relative; flex-shrink: 0; width: 10px; height: 40px; max-width: 100%; }
-.landing-17 { position: relative; flex-shrink: 0; font-family: 'SF Pro', -apple-system, system-ui, sans-serif; font-size: 15px; font-weight: 600; line-height: 1.25; white-space: pre; color: var(--on-accent); }
-.landing-16 { position: relative; flex-shrink: 0; background: var(--accent); border-radius: 999px 999px 999px 999px; display: flex; flex-direction: row; justify-content: center; align-items: center; padding: 14px 24px 14px 24px; }
-.landing-19 { position: relative; flex-shrink: 0; font-family: 'SF Pro', -apple-system, system-ui, sans-serif; font-size: 15px; font-weight: 600; line-height: 1.25; white-space: pre; color: var(--label); }
-.landing-18 { position: relative; flex-shrink: 0; background: var(--control-fill); border-radius: 999px 999px 999px 999px; display: flex; flex-direction: row; justify-content: center; align-items: center; padding: 14px 24px 14px 24px; }
+.landing-17 { position: relative; flex-shrink: 0; font-family: 'SF Pro', -apple-system, system-ui, sans-serif; font-size: 15px; font-weight: 600; white-space: pre-wrap; color: var(--on-accent); }
+.landing-16 { position: relative; flex-shrink: 0; background: var(--accent); border-radius: 999px 999px 999px 999px; display: flex; flex-direction: row; justify-content: flex-start; align-items: center; padding: 14px 24px 14px 24px; }
+.landing-19 { position: relative; flex-shrink: 0; font-family: 'SF Pro', -apple-system, system-ui, sans-serif; font-size: 15px; font-weight: 600; white-space: pre-wrap; color: var(--label); }
+.landing-18 { position: relative; flex-shrink: 0; background: var(--control-fill); border-radius: 999px 999px 999px 999px; display: flex; flex-direction: row; justify-content: flex-start; align-items: center; padding: 14px 24px 14px 24px; }
 .landing-15 { position: relative; flex-shrink: 0; display: flex; flex-direction: row; gap: 12px; justify-content: flex-start; align-items: center; }
 .landing-20 { position: relative; flex-shrink: 0; width: 10px; height: 16px; max-width: 100%; }
-.landing-21 { position: relative; flex-shrink: 0; font-family: 'SF Mono', -apple-system, system-ui, sans-serif; font-size: 13px; font-weight: 400; line-height: 1.3; white-space: pre; color: var(--label-tertiary); }
+.landing-21 { position: relative; flex-shrink: 0; font-family: 'SF Mono', -apple-system, system-ui, sans-serif; font-size: 13px; font-weight: 400; line-height: 1.3; white-space: pre-wrap; color: var(--label-tertiary); }
 .landing-22 { position: relative; flex-shrink: 0; width: 10px; height: 72px; max-width: 100%; }
 .landing-24 { position: relative; flex-shrink: 0; width: 1200px; height: auto; aspect-ratio: 1200 / 779; max-width: 100%; background: url('images/main-window-light.png') center / cover no-repeat, var(--surface); border: 1px solid var(--separator); border-radius: 12px 12px 12px 12px; box-shadow: 0px 24px 64px 0px rgba(29, 29, 31, 0.15); }
-.landing-26 { position: relative; flex-shrink: 0; font-family: 'SF Mono', -apple-system, system-ui, sans-serif; font-size: 13px; font-weight: 400; line-height: 1.3; white-space: pre; color: var(--label-tertiary); }
+.landing-26 { position: relative; flex-shrink: 0; font-family: 'SF Mono', -apple-system, system-ui, sans-serif; font-size: 13px; font-weight: 400; line-height: 1.3; white-space: pre-wrap; color: var(--label-tertiary); }
 .landing-27 { position: relative; flex-shrink: 0; font-family: 'SF Mono', -apple-system, system-ui, sans-serif; font-size: 13px; font-weight: 400; line-height: 1.3; white-space: pre; color: var(--label-tertiary); }
 .landing-25 { position: relative; flex-shrink: 0; align-self: stretch; display: flex; flex-direction: row; justify-content: space-between; align-items: flex-start; }
 .landing-23 { position: relative; flex-shrink: 0; align-self: stretch; display: flex; flex-direction: column; gap: 16px; justify-content: flex-start; align-items: flex-start; }
@@ -36,7 +51,7 @@ body { background: var(--backdrop-ground); font-family: -apple-system, BlinkMacS
 .landing-31 { position: relative; flex-shrink: 0; width: 640px; max-width: 100%; font-family: 'SF Pro', -apple-system, system-ui, sans-serif; font-size: 44px; font-weight: 700; letter-spacing: -1px; line-height: 1.12; white-space: pre-wrap; color: var(--label); }
 .landing-32 { position: relative; flex-shrink: 0; width: 420px; max-width: 100%; font-family: 'SF Pro', -apple-system, system-ui, sans-serif; font-size: 17px; font-weight: 400; line-height: 1.6; white-space: pre-wrap; color: var(--label-secondary); }
 .landing-30 { position: relative; flex-shrink: 0; align-self: stretch; display: flex; flex-direction: row; gap: 64px; justify-content: space-between; align-items: flex-end; }
-.landing-35 { position: relative; flex-shrink: 0; font-family: 'SF Mono', -apple-system, system-ui, sans-serif; font-size: 13px; font-weight: 400; line-height: 1.3; white-space: pre; color: var(--backdrop-accent); }
+.landing-35 { position: relative; flex-shrink: 0; font-family: 'SF Mono', -apple-system, system-ui, sans-serif; font-size: 13px; font-weight: 400; line-height: 1.3; white-space: pre-wrap; color: var(--backdrop-accent); }
 .landing-36 { position: relative; flex-shrink: 0; width: 560px; max-width: 100%; font-family: 'SF Pro', -apple-system, system-ui, sans-serif; font-size: 28px; font-weight: 600; letter-spacing: -0.4px; line-height: 1.2; white-space: pre-wrap; color: var(--label); }
 .landing-37 { position: relative; flex-shrink: 0; width: 560px; max-width: 100%; font-family: 'SF Pro', -apple-system, system-ui, sans-serif; font-size: 17px; font-weight: 400; line-height: 1.6; white-space: pre-wrap; color: var(--label-secondary); }
 .landing-40 { position: relative; flex-shrink: 0; width: 12px; height: 12px; max-width: 100%; }
@@ -57,21 +72,21 @@ body { background: var(--backdrop-ground); font-family: -apple-system, BlinkMacS
 .landing-38 { position: relative; flex-shrink: 0; align-self: stretch; display: flex; flex-direction: row; flex-wrap: wrap; gap: 8px; justify-content: flex-start; align-items: flex-start; align-content: flex-start; }
 .landing-54 { position: relative; flex-shrink: 0; width: 10px; height: 21px; max-width: 100%; }
 .landing-55 { position: relative; flex-shrink: 0; width: 806px; height: auto; aspect-ratio: 806 / 523; max-width: 100%; background: url('images/agent-history-light.png') center / contain no-repeat, var(--surface); border: 1px solid var(--separator); border-radius: 12px 12px 12px 12px; box-shadow: 0px 16px 40px 0px rgba(29, 29, 31, 0.15); }
-.landing-56 { position: relative; flex-shrink: 0; font-family: 'SF Mono', -apple-system, system-ui, sans-serif; font-size: 13px; font-weight: 400; line-height: 1.3; white-space: pre; color: var(--label-tertiary); }
+.landing-56 { position: relative; flex-shrink: 0; font-family: 'SF Mono', -apple-system, system-ui, sans-serif; font-size: 13px; font-weight: 400; line-height: 1.3; white-space: pre-wrap; color: var(--label-tertiary); }
 .landing-34 { position: relative; flex-shrink: 0; flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; gap: 24px; justify-content: flex-start; align-items: flex-start; }
 .landing-58 { position: relative; flex-shrink: 0; width: 330px; height: auto; aspect-ratio: 330 / 831; max-width: 100%; background: url('images/agent-panel-light.png') center / cover no-repeat, var(--surface); border: 1px solid var(--separator); border-radius: 12px 12px 12px 12px; box-shadow: 0px 16px 40px 0px rgba(29, 29, 31, 0.15); }
-.landing-59 { position: relative; flex-shrink: 0; font-family: 'SF Mono', -apple-system, system-ui, sans-serif; font-size: 13px; font-weight: 400; line-height: 1.3; white-space: pre; color: var(--label-tertiary); }
+.landing-59 { position: relative; flex-shrink: 0; font-family: 'SF Mono', -apple-system, system-ui, sans-serif; font-size: 13px; font-weight: 400; line-height: 1.3; white-space: pre-wrap; color: var(--label-tertiary); }
 .landing-57 { position: relative; flex-shrink: 0; display: flex; flex-direction: column; gap: 16px; justify-content: flex-start; align-items: flex-start; }
 .landing-33 { position: relative; flex-shrink: 0; align-self: stretch; display: flex; flex-direction: row; gap: 64px; justify-content: flex-start; align-items: flex-start; }
 .landing-62 { position: relative; flex-shrink: 0; width: 720px; height: auto; aspect-ratio: 720 / 480; max-width: 100%; background: url('images/version-history-light.png') center / cover no-repeat, var(--surface); border: 1px solid var(--separator); border-radius: 12px 12px 12px 12px; box-shadow: 0px 16px 40px 0px rgba(29, 29, 31, 0.15); }
-.landing-63 { position: relative; flex-shrink: 0; font-family: 'SF Mono', -apple-system, system-ui, sans-serif; font-size: 13px; font-weight: 400; line-height: 1.3; white-space: pre; color: var(--label-tertiary); }
+.landing-63 { position: relative; flex-shrink: 0; font-family: 'SF Mono', -apple-system, system-ui, sans-serif; font-size: 13px; font-weight: 400; line-height: 1.3; white-space: pre-wrap; color: var(--label-tertiary); }
 .landing-61 { position: relative; flex-shrink: 0; display: flex; flex-direction: column; gap: 16px; justify-content: flex-start; align-items: flex-start; }
-.landing-65 { position: relative; flex-shrink: 0; font-family: 'SF Mono', -apple-system, system-ui, sans-serif; font-size: 13px; font-weight: 400; line-height: 1.3; white-space: pre; color: var(--backdrop-accent); }
+.landing-65 { position: relative; flex-shrink: 0; font-family: 'SF Mono', -apple-system, system-ui, sans-serif; font-size: 13px; font-weight: 400; line-height: 1.3; white-space: pre-wrap; color: var(--backdrop-accent); }
 .landing-66 { position: relative; flex-shrink: 0; align-self: stretch; font-family: 'SF Pro', -apple-system, system-ui, sans-serif; font-size: 28px; font-weight: 600; letter-spacing: -0.4px; line-height: 1.2; white-space: pre-wrap; color: var(--label); }
 .landing-67 { position: relative; flex-shrink: 0; align-self: stretch; font-family: 'SF Pro', -apple-system, system-ui, sans-serif; font-size: 17px; font-weight: 400; line-height: 1.6; white-space: pre-wrap; color: var(--label-secondary); }
 .landing-64 { position: relative; flex-shrink: 0; flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; gap: 24px; justify-content: flex-start; align-items: flex-start; }
 .landing-60 { position: relative; flex-shrink: 0; align-self: stretch; display: flex; flex-direction: row; gap: 64px; justify-content: flex-start; align-items: center; }
-.landing-69 { position: relative; flex-shrink: 0; font-family: 'SF Pro', -apple-system, system-ui, sans-serif; font-size: 21px; font-weight: 600; letter-spacing: -0.2px; line-height: 1.3; white-space: pre; color: var(--label); }
+.landing-69 { position: relative; flex-shrink: 0; font-family: 'SF Pro', -apple-system, system-ui, sans-serif; font-size: 21px; font-weight: 600; letter-spacing: -0.2px; line-height: 1.3; white-space: pre-wrap; color: var(--label); }
 .landing-70 { position: relative; flex-shrink: 0; width: 10px; height: 24px; max-width: 100%; }
 .landing-71 { position: relative; flex-shrink: 0; align-self: stretch; height: 1px; background: var(--separator); }
 .landing-74 { position: relative; flex-shrink: 0; width: 48px; max-width: 100%; font-family: 'SF Mono', -apple-system, system-ui, sans-serif; font-size: 13px; font-weight: 400; line-height: 1.3; white-space: pre-wrap; color: var(--backdrop-accent); }
@@ -83,28 +98,26 @@ body { background: var(--backdrop-ground); font-family: -apple-system, BlinkMacS
 .landing-78 { position: relative; flex-shrink: 0; align-self: stretch; height: 1px; background: var(--separator); }
 .landing-68 { position: relative; flex-shrink: 0; align-self: stretch; display: flex; flex-direction: column; justify-content: flex-start; align-items: flex-start; }
 .landing-29 { position: relative; flex-shrink: 0; align-self: stretch; display: flex; flex-direction: column; gap: 96px; justify-content: flex-start; align-items: flex-start; padding: 96px 120px 96px 120px; }
-.landing-81 { position: absolute; left: 0px; top: 0px; width: 100%; height: 602px; overflow: visible; }
-.landing-80 { position: absolute; left: 0px; top: 0px; width: 100%; height: 602px; overflow: hidden; }
-.landing-83 { position: relative; flex-shrink: 0; font-family: 'SF Mono', -apple-system, system-ui, sans-serif; font-size: 13px; font-weight: 400; line-height: 1.3; white-space: pre; color: var(--label-secondary); }
-.landing-84 { position: relative; flex-shrink: 0; align-self: stretch; font-family: 'SF Pro', -apple-system, system-ui, sans-serif; font-size: 44px; font-weight: 700; letter-spacing: -1px; line-height: 1.12; white-space: pre-wrap; color: var(--label); }
-.landing-85 { position: relative; flex-shrink: 0; align-self: stretch; font-family: 'SF Pro', -apple-system, system-ui, sans-serif; font-size: 21px; font-weight: 400; line-height: 1.5; white-space: pre-wrap; color: var(--label-secondary); }
-.landing-86 { position: relative; flex-shrink: 0; width: 10px; height: 8px; max-width: 100%; }
-.landing-89 { position: relative; flex-shrink: 0; font-family: 'SF Pro', -apple-system, system-ui, sans-serif; font-size: 15px; font-weight: 600; line-height: 1.25; white-space: pre; color: var(--on-accent); }
-.landing-88 { position: relative; flex-shrink: 0; background: var(--accent); border-radius: 999px 999px 999px 999px; display: flex; flex-direction: row; justify-content: center; align-items: center; padding: 14px 24px 14px 24px; }
-.landing-91 { position: relative; flex-shrink: 0; font-family: 'SF Pro', -apple-system, system-ui, sans-serif; font-size: 15px; font-weight: 600; line-height: 1.25; white-space: pre; color: var(--label); }
-.landing-90 { position: relative; flex-shrink: 0; background: var(--control-fill); border-radius: 999px 999px 999px 999px; display: flex; flex-direction: row; justify-content: center; align-items: center; padding: 14px 24px 14px 24px; }
-.landing-87 { position: relative; flex-shrink: 0; display: flex; flex-direction: row; gap: 12px; justify-content: flex-start; align-items: center; }
-.landing-92 { position: relative; flex-shrink: 0; font-family: 'SF Mono', -apple-system, system-ui, sans-serif; font-size: 13px; font-weight: 400; line-height: 1.3; white-space: pre; color: var(--label-tertiary); }
-.landing-82 { position: relative; flex-shrink: 0; flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; gap: 24px; justify-content: flex-start; align-items: flex-start; }
-.landing-94 { position: relative; flex-shrink: 0; width: 580px; height: auto; aspect-ratio: 580 / 377; max-width: 100%; background: url('images/launch-light.png') center / contain no-repeat, var(--surface); border: 1px solid var(--separator); border-radius: 12px 12px 12px 12px; box-shadow: 0px 16px 40px 0px rgba(29, 29, 31, 0.15); }
-.landing-95 { position: relative; flex-shrink: 0; font-family: 'SF Mono', -apple-system, system-ui, sans-serif; font-size: 13px; font-weight: 400; line-height: 1.3; white-space: pre; color: var(--label-tertiary); }
-.landing-93 { position: relative; flex-shrink: 0; display: flex; flex-direction: column; gap: 16px; justify-content: flex-start; align-items: flex-start; }
+.landing-81 { position: relative; flex-shrink: 0; font-family: 'SF Mono', -apple-system, system-ui, sans-serif; font-size: 13px; font-weight: 400; line-height: 1.3; white-space: pre-wrap; color: var(--label-secondary); }
+.landing-82 { position: relative; flex-shrink: 0; align-self: stretch; font-family: 'SF Pro', -apple-system, system-ui, sans-serif; font-size: 44px; font-weight: 700; letter-spacing: -1px; line-height: 1.12; white-space: pre-wrap; color: var(--label); }
+.landing-83 { position: relative; flex-shrink: 0; align-self: stretch; font-family: 'SF Pro', -apple-system, system-ui, sans-serif; font-size: 21px; font-weight: 400; line-height: 1.5; white-space: pre-wrap; color: var(--label-secondary); }
+.landing-84 { position: relative; flex-shrink: 0; width: 10px; height: 8px; max-width: 100%; }
+.landing-87 { position: relative; flex-shrink: 0; font-family: 'SF Pro', -apple-system, system-ui, sans-serif; font-size: 15px; font-weight: 600; white-space: pre-wrap; color: var(--on-accent); }
+.landing-86 { position: relative; flex-shrink: 0; background: var(--accent); border-radius: 999px 999px 999px 999px; display: flex; flex-direction: row; justify-content: flex-start; align-items: center; padding: 14px 24px 14px 24px; }
+.landing-89 { position: relative; flex-shrink: 0; font-family: 'SF Pro', -apple-system, system-ui, sans-serif; font-size: 15px; font-weight: 600; white-space: pre-wrap; color: var(--label); }
+.landing-88 { position: relative; flex-shrink: 0; background: var(--control-fill); border-radius: 999px 999px 999px 999px; display: flex; flex-direction: row; justify-content: flex-start; align-items: center; padding: 14px 24px 14px 24px; }
+.landing-85 { position: relative; flex-shrink: 0; display: flex; flex-direction: row; gap: 12px; justify-content: flex-start; align-items: center; }
+.landing-90 { position: relative; flex-shrink: 0; font-family: 'SF Mono', -apple-system, system-ui, sans-serif; font-size: 13px; font-weight: 400; line-height: 1.3; white-space: pre-wrap; color: var(--label-tertiary); }
+.landing-80 { position: relative; flex-shrink: 0; flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; gap: 24px; justify-content: flex-start; align-items: flex-start; }
+.landing-92 { position: relative; flex-shrink: 0; width: 580px; height: auto; aspect-ratio: 580 / 377; max-width: 100%; background: url('images/launch-light.png') center / contain no-repeat, var(--surface); border: 1px solid var(--separator); border-radius: 12px 12px 12px 12px; box-shadow: 0px 16px 40px 0px rgba(29, 29, 31, 0.15); }
+.landing-93 { position: relative; flex-shrink: 0; font-family: 'SF Mono', -apple-system, system-ui, sans-serif; font-size: 13px; font-weight: 400; line-height: 1.3; white-space: pre-wrap; color: var(--label-tertiary); }
+.landing-91 { position: relative; flex-shrink: 0; display: flex; flex-direction: column; gap: 16px; justify-content: flex-start; align-items: flex-start; }
 .landing-79 { position: relative; flex-shrink: 0; align-self: stretch; background: var(--backdrop-deep); display: flex; flex-direction: row; gap: 80px; justify-content: flex-start; align-items: center; padding: 96px 120px 96px 120px; overflow: hidden; }
 .doc-0 { position: relative; width: 100%; max-width: 1440px; margin: 0 auto; background: var(--backdrop-ground); display: flex; flex-direction: column; justify-content: flex-start; align-items: flex-start; overflow: hidden; }
 .doc-1 { position: relative; flex-shrink: 0; align-self: stretch; height: 1px; background: var(--separator); }
-.doc-4 { position: relative; flex-shrink: 0; font-family: 'SF Mono', -apple-system, system-ui, sans-serif; font-size: 13px; font-weight: 400; line-height: 1.3; white-space: pre; color: var(--label-tertiary); }
+.doc-4 { position: relative; flex-shrink: 0; font-family: 'SF Mono', -apple-system, system-ui, sans-serif; font-size: 13px; font-weight: 400; line-height: 1.3; white-space: pre-wrap; color: var(--label-tertiary); }
 .doc-5 { position: relative; flex-shrink: 0; width: 10px; height: 12px; max-width: 100%; }
-.doc-8 { position: relative; flex-shrink: 0; font-family: 'SF Pro', -apple-system, system-ui, sans-serif; font-size: 15px; font-weight: 600; line-height: 1.3; white-space: pre-wrap; color: var(--label); }
+.doc-8 { position: relative; flex-shrink: 0; flex: 1 1 0; min-width: 0; font-family: 'SF Pro', -apple-system, system-ui, sans-serif; font-size: 15px; font-weight: 600; line-height: 1.3; white-space: pre-wrap; color: var(--label); }
 .doc-7 { position: relative; flex-shrink: 0; align-self: stretch; background: var(--backdrop-ground); border-radius: 12px 12px 12px 12px; display: flex; flex-direction: row; gap: 16px; justify-content: flex-start; align-items: center; padding: 10px 12px 10px 12px; }
 .doc-6 { position: relative; flex-shrink: 0; align-self: stretch; display: flex; flex-direction: column; gap: 8px; justify-content: flex-start; align-items: flex-start; }
 .doc-3 { position: relative; flex-shrink: 0; width: 300px; align-self: stretch; max-width: 100%; background: var(--backdrop-deep); display: flex; flex-direction: column; gap: 4px; justify-content: flex-start; align-items: flex-start; padding: 48px 24px 48px 32px; }
@@ -113,20 +126,74 @@ body { background: var(--backdrop-ground); font-family: -apple-system, BlinkMacS
 .doc-11 { position: relative; flex-shrink: 0; align-self: stretch; display: flex; flex-direction: column; gap: 20px; justify-content: flex-start; align-items: flex-start; }
 .doc-14 { position: relative; flex-shrink: 0; align-self: stretch; display: flex; flex-direction: column; gap: 64px; justify-content: flex-start; align-items: flex-start; }
 .doc-10 { position: relative; flex-shrink: 0; width: 720px; max-width: 100%; display: flex; flex-direction: column; gap: 64px; justify-content: flex-start; align-items: flex-start; }
-.doc-16 { position: relative; flex-shrink: 0; font-family: 'SF Mono', -apple-system, system-ui, sans-serif; font-size: 13px; font-weight: 400; line-height: 1.3; white-space: pre; color: var(--label-tertiary); }
+.doc-16 { position: relative; flex-shrink: 0; font-family: 'SF Mono', -apple-system, system-ui, sans-serif; font-size: 13px; font-weight: 400; line-height: 1.3; white-space: pre-wrap; color: var(--label-tertiary); }
 .doc-18 { position: relative; flex-shrink: 0; font-family: 'SF Pro', -apple-system, system-ui, sans-serif; font-size: 14px; font-weight: 500; line-height: 1.3; white-space: pre-wrap; color: var(--label-secondary); }
 .doc-17 { position: relative; flex-shrink: 0; align-self: stretch; display: flex; flex-direction: column; gap: 12px; justify-content: flex-start; align-items: flex-start; }
 .doc-15 { position: relative; flex-shrink: 0; flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; gap: 12px; justify-content: flex-start; align-items: flex-start; padding: 8px 0px 0px 0px; }
 .doc-9 { position: relative; flex-shrink: 0; flex: 1 1 0; min-width: 0; display: flex; flex-direction: row; gap: 64px; justify-content: flex-start; align-items: flex-start; padding: 64px 96px 96px 80px; }
 .doc-2 { position: relative; flex-shrink: 0; align-self: stretch; display: flex; flex-direction: row; justify-content: flex-start; align-items: flex-start; }
 .doc-19 { position: relative; flex-shrink: 0; align-self: stretch; height: 1px; background: var(--separator); }
-.button--1 { position: relative; flex-shrink: 0; font-family: 'SF Pro', -apple-system, system-ui, sans-serif; font-size: 14px; font-weight: 600; line-height: 1.25; white-space: pre; color: var(--on-accent); }
-.button--0 { position: relative; flex-shrink: 0; background: var(--accent); border-radius: 999px 999px 999px 999px; display: flex; flex-direction: row; justify-content: center; align-items: center; padding: 10px 20px 10px 20px; }
-.site-footer--2 { position: relative; flex-shrink: 0; font-family: 'SF Mono', -apple-system, system-ui, sans-serif; font-size: 13px; font-weight: 400; line-height: 1.3; white-space: pre; color: var(--label-tertiary); }
+.article-0 { position: relative; width: 100%; max-width: 1440px; margin: 0 auto; background: var(--backdrop-ground); display: flex; flex-direction: column; justify-content: flex-start; align-items: flex-start; overflow: hidden; }
+.article-1 { position: relative; flex-shrink: 0; align-self: stretch; height: 1px; background: var(--separator); }
+.article-4 { position: absolute; left: 0px; top: 0px; width: 100%; height: 420px; overflow: visible; }
+.article-3 { position: absolute; left: 0px; top: 0px; width: 100%; height: 420px; overflow: hidden; }
+.article-5 { position: relative; flex-shrink: 0; font-family: 'SF Mono', -apple-system, system-ui, sans-serif; font-size: 13px; font-weight: 400; line-height: 1.3; white-space: pre-wrap; color: var(--label-tertiary); }
+.article-6 { position: relative; flex-shrink: 0; width: 920px; max-width: 100%; font-family: 'SF Pro', -apple-system, system-ui, sans-serif; font-size: 56px; font-weight: 700; letter-spacing: -1.4px; line-height: 1.08; white-space: pre-wrap; color: var(--label); }
+.article-7 { position: relative; flex-shrink: 0; width: 720px; max-width: 100%; font-family: 'SF Pro', -apple-system, system-ui, sans-serif; font-size: 21px; font-weight: 400; line-height: 1.5; white-space: pre-wrap; color: var(--label-secondary); }
+.article-2 { position: relative; flex-shrink: 0; align-self: stretch; display: flex; flex-direction: column; gap: 20px; justify-content: flex-start; align-items: flex-start; padding: 96px 120px 64px 120px; overflow: hidden; }
+.article-8 { position: relative; flex-shrink: 0; align-self: stretch; height: 1px; background: var(--separator); }
+.article-10 { position: relative; flex-shrink: 0; width: 760px; max-width: 100%; display: flex; flex-direction: column; gap: 16px; justify-content: flex-start; align-items: flex-start; }
+.article-12 { position: relative; flex-shrink: 0; font-family: 'SF Mono', -apple-system, system-ui, sans-serif; font-size: 13px; font-weight: 400; line-height: 1.3; white-space: pre-wrap; color: var(--label-tertiary); }
+.article-14 { position: relative; flex-shrink: 0; align-self: stretch; font-family: 'SF Pro', -apple-system, system-ui, sans-serif; font-size: 14px; font-weight: 500; line-height: 1.3; white-space: pre-wrap; color: var(--label-secondary); }
+.article-13 { position: relative; flex-shrink: 0; align-self: stretch; display: flex; flex-direction: column; gap: 12px; justify-content: flex-start; align-items: flex-start; }
+.article-11 { position: relative; flex-shrink: 0; flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; gap: 12px; justify-content: flex-start; align-items: flex-start; padding: 8px 0px 0px 0px; }
+.article-9 { position: relative; flex-shrink: 0; align-self: stretch; display: flex; flex-direction: row; gap: 96px; justify-content: flex-start; align-items: flex-start; padding: 64px 120px 120px 120px; }
+.download-0 { position: relative; width: 100%; max-width: 1440px; margin: 0 auto; background: var(--backdrop-ground); display: flex; flex-direction: column; justify-content: flex-start; align-items: flex-start; overflow: hidden; }
+.download-1 { position: relative; flex-shrink: 0; align-self: stretch; height: 1px; background: var(--separator); }
+.download-4 { position: absolute; left: 0px; top: 0px; width: 100%; height: 640px; overflow: visible; }
+.download-3 { position: absolute; left: 0px; top: 0px; width: 100%; height: 640px; overflow: hidden; }
+.download-6 { position: relative; flex-shrink: 0; font-family: 'SF Mono', -apple-system, system-ui, sans-serif; font-size: 13px; font-weight: 400; line-height: 1.3; white-space: pre-wrap; color: var(--label-secondary); }
+.download-7 { position: relative; flex-shrink: 0; align-self: stretch; font-family: 'SF Pro', -apple-system, system-ui, sans-serif; font-size: 56px; font-weight: 700; letter-spacing: -1.4px; line-height: 1.08; white-space: pre-wrap; color: var(--label); }
+.download-8 { position: relative; flex-shrink: 0; align-self: stretch; font-family: 'SF Pro', -apple-system, system-ui, sans-serif; font-size: 21px; font-weight: 400; line-height: 1.5; white-space: pre-wrap; color: var(--label-secondary); }
+.download-9 { position: relative; flex-shrink: 0; width: 10px; height: 8px; max-width: 100%; }
+.download-12 { position: relative; flex-shrink: 0; font-family: 'SF Pro', -apple-system, system-ui, sans-serif; font-size: 15px; font-weight: 600; white-space: pre-wrap; color: var(--on-accent); }
+.download-11 { position: relative; flex-shrink: 0; background: var(--accent); border-radius: 999px 999px 999px 999px; display: flex; flex-direction: row; justify-content: flex-start; align-items: center; padding: 14px 24px 14px 24px; }
+.download-14 { position: relative; flex-shrink: 0; font-family: 'SF Pro', -apple-system, system-ui, sans-serif; font-size: 15px; font-weight: 600; white-space: pre-wrap; color: var(--label); }
+.download-13 { position: relative; flex-shrink: 0; background: var(--control-fill); border-radius: 999px 999px 999px 999px; display: flex; flex-direction: row; justify-content: flex-start; align-items: center; padding: 14px 24px 14px 24px; }
+.download-10 { position: relative; flex-shrink: 0; display: flex; flex-direction: row; flex-wrap: wrap; gap: 12px; justify-content: flex-start; align-items: center; align-content: flex-start; }
+.download-15 { position: relative; flex-shrink: 0; align-self: stretch; font-family: 'SF Mono', -apple-system, system-ui, sans-serif; font-size: 13px; font-weight: 400; line-height: 1.3; white-space: pre-wrap; color: var(--label-tertiary); }
+.download-5 { position: relative; flex-shrink: 0; flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; gap: 24px; justify-content: flex-start; align-items: flex-start; }
+.download-17 { position: relative; flex-shrink: 0; width: 580px; height: auto; aspect-ratio: 580 / 377; max-width: 100%; background: url('images/launch-light.png') center / contain no-repeat, var(--surface); border: 1px solid var(--separator); border-radius: 12px 12px 12px 12px; box-shadow: 0px 16px 40px 0px rgba(29, 29, 31, 0.15); }
+.download-18 { position: relative; flex-shrink: 0; font-family: 'SF Mono', -apple-system, system-ui, sans-serif; font-size: 13px; font-weight: 400; line-height: 1.3; white-space: pre-wrap; color: var(--label-tertiary); }
+.download-16 { position: relative; flex-shrink: 0; display: flex; flex-direction: column; gap: 16px; justify-content: flex-start; align-items: flex-start; }
+.download-2 { position: relative; flex-shrink: 0; align-self: stretch; display: flex; flex-direction: row; gap: 80px; justify-content: flex-start; align-items: center; padding: 96px 120px 96px 120px; overflow: hidden; }
+.download-19 { position: relative; flex-shrink: 0; align-self: stretch; height: 1px; background: var(--separator); }
+.download-21 { position: relative; flex-shrink: 0; width: 760px; max-width: 100%; display: flex; flex-direction: column; gap: 16px; justify-content: flex-start; align-items: flex-start; }
+.download-23 { position: relative; flex-shrink: 0; font-family: 'SF Mono', -apple-system, system-ui, sans-serif; font-size: 13px; font-weight: 400; line-height: 1.3; white-space: pre-wrap; color: var(--label-tertiary); }
+.download-25 { position: relative; flex-shrink: 0; font-family: 'SF Pro', -apple-system, system-ui, sans-serif; font-size: 14px; font-weight: 500; line-height: 1.3; white-space: pre-wrap; color: var(--label-tertiary); }
+.download-26 { position: relative; flex-shrink: 0; align-self: stretch; font-family: 'SF Pro', -apple-system, system-ui, sans-serif; font-size: 15px; font-weight: 500; line-height: 1.3; white-space: pre-wrap; color: var(--label); }
+.download-24 { position: relative; flex-shrink: 0; align-self: stretch; display: flex; flex-direction: column; gap: 4px; justify-content: flex-start; align-items: flex-start; }
+.download-28 { position: relative; flex-shrink: 0; font-family: 'SF Pro', -apple-system, system-ui, sans-serif; font-size: 14px; font-weight: 500; line-height: 1.3; white-space: pre-wrap; color: var(--label-tertiary); }
+.download-29 { position: relative; flex-shrink: 0; align-self: stretch; font-family: 'SF Pro', -apple-system, system-ui, sans-serif; font-size: 15px; font-weight: 500; line-height: 1.3; white-space: pre-wrap; color: var(--label); }
+.download-27 { position: relative; flex-shrink: 0; align-self: stretch; display: flex; flex-direction: column; gap: 4px; justify-content: flex-start; align-items: flex-start; }
+.download-31 { position: relative; flex-shrink: 0; font-family: 'SF Pro', -apple-system, system-ui, sans-serif; font-size: 14px; font-weight: 500; line-height: 1.3; white-space: pre-wrap; color: var(--label-tertiary); }
+.download-32 { position: relative; flex-shrink: 0; align-self: stretch; font-family: 'SF Pro', -apple-system, system-ui, sans-serif; font-size: 15px; font-weight: 500; line-height: 1.3; white-space: pre-wrap; color: var(--label); }
+.download-30 { position: relative; flex-shrink: 0; align-self: stretch; display: flex; flex-direction: column; gap: 4px; justify-content: flex-start; align-items: flex-start; }
+.download-34 { position: relative; flex-shrink: 0; font-family: 'SF Pro', -apple-system, system-ui, sans-serif; font-size: 14px; font-weight: 500; line-height: 1.3; white-space: pre-wrap; color: var(--label-tertiary); }
+.download-35 { position: relative; flex-shrink: 0; align-self: stretch; font-family: 'SF Pro', -apple-system, system-ui, sans-serif; font-size: 15px; font-weight: 500; line-height: 1.3; white-space: pre-wrap; color: var(--label); }
+.download-33 { position: relative; flex-shrink: 0; align-self: stretch; display: flex; flex-direction: column; gap: 4px; justify-content: flex-start; align-items: flex-start; }
+.download-22 { position: relative; flex-shrink: 0; flex: 1 1 0; min-width: 0; background: var(--backdrop-deep); border-radius: 20px 20px 20px 20px; display: flex; flex-direction: column; gap: 16px; justify-content: flex-start; align-items: flex-start; padding: 24px 24px 24px 24px; }
+.download-20 { position: relative; flex-shrink: 0; align-self: stretch; display: flex; flex-direction: row; gap: 96px; justify-content: flex-start; align-items: flex-start; padding: 64px 120px 120px 120px; }
+.hatch--1 { position: absolute; left: 0px; top: 0px; width: 100%; height: 602px; overflow: visible; }
+.hatch--0 { position: absolute; left: 0px; top: 0px; width: 100%; height: 602px; overflow: hidden; }
+.site-footer--2 { position: relative; flex-shrink: 0; font-family: 'SF Mono', -apple-system, system-ui, sans-serif; font-size: 13px; font-weight: 400; line-height: 1.3; white-space: pre-wrap; color: var(--label-tertiary); }
 .site-footer--1 { position: relative; flex-shrink: 0; display: flex; flex-direction: row; gap: 24px; justify-content: flex-start; align-items: center; }
-.site-footer--4 { position: relative; flex-shrink: 0; font-family: 'SF Pro', -apple-system, system-ui, sans-serif; font-size: 15px; font-weight: 500; line-height: 1.3; white-space: pre; color: var(--label-secondary); }
-.site-footer--5 { position: relative; flex-shrink: 0; font-family: 'SF Pro', -apple-system, system-ui, sans-serif; font-size: 15px; font-weight: 500; line-height: 1.3; white-space: pre; color: var(--label-secondary); }
-.site-footer--6 { position: relative; flex-shrink: 0; font-family: 'SF Pro', -apple-system, system-ui, sans-serif; font-size: 15px; font-weight: 500; line-height: 1.3; white-space: pre; color: var(--label-secondary); }
+.site-footer--4 { position: relative; flex-shrink: 0; font-family: 'SF Pro', -apple-system, system-ui, sans-serif; font-size: 15px; font-weight: 500; line-height: 1.3; white-space: pre-wrap; color: var(--label-secondary); }
+.site-footer--5 { position: relative; flex-shrink: 0; font-family: 'SF Pro', -apple-system, system-ui, sans-serif; font-size: 15px; font-weight: 500; line-height: 1.3; white-space: pre-wrap; color: var(--label-secondary); }
+.site-footer--6 { position: relative; flex-shrink: 0; font-family: 'SF Pro', -apple-system, system-ui, sans-serif; font-size: 15px; font-weight: 500; line-height: 1.3; white-space: pre-wrap; color: var(--label-secondary); }
+.site-footer--8 { position: relative; flex-shrink: 0; font-family: 'SF Pro', -apple-system, system-ui, sans-serif; font-size: 15px; font-weight: 500; line-height: 1.3; white-space: pre; color: var(--label-tertiary); }
+.site-footer--9 { position: relative; flex-shrink: 0; font-family: 'SF Pro', -apple-system, system-ui, sans-serif; font-size: 15px; font-weight: 500; line-height: 1.3; white-space: pre; color: var(--label-tertiary); }
+.site-footer--7 { position: relative; flex-shrink: 0; display: flex; flex-direction: row; gap: 12px; justify-content: flex-start; align-items: center; }
 .site-footer--3 { position: relative; flex-shrink: 0; display: flex; flex-direction: row; gap: 32px; justify-content: flex-start; align-items: center; }
 .site-footer--0 { position: relative; flex-shrink: 0; align-self: stretch; display: flex; flex-direction: row; justify-content: space-between; align-items: center; padding: 40px 120px 40px 120px; }
 .site-header--3 { position: absolute; left: 2px; top: 6px; width: 16px; height: 16px; max-width: 100%; overflow: visible; }
@@ -134,9 +201,14 @@ body { background: var(--backdrop-ground); font-family: -apple-system, BlinkMacS
 .site-header--2 { position: relative; flex-shrink: 0; width: 24px; height: 24px; max-width: 100%; }
 .site-header--5 { position: relative; flex-shrink: 0; font-family: 'SF Pro', -apple-system, system-ui, sans-serif; font-size: 22px; font-weight: 600; letter-spacing: -0.6px; line-height: 1.2; white-space: pre; color: var(--label); }
 .site-header--1 { position: relative; flex-shrink: 0; display: flex; flex-direction: row; gap: 12px; justify-content: flex-start; align-items: center; }
-.site-header--7 { position: relative; flex-shrink: 0; font-family: 'SF Pro', -apple-system, system-ui, sans-serif; font-size: 15px; font-weight: 500; line-height: 1.3; white-space: pre; color: var(--label-secondary); }
-.site-header--8 { position: relative; flex-shrink: 0; font-family: 'SF Pro', -apple-system, system-ui, sans-serif; font-size: 15px; font-weight: 500; line-height: 1.3; white-space: pre; color: var(--label-secondary); }
-.site-header--9 { position: relative; flex-shrink: 0; font-family: 'SF Pro', -apple-system, system-ui, sans-serif; font-size: 15px; font-weight: 500; line-height: 1.3; white-space: pre; color: var(--label-secondary); }
+.site-header--7 { position: relative; flex-shrink: 0; font-family: 'SF Pro', -apple-system, system-ui, sans-serif; font-size: 15px; font-weight: 500; line-height: 1.3; white-space: pre-wrap; color: var(--label-secondary); }
+.site-header--8 { position: relative; flex-shrink: 0; font-family: 'SF Pro', -apple-system, system-ui, sans-serif; font-size: 15px; font-weight: 500; line-height: 1.3; white-space: pre-wrap; color: var(--label-secondary); }
+.site-header--9 { position: relative; flex-shrink: 0; font-family: 'SF Pro', -apple-system, system-ui, sans-serif; font-size: 15px; font-weight: 500; line-height: 1.3; white-space: pre-wrap; color: var(--label-secondary); }
+.site-header--11 { position: relative; flex-shrink: 0; font-family: 'SF Pro', -apple-system, system-ui, sans-serif; font-size: 15px; font-weight: 500; line-height: 1.3; white-space: pre; color: var(--label-tertiary); }
+.site-header--12 { position: relative; flex-shrink: 0; font-family: 'SF Pro', -apple-system, system-ui, sans-serif; font-size: 15px; font-weight: 500; line-height: 1.3; white-space: pre; color: var(--label-tertiary); }
+.site-header--10 { position: relative; flex-shrink: 0; display: flex; flex-direction: row; gap: 12px; justify-content: flex-start; align-items: center; }
+.site-header--14 { position: relative; flex-shrink: 0; font-family: 'SF Pro', -apple-system, system-ui, sans-serif; font-size: 14px; font-weight: 600; white-space: pre-wrap; color: var(--on-accent); }
+.site-header--13 { position: relative; flex-shrink: 0; background: var(--accent); border-radius: 999px 999px 999px 999px; display: flex; flex-direction: row; justify-content: flex-start; align-items: center; padding: 10px 20px 10px 20px; }
 .site-header--6 { position: relative; flex-shrink: 0; display: flex; flex-direction: row; gap: 32px; justify-content: flex-start; align-items: center; }
 .site-header--0 { position: relative; flex-shrink: 0; align-self: stretch; display: flex; flex-direction: row; justify-content: space-between; align-items: center; padding: 20px 120px 20px 120px; }
 .wordmark--2 { position: absolute; left: 2px; top: 6px; width: 16px; height: 16px; max-width: 100%; overflow: visible; }
@@ -149,6 +221,7 @@ body { background: var(--backdrop-ground); font-family: -apple-system, BlinkMacS
   .doc-10 { align-self: stretch; width: unset; max-width: unset; }
   .doc-15 { align-self: stretch; flex: unset; min-width: unset; }
   .doc-9 { flex-direction: column; gap: 48px; padding: 56px 48px 72px 48px; }
+  .site-footer--0 { flex-wrap: wrap; row-gap: 16px; align-content: flex-start; }
 }
 @media (max-width: 768px) {
   .landing-0 { max-width: none; }
@@ -174,35 +247,54 @@ body { background: var(--backdrop-ground); font-family: -apple-system, BlinkMacS
   .landing-77 { align-self: stretch; width: unset; max-width: unset; text-align: unset; }
   .landing-73 { flex-direction: column; gap: 8px; }
   .landing-29 { gap: 72px; padding: 72px 40px 72px 40px; }
-  .landing-81 { width: 1440px; max-width: 100%; }
-  .landing-80 { width: 1440px; max-width: 100%; }
-  .landing-84 { font-size: 36px; }
-  .landing-82 { align-self: stretch; flex: unset; min-width: unset; }
+  .landing-82 { font-size: 36px; }
+  .landing-80 { align-self: stretch; flex: unset; min-width: unset; }
   .landing-79 { flex-direction: column; gap: 40px; align-items: flex-start; padding: 72px 40px 72px 40px; }
-  .site-footer--0 { flex-wrap: wrap; row-gap: 16px; align-content: flex-start; padding: 32px 40px 32px 40px; }
+  .article-0 { max-width: none; }
+  .article-4 { width: 1440px; max-width: 100%; }
+  .article-3 { width: 1440px; max-width: 100%; }
+  .article-6 { align-self: stretch; width: unset; max-width: unset; }
+  .article-7 { align-self: stretch; width: unset; max-width: unset; }
+  .article-2 { padding: 64px 40px 48px 40px; }
+  .article-10 { align-self: stretch; width: unset; max-width: unset; }
+  .article-11 { display: none; }
+  .article-9 { flex-direction: column; gap: 48px; padding: 48px 40px 96px 40px; }
+  .download-0 { max-width: none; }
+  .download-4 { width: 1440px; max-width: 100%; }
+  .download-3 { width: 1440px; max-width: 100%; }
+  .download-5 { align-self: stretch; flex: unset; min-width: unset; }
+  .download-17 { align-self: stretch; height: 447px; width: unset; aspect-ratio: unset; max-width: unset; }
+  .download-16 { align-self: stretch; }
+  .download-2 { flex-direction: column; gap: 48px; align-items: flex-start; padding: 64px 40px 64px 40px; }
+  .download-21 { align-self: stretch; width: unset; max-width: unset; }
+  .download-22 { align-self: stretch; flex: unset; min-width: unset; }
+  .download-20 { flex-direction: column; gap: 48px; padding: 48px 40px 96px 40px; }
+  .hatch--1 { width: 1440px; max-width: 100%; }
+  .hatch--0 { width: 1440px; max-width: 100%; }
+  .site-footer--0 { padding: 32px 40px 32px 40px; }
   .site-header--0 { padding: 20px 40px 20px 40px; }
 }
 @media (max-width: 390px) {
   .landing-0 { max-width: none; }
-  .landing-9 { align-self: stretch; white-space: pre-wrap; }
+  .landing-9 { align-self: stretch; }
   .landing-11 { font-size: 40px; letter-spacing: -1px; }
   .landing-13 { align-self: stretch; font-size: 18px; width: unset; max-width: unset; }
   .landing-15 { align-self: stretch; flex-wrap: wrap; align-content: flex-start; }
+  .landing-21 { align-self: stretch; }
   .landing-25 { flex-wrap: wrap; row-gap: 4px; align-content: flex-start; }
   .landing-2 { padding: 48px 20px 56px 20px; }
   .landing-31 { font-size: 30px; }
   .landing-30 { gap: 12px; }
   .landing-36 { font-size: 24px; }
-  .landing-56 { align-self: stretch; white-space: pre-wrap; }
-  .landing-63 { align-self: stretch; white-space: pre-wrap; }
+  .landing-56 { align-self: stretch; }
+  .landing-63 { align-self: stretch; }
   .landing-29 { gap: 56px; padding: 56px 20px 56px 20px; }
-  .landing-80 { display: none; }
-  .landing-84 { font-size: 32px; }
-  .landing-85 { font-size: 18px; }
-  .landing-87 { align-self: stretch; flex-wrap: wrap; align-content: flex-start; }
-  .landing-92 { font-size: 11px; }
-  .landing-95 { align-self: stretch; white-space: pre-wrap; }
+  .landing-82 { font-size: 32px; }
+  .landing-83 { font-size: 18px; }
+  .landing-85 { align-self: stretch; flex-wrap: wrap; align-content: flex-start; }
+  .landing-90 { font-size: 11px; }
   .landing-93 { align-self: stretch; }
+  .landing-91 { align-self: stretch; }
   .landing-79 { padding: 56px 20px 56px 20px; }
   .doc-0 { max-width: none; }
   .doc-3 { width: 100%; padding: 24px 20px 24px 20px; align-self: unset; max-width: unset; }
@@ -210,9 +302,22 @@ body { background: var(--backdrop-ground); font-family: -apple-system, BlinkMacS
   .doc-13 { font-size: 18px; }
   .doc-9 { align-self: stretch; gap: 40px; padding: 32px 20px 48px 20px; flex: unset; min-width: unset; }
   .doc-2 { flex-direction: column; }
-  .site-footer--2 { align-self: stretch; white-space: pre-wrap; }
+  .article-0 { max-width: none; }
+  .article-6 { font-size: 40px; }
+  .article-2 { padding: 48px 20px 40px 20px; }
+  .article-9 { gap: 40px; padding: 40px 20px 80px 20px; }
+  .download-0 { max-width: none; }
+  .download-7 { font-size: 40px; }
+  .download-10 { align-self: stretch; }
+  .download-17 { height: 228px; }
+  .download-18 { align-self: stretch; }
+  .download-2 { gap: 40px; padding: 48px 20px 48px 20px; }
+  .download-20 { gap: 40px; padding: 40px 20px 80px 20px; }
+  .hatch--0 { display: none; }
+  .site-footer--2 { align-self: stretch; }
   .site-footer--1 { align-self: stretch; flex-direction: column; gap: 12px; align-items: flex-start; }
+  .site-footer--3 { align-self: stretch; flex-wrap: wrap; gap: 20px; row-gap: 8px; align-content: flex-start; }
   .site-footer--0 { flex-direction: column; gap: 20px; align-items: flex-start; padding: 32px 20px 32px 20px; flex-wrap: unset; row-gap: unset; align-content: unset; }
-  .site-header--6 { flex-wrap: wrap; gap: 20px; row-gap: 8px; align-content: flex-start; }
-  .site-header--0 { flex-wrap: wrap; row-gap: 12px; align-content: flex-start; padding: 16px 20px 16px 20px; }
+  .site-header--6 { align-self: stretch; flex-wrap: wrap; gap: 20px; row-gap: 8px; align-content: flex-start; }
+  .site-header--0 { flex-direction: column; gap: 12px; align-items: flex-start; padding: 16px 20px 16px 20px; }
 }

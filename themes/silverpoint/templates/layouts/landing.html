@@ -10,56 +10,56 @@
   <div class="landing-6" data-name="Stylus ring"></div>
   <div class="landing-7" data-name="Stylus point"></div>
   <div class="landing-8" data-name="Hero site title">{{ site.title }}</div>
-  <div class="landing-9" data-name="Hero kicker">For macOS 26 or later  ·  Free and open source</div>
+  <div class="landing-9" data-name="Hero kicker">{{ data.home.kicker|escape }}</div>
   <div class="landing-10" data-name="Gap kicker">
 
   </div>
-  <div class="landing-11" data-name="Hero promise">The native Mac design canvas, with an AI designer built in.</div>
+  <div class="landing-11" data-name="Hero promise">{{ data.home.promise|escape }}</div>
   <div class="landing-12" data-name="Gap promise">
 
   </div>
-  <div class="landing-13" data-name="Hero subline">Draw screens on a real canvas, let the agent build and edit them right in your document, then export SwiftUI, Compose, React or HTML.</div>
+  <div class="landing-13" data-name="Hero subline">{{ data.home.subline|escape }}</div>
   <div class="landing-14" data-name="Gap subline">
 
   </div>
   <div class="landing-15" data-name="Hero actions">
-    <a class="sp-link" href="https://github.com/KristopherGBaker/Silverpoint/releases" rel="noopener">
+    <a class="sp-link" href="{{ links.home }}download/"{% if page.path == "download/" or page.path == "ja/download/" %} aria-current="page"{% endif %}>
     <div class="landing-16" data-name="Hero download">
-      <div class="landing-17" data-name="Label">Download for macOS</div>
+      <div class="landing-17" data-name="Hero download label">{{ data.home.hero_download|escape }}</div>
     </div>
     </a>
-    <a class="sp-link" href="https://github.com/KristopherGBaker/Silverpoint" rel="noopener">
-    <div class="landing-18" data-name="Hero GitHub">
-      <div class="landing-19" data-name="Label">View on GitHub</div>
+    <a class="sp-link" href="{{ links.home }}docs/getting-started/"{% if page.path == "docs/getting-started/" or page.path == "ja/docs/getting-started/" %} aria-current="page"{% endif %}>
+    <div class="landing-18" data-name="Hero docs">
+      <div class="landing-19" data-name="Hero docs label">{{ data.home.hero_docs|escape }}</div>
     </div>
     </a>
   </div>
   <div class="landing-20" data-name="Gap actions">
 
   </div>
-  <div class="landing-21" data-name="Hero repo">github.com/KristopherGBaker/Silverpoint</div>
+  <div class="landing-21" data-name="Hero note">{{ data.home.note|escape }}</div>
   <div class="landing-22" data-name="Gap shot">
 
   </div>
   <div class="landing-23" data-name="Hero plate">
     <div class="landing-24" data-name="Hero screenshot"></div>
     <div class="landing-25" data-name="Hero caption">
-      <div class="landing-26" data-name="Hero caption text">Pl. I  —  The main window, in light</div>
+      <div class="landing-26" data-name="Hero caption text">{{ data.home.caption_main|escape }}</div>
       <div class="landing-27" data-name="Hero caption size">1512 × 982</div>
     </div>
   </div>
 </div>
 <div class="landing-28" data-name="Features rule"></div>
-<div class="landing-29" data-name="Features" id="features">
+<div class="landing-29" data-name="Features">
   <div class="landing-30" data-name="Features head">
-    <div class="landing-31" data-name="Features title">One document, and everything it can do.</div>
-    <div class="landing-32" data-name="Features lead">Seven parts of Silverpoint, each shown as it is in the app. Plates II to IV are real screenshots.</div>
+    <div class="landing-31" data-name="Features title">{{ data.home.features_title|escape }}</div>
+    <div class="landing-32" data-name="Features lead">{{ data.home.features_lead|escape }}</div>
   </div>
   <div class="landing-33" data-name="Plate agent">
     <div class="landing-34" data-name="Agent column">
-      <div class="landing-35" data-name="Agent number">Pl. II  —  The design agent</div>
-      <div class="landing-36" data-name="Agent title">An AI designer that works in your document</div>
-      <div class="landing-37" data-name="Agent body">Ask in the agent panel and it builds frames, components and variables on your canvas. Let it ask before each change, or just do it. On Claude it can search the web while it works.</div>
+      <div class="landing-35" data-name="Agent number">{{ data.home.agent_number|escape }}</div>
+      <div class="landing-36" data-name="Agent title">{{ data.home.agent_title|escape }}</div>
+      <div class="landing-37" data-name="Agent body">{{ data.home.agent_body|escape }}</div>
       <div class="landing-38" data-name="Providers">
         <div class="landing-39" data-name="Chip">
           <img class="landing-40" data-name="Icon" data-symbol="sparkles" alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAYAAADhAJiYAAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAJKADAAQAAAABAAAAJAAAAAAqDuP8AAAEHklEQVRYCe2XXWwUVRTHz5ndLTs7C0KJRdJi0BToB7Vi66MmGNHUB2MkTSgfxhf7gvFJA4lfffXdqOkDMcUuNVUTXzThAcFo4kclEtqlsUFKm0BZm6ZQdmfb3bnH/y2dpt3O2tnZjTGRm8zMnTv3nP9v7z333LtE98v/bQSsruQBfVXqdxvlORImg9uFZP+WzqsPlOfrnjUHdRLvHHtQIrkOIToOJ1uIpFdxfsDe9dgN6mEV1G8gIKvr8jZh4x0i4yWA1EJc+/mLic87JB9mE03f/6tArpj5ysjDnOP3gfMQserJ9O/91f0W9Bn2ZdgxtmHjZvWIw8rKJBp/c23svuaJ2JHkRRGqsq3s7257OU9fQLGtuWol9CIJxSG2DKSFlWF8swjQ255bfJZ58wWEuLAM4b1eWtnTDde82oO2rb/se8Rgx6hlpgMI2obooSs7g4r5sSu+yl69FjWz2Sc4pJ4n4cNwVo8rC4NfsKY/ZoMuZOYbUzTIjhaKH7tUI6rqcRKVSieaA8eT5wjFjia3xxbsITbkR8C8twSjdaPIO08D6gwpGjfDyQ82dY5U6w+Sj7SKyFvE/Jx+D1o8gTKfNd3M5BpbHYf3YEm/DuduIOvAHYJot4RDj9r5phN3BptntLhi2grYHQj+auqcNHVbkFI8qDEV80R/4LePmV2jF5nlcwikMD+H5/sbxzzEtmHkapAja6KRuZos0XWPPus2eY7QaisWpfIpLPlzQjw6n2haC9M9FMNI1sJObyF1rFjXAxUfQERhZaQRxEkm+dNLxZqL12P30kGvS71hiFu/11LC3RdQmmgmz/IVG+pLb99OG0aobenbTkxbW9A4wrSXV2JHhp8kMXrg5YUVniaRwl/ODOzBYmDEuv8SHKh7KBJLm8+y8EkoPgXJQl8jiKe3M7lNZ2lwh+0XqdBJcTsARO14XciR3QjwfcJyEJ31dhItboRsRTSMMTqHtPCzwTxibuDx6VMNc8Vs1gc6dsmynMhBjMIncBI4v6wAAKR8VFW18O7sp/tmV7QvVtcHQqo2Dw3XsRHuwCprAFgzLFtwbS909g/v0ziiDOuVKoqvhsJy9u7krVE6vz9faOMDqNAE7zgfxaoXngFrN970Ad/y6OXA+Rcs0nt3o/0T9bZnPPqsaQoG5LrBdJoq8hpy0JtLidH9giTPb0Q5PDDTv+uO2+jn6SsPFXV0ujVtUuQUYqIPfQCxXL5lyX9dKoy2Lg8IDrQozknfYYTcDXgWf44upM+03FrGK6FSNpDWUpFQEqkguaQ7itPllRIYVnWtCJDdt/sGgMbhOYeT5QQ7+YlVKiW8VARocXtgmoLuFFbeVCgkuh6oVAgI2sIp3G/ib/X07UTLmoTnl65iQBxyJpA4f0AeuV7qhuoX9n6//+QI/A1z+lNAFrCdggAAAABJRU5ErkJggg==">
@@ -86,26 +86,26 @@
 
       </div>
       <div class="landing-55" data-name="Agent history screenshot"></div>
-      <div class="landing-56" data-name="Agent history caption">Pl. III  —  Conversation history, with what each conversation cost</div>
+      <div class="landing-56" data-name="Agent history caption">{{ data.home.agent_history_caption|escape }}</div>
     </div>
     <div class="landing-57" data-name="Agent panel plate">
       <div class="landing-58" data-name="Agent panel screenshot"></div>
-      <div class="landing-59" data-name="Agent panel caption">Pl. II  —  The agent panel</div>
+      <div class="landing-59" data-name="Agent panel caption">{{ data.home.agent_panel_caption|escape }}</div>
     </div>
   </div>
   <div class="landing-60" data-name="Plate history">
     <div class="landing-61" data-name="History plate">
       <div class="landing-62" data-name="Version history screenshot"></div>
-      <div class="landing-63" data-name="History caption">Pl. IV  —  Comparing a version with the current design</div>
+      <div class="landing-63" data-name="History caption">{{ data.home.history_caption|escape }}</div>
     </div>
     <div class="landing-64" data-name="History column">
-      <div class="landing-65" data-name="History number">Pl. IV  —  Version History</div>
-      <div class="landing-66" data-name="History title">Every version, with a visual diff</div>
-      <div class="landing-67" data-name="History body">Name a checkpoint before a big change. Compare any version with your current design side by side, as an outlined overlay or with a swipe divider, then restore the whole document or only the frames you want, as one undo step.</div>
+      <div class="landing-65" data-name="History number">{{ data.home.history_number|escape }}</div>
+      <div class="landing-66" data-name="History title">{{ data.home.history_title|escape }}</div>
+      <div class="landing-67" data-name="History body">{{ data.home.history_body|escape }}</div>
     </div>
   </div>
   <div class="landing-68" data-name="Index">
-    <div class="landing-69" data-name="Index title">Also on the sheet</div>
+    <div class="landing-69" data-name="Index title">{{ data.home.index_title|escape }}</div>
     <div class="landing-70" data-name="Gap index">
 
     </div>
@@ -123,36 +123,34 @@
     <div class="landing-78" data-name="Rule end"></div>
   </div>
 </div>
-<div class="landing-79" data-name="Open source">
-  <div class="landing-80" data-name="Open source hatch">
-    <svg class="landing-81" data-name="Hatch lines" viewBox="0 0 1440 602"><path d="M1440 1600L3040 0M1392 1600L2992 0M1344 1600L2944 0M1296 1600L2896 0M1248 1600L2848 0M1200 1600L2800 0M1152 1600L2752 0M1104 1600L2704 0M1056 1600L2656 0M1008 1600L2608 0M960 1600L2560 0M912 1600L2512 0M864 1600L2464 0M816 1600L2416 0M768 1600L2368 0M720 1600L2320 0M672 1600L2272 0M624 1600L2224 0M576 1600L2176 0M528 1600L2128 0M480 1600L2080 0M432 1600L2032 0M384 1600L1984 0M336 1600L1936 0M288 1600L1888 0M240 1600L1840 0M192 1600L1792 0M144 1600L1744 0M96 1600L1696 0M48 1600L1648 0M0 1600L1600 0M-48 1600L1552 0M-96 1600L1504 0M-144 1600L1456 0M-192 1600L1408 0M-240 1600L1360 0M-288 1600L1312 0M-336 1600L1264 0M-384 1600L1216 0M-432 1600L1168 0M-480 1600L1120 0M-528 1600L1072 0M-576 1600L1024 0M-624 1600L976 0M-672 1600L928 0M-720 1600L880 0M-768 1600L832 0M-816 1600L784 0M-864 1600L736 0M-912 1600L688 0M-960 1600L640 0M-1008 1600L592 0M-1056 1600L544 0M-1104 1600L496 0M-1152 1600L448 0M-1200 1600L400 0M-1248 1600L352 0M-1296 1600L304 0M-1344 1600L256 0M-1392 1600L208 0M-1440 1600L160 0M-1488 1600L112 0M-1536 1600L64 0M-1584 1600L16 0M-1632 1600L-32 0" fill="none" stroke="var(--backdrop-line)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg>
-  </div>
-  <div class="landing-82" data-name="Open source column">
-    <div class="landing-83" data-name="Open source number">Pl. X  —  Open source</div>
-    <div class="landing-84" data-name="Open source title">Free, and open source.</div>
-    <div class="landing-85" data-name="Open source body">Silverpoint is open source under an MIT-style license, on GitHub: read the code, file an issue, send a pull request. Signed builds are coming; until then, every build is on the GitHub releases page.</div>
-    <div class="landing-86" data-name="Gap open">
+<div class="landing-79" data-name="Beta">
+  {% include "partials/hatch.html" %}
+  <div class="landing-80" data-name="Beta column">
+    <div class="landing-81" data-name="Beta number">{{ data.home.beta_number|escape }}</div>
+    <div class="landing-82" data-name="Beta title">{{ data.home.beta_title|escape }}</div>
+    <div class="landing-83" data-name="Beta body">{{ data.home.beta_body|escape }}</div>
+    <div class="landing-84" data-name="Gap open">
 
     </div>
-    <div class="landing-87" data-name="Open source actions">
-      <a class="sp-link" href="https://github.com/KristopherGBaker/Silverpoint/releases" rel="noopener">
-      <div class="landing-88" data-name="Releases download">
-        <div class="landing-89" data-name="Label">Download from GitHub Releases</div>
+    <div class="landing-85" data-name="Beta actions">
+      <a class="sp-link" href="{{ links.home }}download/"{% if page.path == "download/" or page.path == "ja/download/" %} aria-current="page"{% endif %}>
+      <div class="landing-86" data-name="Beta download">
+        <div class="landing-87" data-name="Beta download label">{{ data.home.beta_download|escape }}</div>
       </div>
       </a>
-      <a class="sp-link" href="https://github.com/KristopherGBaker/Silverpoint" rel="noopener">
-      <div class="landing-90" data-name="Open source GitHub">
-        <div class="landing-91" data-name="Label">View on GitHub</div>
+      <a class="sp-link" href="{{ links.home }}releases/"{% if page.path == "releases/" or page.path == "ja/releases/" %} aria-current="page"{% endif %}>
+      <div class="landing-88" data-name="Beta releases">
+        <div class="landing-89" data-name="Beta releases label">{{ data.home.beta_releases|escape }}</div>
       </div>
       </a>
     </div>
-    <a class="sp-link" href="https://github.com/KristopherGBaker/Silverpoint" rel="noopener">
-    <div class="landing-92" data-name="Open source link">github.com/KristopherGBaker/Silverpoint/releases</div>
+    <a class="sp-link" href="{{ links.home }}download/"{% if page.path == "download/" or page.path == "ja/download/" %} aria-current="page"{% endif %}>
+    <div class="landing-90" data-name="Beta link">{{ data.home.beta_link|escape }}</div>
     </a>
   </div>
-  <div class="landing-93" data-name="Launch plate">
-    <div class="landing-94" data-name="Launch screenshot"></div>
-    <div class="landing-95" data-name="Launch caption">Pl. X  —  The Launch window, on the stylus backdrop</div>
+  <div class="landing-91" data-name="Launch plate">
+    <div class="landing-92" data-name="Launch screenshot"></div>
+    <div class="landing-93" data-name="Launch caption">{{ data.home.launch_caption|escape }}</div>
   </div>
 </div>
 {% endblock %}

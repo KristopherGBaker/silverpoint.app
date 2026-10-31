@@ -4,13 +4,13 @@
 <div class="doc-1" data-name="Docs header rule"></div>
 <div class="doc-2" data-name="Docs body">
   <div class="doc-3" data-name="Sidebar">
-    <div class="doc-4" data-name="Sidebar title">Documentation</div>
+    <div class="doc-4" data-name="Sidebar title">{{ data.site.docs_title|escape }}</div>
     <div class="doc-5" data-name="Gap sidebar">
 
     </div>
     <div class="doc-6" data-name="Doc list">
       {% for item in data.docs %}
-      <a class="sp-link" href="{{ site.baseURL }}{{ item.url|escape }}"{% if page.path == item.url %} aria-current="page"{% endif %}>
+      <a class="sp-link" href="{{ links.home }}{{ item.url|escape }}"{% if item.url in page.path %} aria-current="page"{% endif %}>
         <div class="doc-7" data-name="Section Getting started" data-item="docs">
           <div class="doc-8" data-name="Section label Getting started">{{ item.title|escape }}</div>
         </div>
@@ -29,7 +29,7 @@
       </div>
     </div>
     <div class="doc-15" data-name="On this page">
-      <div class="doc-16" data-name="On this page title">On this page</div>
+      <div class="doc-16" data-name="On this page title">{{ data.site.on_this_page|escape }}</div>
       {% if page.toc %}
       <div class="doc-17" data-name="Toc entries">
         {% for item in page.toc %}
