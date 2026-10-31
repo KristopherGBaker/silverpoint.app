@@ -1,7 +1,7 @@
 ---
 title: "Download the Silverpoint beta"
-description: "Free while it is in beta. A notarized Mac app that keeps itself up to date."
-summary: "Free while it is in beta. A notarized Mac app that keeps itself up to date."
+description: "Free while it is in beta. A notarized Mac app that keeps itself up to date. The AI runs on your own Claude Code or Codex, an API key, or a model on your Mac: Silverpoint doesn't include one."
+summary: "Free while it is in beta. A notarized Mac app that keeps itself up to date. The AI runs on your own Claude Code or Codex, an API key, or a model on your Mac: Silverpoint doesn't include one."
 layout: download
 ---
 
@@ -10,6 +10,16 @@ layout: download
 1. Download the DMG with the button above, open it and drag Silverpoint to Applications.
 2. Open Silverpoint. The first time, a short setup sheet asks how the agent should run: your Claude Code, your Codex CLI, an API key, Apple's on-device model or a local server. Nothing is sent to a model until you try it.
 3. The app checks for updates once a day. **Silverpoint ▸ Check for Updates…** checks now, and Settings ▸ General ▸ Updates turns the daily check off.
+
+## Do I need an AI subscription?
+
+No. Silverpoint doesn't include or resell a model: the agent runs on one you choose.
+
+- **Free:** Apple's on-device model, or a local server such as Ollama or LM Studio. Nothing leaves your Mac.
+- **Your existing subscription:** your Claude Code or Codex CLI, signed in as you, billed as part of your plan.
+- **An API key:** Anthropic, OpenAI or any OpenAI-compatible provider, billed by them to you. Silverpoint shows an estimate of what each conversation cost.
+
+You can switch any time in Settings ▸ Agent.
 
 ## What to try
 
