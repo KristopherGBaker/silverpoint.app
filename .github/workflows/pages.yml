@@ -19,10 +19,16 @@ jobs:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v7
+      # Until launch (the repository variable SITE_LIVE is not "true") only the holding page in holding/ is published.
       - name: Install Inkwell
+        if: vars.SITE_LIVE == 'true'
         run: brew install kristophergbaker/tap/inkwell
       - name: Build site
+        if: vars.SITE_LIVE == 'true'
         run: inkwell build
+      - name: Use the holding page
+        if: vars.SITE_LIVE != 'true'
+        run: rm -rf public && cp -R holding public
       - uses: actions/upload-pages-artifact@v5
         with:
           path: public
