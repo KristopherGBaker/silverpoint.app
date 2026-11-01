@@ -1,0 +1,19 @@
+name: Idea or request
+description: Something Silverpoint should do, or do differently.
+title: "[Idea] "
+labels: [idea]
+body:
+  - type: textarea
+    id: idea
+    attributes:
+      label: The idea
+      description: What you want to do, and what gets in the way today.
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Silverpoint version
+      placeholder: "2026.45.1"
+    validations:
+      required: false

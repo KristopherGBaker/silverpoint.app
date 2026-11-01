@@ -1,0 +1,65 @@
+name: Bug report
+description: Something in the Silverpoint beta doesn't work the way it should.
+title: "[Bug] "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for testing Silverpoint. Help ▸ Report a Bug… in the app fills in the versions for you.
+        This tracker is public: leave out anything private (keys, client names, designs you can't share).
+  - type: input
+    id: version
+    attributes:
+      label: Silverpoint version
+      description: Silverpoint ▸ About Silverpoint, for example 2026.45.1.
+      placeholder: "2026.45.1"
+    validations:
+      required: true
+  - type: input
+    id: macos
+    attributes:
+      label: macOS version
+      placeholder: "26.1"
+    validations:
+      required: true
+  - type: dropdown
+    id: agent
+    attributes:
+      label: Agent
+      description: Which agent were you using, if the bug involves it?
+      options:
+        - Not agent related
+        - Claude Code
+        - Codex
+        - Anthropic API key
+        - OpenAI API key
+        - Apple on-device model
+        - Local server
+        - My own agent over MCP
+    validations:
+      required: false
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened
+      description: What you tried, what you expected, and what happened instead.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. New design from the iPhone template
+        2. Ask the agent for …
+        3. …
+    validations:
+      required: false
+  - type: textarea
+    id: attachments
+    attributes:
+      label: Screenshots or files
+      description: Drag in a screenshot, a screen recording, or a zipped document if you can share it.
+    validations:
+      required: false
