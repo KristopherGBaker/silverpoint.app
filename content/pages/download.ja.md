@@ -35,4 +35,8 @@ layout: download
 - 同期や共同編集はありません。ドキュメントはディスク上のフォルダなので、2 台の Mac で同時に開かないでください。
 - アプリとこのサイトは英語と日本語のみです。
 
+<h2 id="feedback">フィードバック</h2>
+
+バグを見つけたら、アプリで**ヘルプ ▸ バグを報告…**を選んでください。Silverpoint と macOS のバージョンが入った [GitHub の Issue](https://github.com/KristopherGBaker/silverpoint.app/issues/new/choose) が開きます。Issue は公開されるので、非公開の情報は書かないでください。公開したくないフィードバックは、**ヘルプ ▸ フィードバックを送信…**を選ぶか、[silverpoint@krisbaker.com](mailto:silverpoint@krisbaker.com) までメールしてください。
+
 ビルドごとの変更点は[リリースノート](/ja/releases/)にあります。

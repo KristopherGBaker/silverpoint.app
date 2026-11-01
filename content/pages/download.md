@@ -35,4 +35,8 @@ You can switch any time in Settings ▸ Agent.
 - There is no sync or collaboration. A document is a folder on disk; don't open one on two Macs at once.
 - The app and this site are in English and Japanese only.
 
+## Feedback
+
+Found a bug? Choose **Help ▸ Report a Bug…** in the app: it opens a [GitHub issue](https://github.com/KristopherGBaker/silverpoint.app/issues/new/choose) with your Silverpoint and macOS versions filled in. Issues are public, so leave out anything private. For feedback you'd rather not post, choose **Help ▸ Send Feedback…** or write to [silverpoint@krisbaker.com](mailto:silverpoint@krisbaker.com).
+
 What changed in each build is in the [release notes](/releases/).
