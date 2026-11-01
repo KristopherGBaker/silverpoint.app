@@ -5,9 +5,9 @@ summary: "What changed in each build of the Silverpoint beta, newest first."
 layout: article
 ---
 
-## 0.1.0, the first beta
+## 2026.45.1, the first beta
 
-Build 1, November 5, 2026.
+November 5, 2026.
 
 Silverpoint is a native Mac design canvas with an AI designer built in. Describe a screen and the agent builds it on the canvas; edit it by hand or keep talking to it. It is free while it is in beta.
 
