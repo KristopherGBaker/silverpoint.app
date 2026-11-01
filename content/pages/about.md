@@ -19,8 +19,9 @@ Silverpoint is made by [Kristopher Baker](https://krisbaker.com/), a product eng
 - **To silverpoint.app.** Once a day the app asks this site whether there is a newer build. Settings ▸ General ▸ Updates turns that off.
 - **To the image provider you set up** in Settings ▸ General ▸ Images, only when you or the agent generate an image.
 - **To Figma**, only when you import a Figma file by its link.
+- **To analytics.krisbaker.com, only if you turn it on.** Anonymous usage data is off by default: the first-run sheet asks once, and Settings ▸ General ▸ Privacy has the switch and the full list of what's sent (that the app opened, setup steps, which kind of agent you chose, whether agent turns worked, export kinds, updates). Never your designs, names, prompts, paths or keys. Each event carries a random ID you can reset.
 
-Silverpoint has no analytics and no account. API keys stay in your Mac's Keychain, and your documents stay on your disk.
+Silverpoint has no account. API keys stay in your Mac's Keychain, and your documents stay on your disk.
 
 ## This site
 
