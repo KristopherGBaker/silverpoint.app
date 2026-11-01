@@ -82,7 +82,7 @@
     },
     {
       "path" : "themes/silverpoint/templates/base.html",
-      "sha256" : "de7fe90aa7bc0df8d42f8f0a45e36feafe17d9344ee4d591931976f0d1fc34d0"
+      "sha256" : "c0f5a04c3925ce7176803e673fe35451546bbc499a71fade45a1f4fccbbe866c"
     },
     {
       "path" : "themes/silverpoint/templates/layouts/article.html",

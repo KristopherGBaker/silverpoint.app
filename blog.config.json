@@ -20,5 +20,21 @@
       "title": "Silverpoint",
       "description": "AI デザイナーを内蔵した、Mac ネイティブのデザインキャンバス。"
     }
+  },
+  "analytics": {
+    "umami": {
+      "scriptUrl": "https://analytics.krisbaker.com/script.js",
+      "websiteId": "22ae51ad-52e8-416b-91dc-c89a5bf2fd1f",
+      "domains": "silverpoint.app",
+      "respectDoNotTrack": true,
+      "events": {
+        "outboundLinks": true,
+        "downloads": true,
+        "downloadExtensions": [
+          "dmg",
+          "zip"
+        ]
+      }
+    }
   }
 }

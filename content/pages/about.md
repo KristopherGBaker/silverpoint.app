@@ -24,4 +24,4 @@ Silverpoint has no analytics and no account. API keys stay in your Mac's Keychai
 
 ## This site
 
-This site sets no cookies and has no analytics. It is hosted on GitHub Pages, which keeps its own server logs.
+This site counts page views and download clicks with a self-hosted [Umami](https://umami.is) (analytics.krisbaker.com): no cookies, nothing that follows you to other sites, and nothing at all when your browser asks not to be tracked. It is hosted on GitHub Pages, which keeps its own server logs.
