@@ -16,7 +16,23 @@ Conversation History keeps every conversation with what it cost, so you can pick
 
 ## A real canvas
 
-Frames with auto layout and grids (named areas included), components with variants and properties, variables with light and dark themes, text styles, masks, blend modes and vector editing. Lint checks contrast, spacing and colors as you go.
+Frames with auto layout and grids (named areas included), components with variants and properties, variables with light and dark themes, text styles, masks, blend modes and vector editing. Lint checks contrast, spacing and colors as you go. The canvas is composited on the GPU, so panning and zooming stay smooth in large documents, and with a layer selected you can hold ⌥ to measure the distance to any other layer, as in Figma.
+
+![The main window with Aurora, a weather app designed in Silverpoint](/assets/images/aurora-canvas-light.png)
+
+Aurora, a weather app designed in Silverpoint: its screens, components and website hero on one canvas.
+
+## Shader fills and effects
+
+Fill a shape, a stroke or text with a fragment shader, or run a shader effect over a whole layer. Shaders are written in a subset of GLSL (the WebGL 1 dialect) and live in the document, so undo, version history and the agent all see them. Start from twenty-five presets in the gallery (gradients, noise, patterns, glow, grain, glass and distortion), and tune each one with the sliders, color wells and switches Silverpoint builds from the shader's own annotations. Glass shaders read what is behind a layer and its outline. A shader that animates plays live on the canvas while it is selected and in the prototype player, and image exports draw the frame you choose. The agent writes and edits shader source for you, with errors at their line and column.
+
+![Aurora's website hero, its sky drawn with the aurora shader](/assets/images/aurora-site-hero.png)
+
+Aurora's sky is one shader fill, on the website hero and on every screen of the app.
+
+## Diagrams and charts
+
+Connectors stay attached to the layers they join. Place boxes roughly and **Object ▸ Layout Diagram** arranges them as a layered graph, a tree or a grid in one undo step, and sequence diagrams and swimlanes are one insert away. Bar, line and pie charts draw from data you type or a CSV file, in your document's colors. Mermaid (flowchart, sequence, class, state, ER, Gantt, pie and XY charts), Excalidraw and draw.io files import as editable frames, and diagrams export back to Mermaid, Excalidraw and draw.io.
 
 ## Every version, with a visual diff
 
