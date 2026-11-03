@@ -1,14 +1,15 @@
 ---
 title: "Custom lint rules"
-description: "Silverpoint's design check (lint, the inspector's Design Check, silverpoint score, the agent's self-check) runs ten built-in rules: raw-color, off-grid, text-style, tiny-text, contrast, clipped, empty-mask, brand-drift, variable-alias and variable-expression. Custom lint rules add a team's own conv…"
-summary: "Silverpoint's design check (lint, the inspector's Design Check, silverpoint score, the agent's self-check) runs ten built-in rules: raw-color, off-grid, text-style, tiny-text, contrast, clipped, empty-mask, brand-drift, variable-alias and variable-expression. Custom lint rules add a team's own conv…"
+description: "Silverpoint's design check (lint, the inspector's Design Check, silverpoint score, the agent's self-check) runs seventeen built-in rules: raw-color, off-grid, text-style, tiny-text, contrast, clipped, empty-mask, brand-drift, missing-font, lane-membership, variable-alias, variable-expression, shade…"
+summary: "Silverpoint's design check (lint, the inspector's Design Check, silverpoint score, the agent's self-check) runs seventeen built-in rules: raw-color, off-grid, text-style, tiny-text, contrast, clipped, empty-mask, brand-drift, missing-font, lane-membership, variable-alias, variable-expression, shade…"
 layout: doc
 toc: true
 ---
 
-Silverpoint's design check (`lint`, the inspector's **Design Check**, `silverpoint score`, the agent's self-check) runs ten
+Silverpoint's design check (`lint`, the inspector's **Design Check**, `silverpoint score`, the agent's self-check) runs seventeen
 built-in rules: `raw-color`, `off-grid`, `text-style`, `tiny-text`, `contrast`, `clipped`, `empty-mask`, `brand-drift`,
-`variable-alias` and `variable-expression`. **Custom lint rules**
+`missing-font`, `lane-membership`, `variable-alias`, `variable-expression`, `shader`, `shader-unused`,
+`shader-uniform-default`, `shader-uniform-range` and `shader-export`. **Custom lint rules**
 add a team's own conventions to the same check: "buttons use the 8 or 12 radius", "every screen is 390 wide", "icon names are
 kebab-case".
 
@@ -33,6 +34,19 @@ own brand (#FAF9F5, #F0EEE6, #E8E6DC) and that holds a clay or terracotta fill (
 values per channel, once per frame. It stays quiet in a document that links a design system (`imports` or `packages`). When the
 user asked for or supplied that palette, the agent turns it off with `set_builtin_lint_rule {rule: "brand-drift", enabled: false}`.
 
+`missing-font` (`warning`, no fix) reports a text whose `fontFamily` (or a run's) is neither installed on this Mac nor carried
+by the document (its `fonts`, see [templates-and-styles.md](../templates-and-styles/)'s Fonts in the document), once per text
+naming the families (`uses the font "Inter", which is neither installed nor carried by the document; …`), and, on the
+document root, each of the document's own text styles whose family is (`text style "Body" uses the font "Inter", …`).
+Rendering still falls back to the system font; the rule says so instead of leaving it silent. A family registered only for
+another open document's fonts does not count as installed. There is no fix: which font to use, or which file to add, is a
+choice.
+
+`lane-membership` (`warning`) reports, in a swimlane frame (`swimlanes`), a child that is in no lane (with a fix: the
+`swimlanes` op's `assign` putting it in the lane its centre stands in) or a member whose box is not inside its lane's band
+(a locked member the lanes cannot move, or a document edited by hand; no fix). Every commit re-flows the lanes, so an unlocked
+member is always inside its lane.
+
 `variable-alias` (`warning`, no fix) reports, once per variable on the document root, a variable alias (`"$other"`) that does not
 resolve under the default theme or some combination of the theme axes: a cycle (`alias cycle a → b → a`), a missing target
 (`alias x → later (no such variable)`) or a hop of another type. `set_variables` already refuses a cycle or a type mismatch, so
@@ -45,6 +59,18 @@ values (`"=$space * 2"`; see the schema's Variables and themes): an expression t
 or a result too large to be a number (`result is not a finite number`), under the default theme or any theme combination. A
 plain alias whose chain breaks inside an expression further on stays `variable-alias`'s, so each broken variable is one issue.
 `set_variables` refuses an expression that does not parse, a cycle or a type mismatch; the rest are accepted and reported here.
+
+`shader` (`error`, no fix; see `docs/shaders.md`) reports, on the document, a library shader that cannot draw (the
+validator's `line:column` error, Metal's compile error, or "needs Metal" on a Mac without a Metal device), and on the node
+that uses one (an instance override as its `instance/child` path): a paint naming a shader neither the library nor a linked
+design system has (`error`), a uniform the shader does not declare, a value that does not fit its type, or a value for an
+`@resolution` or `@time` uniform, which the renderer sets (`warning`). Four more shader rules sit beside it, each turned off
+on its own like any built-in: `shader-uniform-range` (`warning`, on the node) is a number outside its uniform's `@range`;
+`shader-export` (`warning`, on the node) is a fill, stroke or effect whose shader reads `@background`, which no code target
+exports yet (until shader code export, every target draws the node without it); `shader-unused` (`info`, on the document) is
+a library shader nothing uses; and `shader-uniform-default` (`info`, on the document) is a uniform a paint sets that states no
+`@default`, so it starts at zero. The last two run only on the whole document, not under a node. `contrast` also checks a
+text on a shader fill against the shader's own colors under it (sampled small with Metal), at its least contrasting spot.
 
 A rule is **declarative JSON**. Nothing a rule says is ever executed as code: Silverpoint reads it, validates it and runs its
 own checks. You add, change or remove rules without rebuilding Silverpoint.

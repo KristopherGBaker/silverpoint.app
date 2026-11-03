@@ -185,6 +185,7 @@ Android or Pixel) or by the code target (SwiftUI or UIKit, Compose).
 | `design-system` | tokens, components and documenting them |
 | `poster` | posters: a named design philosophy first, frame sizes, composition, type as image |
 | `generative-art` | seeded, rule-based art from Silverpoint shapes: the seed and parameters first, deterministic variation |
+| `shaders` | on demand: shader fills in the GLSL subset (`set_shader`, `list_shaders`, `get_shader`), the annotation grammar, uniforms and `time`, a complete example, reading `line:column` and Metal errors, and design guidance (quiet backgrounds, legible text on top, a frosted card, performance, code export later) |
 | `diagrams` | architecture, flowcharts, state machines, ER models, trees, layer stacks, dependency graphs, data flows and sequences: when not to draw, choosing the type, the budget (about 9 nodes, 12 connectors, 2 accents) and splitting, style (palette variables, hairlines, one accent, a horizontal legend, the three diagram presets), connector rules, the place, `connect`, `layout_diagram`, screenshot, fix workflow, a checklist and notes per type |
 | `existing-app` | surveying an attached app or repo, and which design principles hold for it |
 | `export` | on demand: exporting code (SwiftUI, React, Compose, UIKit, HTML), importing code and diagrams, and publishing a website (an Inkwell theme) |

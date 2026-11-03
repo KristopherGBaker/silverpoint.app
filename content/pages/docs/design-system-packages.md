@@ -14,6 +14,16 @@ one the moment it is installed.
 
 The path form (`imports`, a file linked by path) is unchanged and keeps working; packages are a second form beside it.
 
+A path link is stored **relative to the document's folder** (`../ds/Brand.silverpoint`, `Brand.silverpoint`) when the design
+system file is on the same volume as the document, and absolute otherwise, whichever way it was linked (the inspector's Link File…,
+`link_design_system`, whose `path` may itself be relative to the document, or `silverpoint call`), so a design and its design system
+can move together, live in one repository checkout or open on another Mac. Linking a file that is already linked, in either form,
+keeps its alias. An unsaved document links absolute paths (it has no folder yet) and refuses a relative one; its first save makes
+its links relative. Save As and a move (Move To…, the title bar, Finder) rewrite each relative link against the new folder so it
+names the same file, or keep it when the design system moved along with the document; a link that no longer resolves is listed
+with the other links that do not load, and absolute links are never rewritten. The inspector's Design Systems section shows each
+path link as stored and, when relative, the file it resolves to. Documents with absolute links open and save unchanged.
+
 ## The package format: `.silverpointds`
 
 A package is a **folder** whose name ends in `.silverpointds` (a package in Finder, so it double-clicks like a document):

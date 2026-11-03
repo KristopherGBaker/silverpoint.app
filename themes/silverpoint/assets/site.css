@@ -236,6 +236,7 @@ div[data-slot="page.content"] :not(pre) > code { background: var(--backdrop-deep
   .landing-6 { display: none; }
   .landing-7 { display: none; }
   .landing-11 { align-self: stretch; font-size: 56px; width: unset; max-width: unset; }
+  .landing-26 { flex: 1 1 0; min-width: 0; }
   .landing-2 { padding: 72px 40px 80px 40px; }
   .landing-31 { align-self: stretch; font-size: 36px; width: unset; max-width: unset; }
   .landing-32 { align-self: stretch; width: unset; max-width: unset; }
