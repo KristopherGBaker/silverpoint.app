@@ -2,7 +2,7 @@
   "files" : [
     {
       "path" : "content/pages/docs/agent-conversation.md",
-      "sha256" : "32e0b036fe3229f05646283e338f9cdf50e46fd21bfa35b34a0bac067a0d8c81"
+      "sha256" : "97974f407d961542a5525fb8dd05be1971b2960fe75fbc3d9b200a03ed170e30"
     },
     {
       "path" : "content/pages/docs/design-system-packages.md",
@@ -66,7 +66,7 @@
     },
     {
       "path" : "themes/silverpoint/assets/images/main-window-light.png",
-      "sha256" : "803a846cb37571284c4b87f17f2341177980d841803f20f08124e0a13327a569"
+      "sha256" : "db2b82236ff615f0149846b989df48a925185a14fa74c15d332390dd72ab843b"
     },
     {
       "path" : "themes/silverpoint/assets/images/version-history-light.png",
