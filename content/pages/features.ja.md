@@ -6,6 +6,8 @@ layout: article
 toc: true
 ---
 
+<video controls playsinline preload="metadata" poster="/assets/video/silverpoint-beta-poster.jpg" style="width:100%;height:auto;border-radius:12px"><source src="/assets/video/silverpoint-beta.mp4" type="video/mp4"></video>
+
 ## ドキュメントの中の AI デザイナー
 
 エージェントパネルで頼むと、エージェントがフレーム、コンポーネント、変数をキャンバスの上に直接作ります。変更のたびに確認させることも、任せきりにすることもでき、1 回のやり取りは 1 回で取り消せます。お使いの Claude Code や Codex、API キー（Claude、OpenAI、OpenAI 互換サーバー）、Apple のオンデバイスモデル、ローカルモデルで動き、Claude ではウェブを検索しながら作業します。

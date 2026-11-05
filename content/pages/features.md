@@ -6,6 +6,8 @@ layout: article
 toc: true
 ---
 
+<video controls playsinline preload="metadata" poster="/assets/video/silverpoint-beta-poster.jpg" style="width:100%;height:auto;border-radius:12px"><source src="/assets/video/silverpoint-beta.mp4" type="video/mp4"></video>
+
 ## An AI designer in your document
 
 Ask in the agent panel and the agent builds frames, components and variables right on your canvas. Let it ask before each change, or just let it work; every turn is one undo step. It runs on your Claude Code or Codex, an API key (Claude, OpenAI or any OpenAI-compatible server), Apple's on-device model or a local model, and on Claude it can search the web while it works.
