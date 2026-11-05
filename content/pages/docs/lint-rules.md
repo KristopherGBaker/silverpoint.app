@@ -1,14 +1,14 @@
 ---
 title: "Custom lint rules"
-description: "Silverpoint's design check (lint, the inspector's Design Check, silverpoint score, the agent's self-check) runs seventeen built-in rules: raw-color, off-grid, text-style, tiny-text, contrast, clipped, empty-mask, brand-drift, missing-font, lane-membership, variable-alias, variable-expression, shade…"
-summary: "Silverpoint's design check (lint, the inspector's Design Check, silverpoint score, the agent's self-check) runs seventeen built-in rules: raw-color, off-grid, text-style, tiny-text, contrast, clipped, empty-mask, brand-drift, missing-font, lane-membership, variable-alias, variable-expression, shade…"
+description: "Silverpoint's design check (lint, the inspector's Design Check, silverpoint score, the agent's self-check) runs eighteen built-in rules: raw-color, off-grid, text-style, tiny-text, contrast, clipped, empty-mask, brand-drift, missing-font, lane-membership, device-reserved-region, variable-alias, var…"
+summary: "Silverpoint's design check (lint, the inspector's Design Check, silverpoint score, the agent's self-check) runs eighteen built-in rules: raw-color, off-grid, text-style, tiny-text, contrast, clipped, empty-mask, brand-drift, missing-font, lane-membership, device-reserved-region, variable-alias, var…"
 layout: doc
 toc: true
 ---
 
-Silverpoint's design check (`lint`, the inspector's **Design Check**, `silverpoint score`, the agent's self-check) runs seventeen
+Silverpoint's design check (`lint`, the inspector's **Design Check**, `silverpoint score`, the agent's self-check) runs eighteen
 built-in rules: `raw-color`, `off-grid`, `text-style`, `tiny-text`, `contrast`, `clipped`, `empty-mask`, `brand-drift`,
-`missing-font`, `lane-membership`, `variable-alias`, `variable-expression`, `shader`, `shader-unused`,
+`missing-font`, `lane-membership`, `device-reserved-region`, `variable-alias`, `variable-expression`, `shader`, `shader-unused`,
 `shader-uniform-default`, `shader-uniform-range` and `shader-export`. **Custom lint rules**
 add a team's own conventions to the same check: "buttons use the 8 or 12 radius", "every screen is 390 wide", "icon names are
 kebab-case".
@@ -47,6 +47,13 @@ choice.
 (a locked member the lanes cannot move, or a document edited by hand; no fix). Every commit re-flows the lanes, so an unlocked
 member is always inside its lane.
 
+`device-reserved-region` (`warning`, no fix) reports, in a device frame (`device`, e.g. `iphone-duo-half`; see the schema), a
+visible text or a node that looks tappable (it has interactions or a link, or its name or its instance's component's says
+"button") whose box overlaps the device's system bar (iPhone Duo's 84 strip down the trailing edge, or the 82 bar along the top
+of the open display in portrait) or the fold (the 40-wide band down the middle when partly folded), once per node and region.
+A control's own children are not checked again, and the home indicator is not checked. A frame whose `device` this build does
+not know is not checked.
+
 `variable-alias` (`warning`, no fix) reports, once per variable on the document root, a variable alias (`"$other"`) that does not
 resolve under the default theme or some combination of the theme axes: a cycle (`alias cycle a → b → a`), a missing target
 (`alias x → later (no such variable)`) or a hop of another type. `set_variables` already refuses a cycle or a type mismatch, so
@@ -66,8 +73,10 @@ that uses one (an instance override as its `instance/child` path): a paint namin
 design system has (`error`), a uniform the shader does not declare, a value that does not fit its type, or a value for an
 `@resolution` or `@time` uniform, which the renderer sets (`warning`). Four more shader rules sit beside it, each turned off
 on its own like any built-in: `shader-uniform-range` (`warning`, on the node) is a number outside its uniform's `@range`;
-`shader-export` (`warning`, on the node) is a fill, stroke or effect whose shader reads `@background`, which no code target
-exports yet (until shader code export, every target draws the node without it); `shader-unused` (`info`, on the document) is
+`shader-export` (on the node) is a fill, stroke or effect that some code targets write as a PNG of its static frame instead
+of the shader (`ShaderExportSupport`, `docs/shaders.md` Code export), naming those targets and why: a `warning` when every
+target does (a stroke, text, `@background`, `@sdf`), else `info` (an effect HTML, React and UIKit rasterize, an `@image` fill
+Compose and UIKit do); `shader-unused` (`info`, on the document) is
 a library shader nothing uses; and `shader-uniform-default` (`info`, on the document) is a uniform a paint sets that states no
 `@default`, so it starts at zero. The last two run only on the whole document, not under a node. `contrast` also checks a
 text on a shader fill against the shader's own colors under it (sampled small with Metal), at its least contrasting spot.

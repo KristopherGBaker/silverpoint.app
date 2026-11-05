@@ -175,7 +175,7 @@ Android or Pixel) or by the code target (SwiftUI or UIKit, Compose).
 | `schema` | every node type and property (always loaded) |
 | `operations` | how `batch_design` works (always loaded) |
 | `design-principles` | always loaded: a core every design follows (one most important thing per frame, spacing on a rhythm of the app's base unit, layout frames, components, linked text styles, variables, 4.5:1 body text, one dominant color with accents), then **New designs** (name a direction; follow a `Direction:` line, else state your own density, layout and motion; pair faces, pick a scale, stay off the default look) and **Existing apps** (the app's own direction, faces, scale and palette win), and the brand palette rule (`brand-drift`) |
-| `ios-app` | iPhone and iPad: frames, safe areas, 44 pt targets, Dynamic Type, semantic colors, bars, sheets, Liquid Glass, SF Symbols, concentric radii |
+| `ios-app` | iPhone and iPad, iPhone Duo closed and open: frames, safe areas, 44 pt targets, Dynamic Type, semantic colors, bars, sheets, Liquid Glass, SF Symbols, concentric radii |
 | `macos-app` | Mac windows: the frame, the toolbar in the title bar, sidebar and split views, 28 pt controls, the macOS text styles, menus, density |
 | `android-app` | Material 3: the frame and size classes, 48 dp targets, the type roles, color roles and tonal surfaces, shapes, navigation, FABs |
 | `mobile-app` | an index that points to `ios-app` and `android-app` |

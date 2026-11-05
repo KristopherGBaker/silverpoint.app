@@ -34,7 +34,7 @@ Poster.silverpoint/
 | `skillCards`、`lintRuleCards`、`approvalCards`、`resolvedCards` | 各カードの状態。項目の id ごと。 |
 | `history` | 送ったとおりのモデルの履歴。`role` と `content` ブロック（後述）。 |
 | `queued`、`unsent` | ターンの実行中に送られてまだ待っているメッセージと、ターンが入力欄に戻したメッセージ。 |
-| `usage`、`lastRoundUsage`、`estimatedCost` | これまでの会話のトークンとコスト、そして最後のリクエストの使用量（コンテキストがどれだけ埋まっているか）。使用量には `input`、`output`、`cacheRead`、`cacheWrite`、`webSearchRequests` があり、さらにあるときだけ書き込まれる任意のキーが 2 つあります。`cacheWrite1h`（`cacheWrite` のうち 1 時間キャッシュの分）と `reportedCost`（プロバイダー自身が報告した米ドルでのコスト。OpenRouter のものなど）です。コストの `kind` は `reported`（`dollars` 付き。すべてのリクエストのコストをプロバイダーが報告したもの）、`estimated`（`dollars` 付き。料金表から。一部のリクエストだけが報告したときは部分的に）、`unknown`、`notBilled` のいずれかです。 |
+| `usage`、`lastRoundUsage`、`estimatedCost` | これまでの会話のトークンとコスト、そして最後のリクエストの使用量（コンテキストがどれだけ埋まっているか）。使用量には `input`、`output`、`cacheRead`、`cacheWrite`、`webSearchRequests` があり、さらにあるときだけ書き込まれる任意のキーが 2 つあります。`cacheWrite1h`（`cacheWrite` のうち 1 時間キャッシュの分）と `reportedCost`（プロバイダー自身が報告した米ドルでのコスト。OpenRouter のものなど）です。コストの `kind` は `reported`（`dollars` 付き。すべてのリクエストのコストをプロバイダーが報告したもの）、`estimated`（`dollars` 付き。料金表から。一部のリクエストだけが報告したときは部分的に）、`unknown`、`notBilled` のいずれかです。コストには、料金のわかるプロバイダーで `generate_image` が作った画像も含まれます（料金表の `images` から見積もり）。使用量に数えるのはモデルのトークンだけです。 |
 | `sentFacts` | ターンの事実の「最後に送ったもの」の記録（BACKLOG 47）。各ターンが `history` のどこから始まるかと、そのターンがモデルに残したデザインシステムとコンテキストのセクション。 |
 
 入力欄の下書きは保存されません。
