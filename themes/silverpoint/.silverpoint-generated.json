@@ -126,7 +126,7 @@
     },
     {
       "path" : "themes/silverpoint/theme.json",
-      "sha256" : "18b21a1252dc29ba522f74fa4c70981f6ae7e74681f546c62f2c3ddac2c2fc51"
+      "sha256" : "6076a853d26130b115bd8382a9e4f6a366696151ed263bfc4c69119a10f143f2"
     }
   ],
   "generator" : "silverpoint",

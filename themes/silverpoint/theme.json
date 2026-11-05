@@ -7,8 +7,8 @@
 
     ],
     "stylesheets" : [
-      "assets/tokens.css",
-      "assets/site.css"
+      "assets/tokens.css?v=9b4fa62087c8",
+      "assets/site.css?v=00e0e4b6b599"
     ]
   },
   "name" : "silverpoint",
