@@ -22,6 +22,12 @@ Frames with auto layout and grids (named areas included), components with varian
 
 Aurora, a weather app designed in Silverpoint: its screens, components and website hero on one canvas.
 
+## iPhone Duo, closed and open
+
+Set a frame's **Device** to iPhone Duo closed, open or half open, and the canvas shows where the system goes: the side strip with the time, status icons and the tab bar's icons, the home indicator, and the fold when it is half open. Lint warns about text or a control on them. **Add Other Posture** makes the matching screen beside it, and the SwiftUI and UIKit exports turn a closed and open pair into one screen that switches by size class, with two-pane layouts split around the fold.
+
+![Aurora's home screen on iPhone Duo, open, with the side strip and home indicator shown as guides](/assets/images/aurora-duo-light.png)
+
 ## Shader fills and effects
 
 Fill a shape, a stroke or text with a fragment shader, or run a shader effect over a whole layer. Shaders are written in a subset of GLSL (the WebGL 1 dialect) and live in the document, so undo, version history and the agent all see them. Start from twenty-five presets in the gallery (gradients, noise, patterns, glow, grain, glass and distortion), and tune each one with the sliders, color wells and switches Silverpoint builds from the shader's own annotations. Glass shaders read what is behind a layer and its outline. A shader that animates plays live on the canvas while it is selected and in the prototype player, and image exports draw the frame you choose. The agent writes and edits shader source for you, with errors at their line and column.
