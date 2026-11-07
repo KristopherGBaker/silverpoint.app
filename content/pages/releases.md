@@ -5,6 +5,33 @@ summary: "What changed in each build of the Silverpoint beta, newest first."
 layout: article
 ---
 
+## 2026.45.2
+
+November 8, 2026.
+
+The second beta build. Installing it starts the beta's 60 days again.
+
+### New in this build
+
+- **Design review.** Turn it on in Settings ▸ Agent, or for one turn with **Review this turn** in the composer. After a turn that changed the design, a second model reviews it. The agent then fixes whatever the review says must change, in up to two rounds. It works with every backend, including Claude Code and Codex.
+- **Ask first on Claude Code and Codex.** Those backends now ask questions and offer directions as cards too, and can report a problem with Silverpoint.
+- **Web search on chosen sites.** Settings ▸ Agent can limit the agent's web search to a list of sites, or block a list.
+- **Spacing guides.** While you drag, layers snap to equal gaps between their neighbors, with markers and distances shown.
+- **Shortcuts, Siri and Spotlight.** Export a frame, save a version, check a design, ask the agent, open a document or insert a component from Shortcuts. Spotlight finds your documents and components.
+- **Images from your own service.** An image provider plugin, or custom headers and an optional key for an OpenAI-compatible image endpoint. The ✨ button shows what an image cost.
+- **Your font pairings and palettes in Settings**, with each palette checked for WCAG AA contrast. The agent can save a font pairing for you.
+- **Code import reads more.** iOS storyboards and XIBs come in as frames, with segues as prototype links. SwiftUI lists and `ForEach` come in as rows.
+- **Devices.** A landscape iPhone Duo frame can put its system strip on either side, and the prototype player can fold and unfold a closed and open pair.
+- **A tidier toolbar** with Shape and Drawing menus, and a collapsed sidebar you can drag back out.
+
+### Also
+
+- Export Code no longer blocks the app, and a slow plugin can be cancelled.
+- Passwords and tokens for connected MCP servers are kept in the Keychain.
+- Image tracing, region detection and large first layouts no longer hold up the window.
+- A hook that times out, or is still running when you quit, ends together with anything it started.
+- Early: on macOS 27, the canvas takes direct touch (select, move, resize, draw, scroll and pinch).
+
 ## 2026.45.1, the first beta
 
 November 5, 2026.

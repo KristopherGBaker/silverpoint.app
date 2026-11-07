@@ -10,7 +10,9 @@ toc: true
 
 ## An AI designer in your document
 
-Ask in the agent panel and the agent builds frames, components and variables right on your canvas. Let it ask before each change, or just let it work; every turn is one undo step. It runs on your Claude Code or Codex, an API key (Claude, OpenAI or any OpenAI-compatible server), Apple's on-device model or a local model, and on Claude it can search the web while it works.
+Ask in the agent panel and the agent builds frames, components and variables right on your canvas. Let it ask before each change, or just let it work; every turn is one undo step. It runs on your Claude Code or Codex, an API key (Claude, OpenAI or any OpenAI-compatible server), Apple's on-device model or a local model, and on Claude it can search the web while it works, on every site or only the ones you choose.
+
+Turn on **design review** and a second model reviews each turn that changed the design; the agent then fixes what the review says must change, on any backend.
 
 ![Conversation History](/assets/images/agent-history-light.png)
 
@@ -18,7 +20,7 @@ Conversation History keeps every conversation with what it cost, so you can pick
 
 ## A real canvas
 
-Frames with auto layout and grids (named areas included), components with variants and properties, variables with light and dark themes, text styles, masks, blend modes and vector editing. Lint checks contrast, spacing and colors as you go. The canvas is composited on the GPU, so panning and zooming stay smooth in large documents, and with a layer selected you can hold ⌥ to measure the distance to any other layer, as in Figma.
+Frames with auto layout and grids (named areas included), components with variants and properties, variables with light and dark themes, text styles, masks, blend modes and vector editing. Lint checks contrast, spacing and colors as you go. The canvas is composited on the GPU, so panning and zooming stay smooth in large documents, and with a layer selected you can hold ⌥ to measure the distance to any other layer, as in Figma. While you drag, layers snap to equal gaps between their neighbors, with the gaps and distances shown.
 
 ![The main window with Aurora, a weather app designed in Silverpoint](/assets/images/aurora-canvas-light.png)
 
@@ -52,6 +54,10 @@ Name a checkpoint before a big change. Compare any version with your current des
 
 Claude Code, Codex or any MCP client can design in your open documents with the same tools the built-in agent uses. **Help ▸ Connect Claude Code or Codex…** shows the line to add.
 
+## Shortcuts, Siri and Spotlight
+
+Export a frame, save a version, check a design, ask the agent, open a document or insert a component from Shortcuts or Siri, and find your documents and components in Spotlight.
+
 ## Design systems as packages
 
 Variables, text styles and components in one linkable package. Link it to any document, and change a token once for every screen that uses it.
@@ -62,8 +68,8 @@ Variables, text styles and components in one linkable package. Link it to any do
 
 ## Skills, lint rules, hooks and plugins
 
-Teach the agent your conventions with skills, check them with lint rules, run a command after a save or an export with hooks, and add importers and code targets with plugins.
+Teach the agent your conventions with skills, check them with lint rules, run a command after a save or an export with hooks, and add importers, code targets and image providers with plugins.
 
 ## Early: code and Figma
 
-Silverpoint can export SwiftUI, UIKit, Jetpack Compose, React and HTML, read edited code back into the design, and bring in Figma files. These work, but they are less tested than the rest of the beta, so expect rough edges.
+Silverpoint can export SwiftUI, UIKit, Jetpack Compose, React and HTML, read edited code back into the design (iOS storyboards and XIBs too), and bring in Figma files. These work, but they are less tested than the rest of the beta, so expect rough edges.
