@@ -1,23 +1,26 @@
 ---
 title: "Command plugins"
-description: "A command plugin adds a code target, an exporter or an importer to Silverpoint without Swift and without rebuilding the app: it is a folder holding a plugin.json manifest and a command. Silverpoint runs the command with one JSON request on stdin and reads one JSON answer from stdout (protocol 1, be…"
-summary: "A command plugin adds a code target, an exporter or an importer to Silverpoint without Swift and without rebuilding the app: it is a folder holding a plugin.json manifest and a command. Silverpoint runs the command with one JSON request on stdin and reads one JSON answer from stdout (protocol 1, be…"
+description: "A command plugin adds a code target, an exporter, an importer or an image provider to Silverpoint without Swift and without rebuilding the app: it is a folder holding a plugin.json manifest and a command. Silverpoint runs the command with one JSON request on stdin and reads one JSON answer from std…"
+summary: "A command plugin adds a code target, an exporter, an importer or an image provider to Silverpoint without Swift and without rebuilding the app: it is a folder holding a plugin.json manifest and a command. Silverpoint runs the command with one JSON request on stdin and reads one JSON answer from std…"
 layout: doc
 toc: true
 ---
 
-A command plugin adds a code target, an exporter or an importer to Silverpoint without Swift and without rebuilding the app:
-it is a folder holding a `plugin.json` manifest and a command. Silverpoint runs the command with one JSON request on stdin
-and reads one JSON answer from stdout (protocol 1, below). A code target adds a platform such as Flutter or your own component
-markup to `export_code`, the Export Code panel and the hand-off; an exporter adds an item to **File ▸ Export As**; an importer
-adds an item to **File ▸ Import** and is what the `import_file` tool runs.
+A command plugin adds a code target, an exporter, an importer or an image provider to Silverpoint without Swift and without
+rebuilding the app: it is a folder holding a `plugin.json` manifest and a command. Silverpoint runs the command with one JSON
+request on stdin and reads one JSON answer from stdout (protocol 1, below). A code target adds a platform such as Flutter or your
+own component markup to `export_code`, the Export Code panel and the hand-off; an exporter adds an item to **File ▸ Export As**;
+an importer adds an item to **File ▸ Import** and is what the `import_file` tool runs; an image provider makes the images of
+`generate_image` and the ✨ button from a prompt (Settings ▸ General ▸ Images lists it).
 
 Plugins run code on your machine, so **a plugin runs only after you approve it**, and again after any change to it (see
 [Trust](#trust-and-approval)).
 
 The logic is SilverpointKit's (`SilverpointCodegen/Plugins`): `PluginManifest`, `PluginFolder`, `PluginModelJSON`,
 `PluginHost` (the one place a plugin runs), `PluginPermissions` and `PluginEnvironment` (what its permissions let it have),
-`CommandCodeTarget`, `PluginExport`, `PluginImport`, `PluginMenu` and `PluginCheck`; `import_file` is in `DesignTools`, and the CLI is `silverpoint plugins`.
+`CommandCodeTarget`, `PluginExport`, `PluginImport`, `PluginImage`, `PluginMenu` and `PluginCheck`; `import_file` is in `DesignTools`,
+an image provider's generator is SilverpointAgent's `CommandImageGenerator` (registered by `PluginSetup.registerImageProviders`),
+and the CLI is `silverpoint plugins`.
 
 ## Where plugins live
 
@@ -31,7 +34,9 @@ Library code has no default folder (`PluginSetup.none`): only the entry points (
 pass the standard one, so tests always use a temporary folder.
 
 Code target plugins are registered once, when the app starts (and when `silverpoint mcp`, `call` or `tools` starts): install
-or remove one and relaunch to see it in the target lists. Exporters and importers are read again each time a menu opens and on
+or remove one and relaunch to see it in the target lists. Image provider plugins are registered the same way, into each entry
+point's own image provider registry (the app's Settings ▸ General ▸ Images, and the one `silverpoint mcp`, `call` and `tools`
+build for `generate_image`), never a shared one. Exporters and importers are read again each time a menu opens and on
 each `import_file` call. Every run reads the plugin from its folder again, so a plugin edited after launch is checked (and run)
 as it is now.
 
@@ -57,20 +62,22 @@ as it is now.
 | Field | Kinds | Meaning |
 | --- | --- | --- |
 | `protocol` | all | Must be `1`. |
-| `id` | all | Lowercase letters, digits and `-`, starting with a letter or digit. A code target's id in Silverpoint is `plugin:<id>`, so it never shadows a built-in. |
-| `name`, `version` | all | Non-empty strings: the name is what menus and target lists show. |
-| `kind` | all | `codeTarget`, `exporter` or `importer`. |
+| `id` | all | Lowercase letters, digits and `-`, starting with a letter or digit. A code target's and an image provider's id in Silverpoint is `plugin:<id>`, so it never shadows a built-in. |
+| `name`, `version` | all | Non-empty strings: the name is what menus, target lists and the image provider picker show. |
+| `kind` | all | `codeTarget`, `exporter`, `importer` or `imageProvider`. |
 | `command` | all | A non-empty argv. `command[0]` is resolved against the plugin folder unless it is absolute (`./run.sh`, `/usr/bin/python3`); the other arguments are passed as they are. The command runs with the plugin folder as its working directory, with the environment its [permissions](#permissions) allow. No shell is involved. |
 | `timeout` | all | Seconds (more than 0; fractions allowed). A run that takes longer is stopped. |
 | `capabilities` | codeTarget (required, may be `{}`) | `CodeFeature` name → `full`, `approximated` or `unsupported`: the same feature list the built-in targets declare (below). |
 | `fileExtensions` | codeTarget (required), exporter | File extensions without the dot; a code target's first is its main one. |
 | `fileTypes` | importer (required) | The extensions it reads (matched without case). |
 | `renders` | exporter | `true` to be sent a PNG of each top-level frame. |
+| `models` | imageProvider (optional) | The model names Settings ▸ General ▸ Images offers, the first being the default; leave it out for a free-form model field. |
 | `permissions` | all (optional) | The scopes the plugin needs: `library:read`, `comments:read`, `library:write`, `environment` (see [Permissions](#permissions)). Leave it out and the plugin is legacy: it gets everything. |
 
 Validation is strict, and an error names the field (`capabilities.sparkles: "sparkles" is not a code feature`): a missing or
-malformed `id`, a `kind` outside the three, an empty `command`, a `timeout` of 0 or less, a `protocol` other than 1, an unknown
-capability (or support level), a code target without `fileExtensions` and an importer without `fileTypes` are each refused. So
+malformed `id`, a `kind` outside the four, an empty `command`, a `timeout` of 0 or less, a `protocol` other than 1, an unknown
+capability (or support level), a code target without `fileExtensions`, an importer without `fileTypes`, and `models` on a kind
+other than an image provider (or an empty model name) are each refused. So
 is a `permissions` that is not an array of strings, or that lists an unknown scope, one twice, or one its kind cannot declare
 (`permissions[1]: "comments:read" is not valid for a code target; a code target can declare library:read, environment`).
 
@@ -106,6 +113,8 @@ A plugin says what it needs in `permissions`, and Silverpoint sends it only that
   so the model keeps its protocol-1 shape. Its nodes are unchanged: a color or value that came from a variable still names it
   (`{"token": "brand"}`), so the code can refer to a token it is not sent.
 - **An importer's request** (`path`, `bytes`) is the same with or without scopes; `library:write` decides what its answer may add.
+- **An image provider's request** (`prompt`, `aspect`, `model`) holds nothing of the document; the only scope it can declare is
+  `environment`, for a plugin that calls a service with your API key (`"permissions": ["environment"]`).
 - **The environment allowlist** (without `environment`): `PATH`, `HOME`, `USER`, `LOGNAME`, `SHELL`, `TMPDIR`, `LANG`, `TERM`
   and every `LC_*`, each copied with its value only when Silverpoint has it; nothing is added. So `ANTHROPIC_API_KEY`,
   `OPENAI_API_KEY`, `SILVERPOINT_*` and anything else Silverpoint inherited never reach the plugin.
@@ -191,12 +200,39 @@ stdout:
   (existing ones are kept).
 - `report` (optional, an object) is passed through to `import_file`'s result as it is.
 
+### Image provider
+
+stdin:
+
+```json
+{"protocol": 1, "kind": "imageProvider", "prompt": "a harbor at dawn, watercolor", "aspect": "landscape", "model": "indigo"}
+```
+
+stdout:
+
+```json
+{"image": "<the PNG or JPEG, base64>"}
+```
+
+- `aspect` is `square`, `landscape` or `portrait`: the plugin picks the size (the node's image fill is set to `cover`, so any
+  size fits). `model` is the one chosen in Settings ▸ General ▸ Images (or `--image-model`), else the manifest's first `models`
+  entry, else empty.
+- `image` must decode as base64 to PNG or JPEG bytes (checked by signature); anything else fails the run naming the plugin
+  (`plugin "swatch-image" returned an image that is not PNG or JPEG (5 bytes)`) and nothing is stored.
+- The provider's id is `plugin:<id>`: choose it in **Settings ▸ General ▸ Images ▸ Provider** (it shows the manifest's
+  `name`, its `models` as the model picker, or a free-form model field, and no key field), pass it as `generate_image`'s
+  `provider`, or on the command line as `--image-provider plugin:<id>` (or `SILVERPOINT_IMAGE_PROVIDER`). Its images are not
+  priced.
+- Every image is one run through `PluginHost`, as every plugin run is: approval by content hash (the app asks the first time,
+  MCP and the CLI never ask and fail naming the plugin), the request and environment cut to its permissions, its `timeout`,
+  and the agent's Stop, the ✨ button's Cancel or a cancelled MCP call ending the process.
+
 ### The UIModel JSON
 
 `model` is the neutral `UIModel` (`PluginModelJSON`): what every code target, built-in or not, generates from. It is stable within
 protocol 1: keys are never renamed or removed, optional values are left out rather than written as `null`, numbers are rounded
-to 6 decimal places, and the bytes are pinned by a golden file (`Tests/SilverpointCodegenTests/Fixtures/Plugin/codeexport.uimodel.json`,
-`PluginUIModelJSONTests`). Top-level keys:
+to 6 decimal places, and the bytes are pinned by golden files (`Tests/SilverpointCodegenTests/Fixtures/Plugin/codeexport.uimodel.json`,
+and beside it `duo.uimodel.json` for device frames; `PluginUIModelJSONTests`). Top-level keys:
 
 | Key | Value |
 | --- | --- |
@@ -236,6 +272,7 @@ A node:
 | `interactions` | `{trigger, action, target?, url?, variant?, variable?, value?, toggle?, if?}` (the last four only when set: a `set_variable`'s variable and its value or `toggle`, and an interaction's condition). |
 | `source` | A placeholder for code the importer could not read: `{file, line, text}`. |
 | `visibleParameter`, `slotParameter` | The component parameter that shows or hides it, or that it shows. |
+| `device`, `deviceSide` | On a device frame only (README, Device frames): `device` is the posture as stored (`iphone-duo-closed`, `iphone-duo-open`, `iphone-duo-half`, or an id this build does not know), `deviceSide` the long edge its 84-wide system strip runs down when the frame is landscape, `trailing` unless the design says `leading` (a portrait frame keeps its bar where the posture puts it either way). With them a target can do what the built-in SwiftUI and UIKit exports do: pair a closed `X` with its `X (Open)` (else `X (Half Open)`) by size class, and leave the system bar, the 34 home indicator and (half open) the 40-wide fold to the safe area. |
 | `children` | Nodes. |
 
 A value is `{"value": <number>, "token": "<variable>"}`, the token only when the value came from a variable. A color is
@@ -255,7 +292,11 @@ A run fails, with an error that names the plugin (`plugin "flutter" …`, one li
 - stdout is not JSON, not an object, or not the shape above (a `files` entry without a string `path` and `contents`, an unknown
   diagnostic feature), or more than 256 MiB;
 - a file path is empty, absolute or climbs out with `..`;
-- an importer's fragment is not a valid Silverpoint document, or carries variables, styles or themes without `library:write`.
+- an importer's fragment is not a valid Silverpoint document, or carries variables, styles or themes without `library:write`;
+- an image provider's `image` is missing, not a base64 string, or not PNG or JPEG bytes.
+
+A run whose work is cancelled (Cancel in Export Code's progress, an `export_code`, `import_file` or `generate_image` call whose
+task is cancelled, the ✨ button's Cancel) is stopped the same way, its whole process group, and changes nothing.
 
 A plugin that exits without reading stdin is fine (Silverpoint never gets SIGPIPE for it). Over the CLI a failing plugin is exit
 status 1 with one line on stderr; over MCP it is a tool error; in the app it is an alert.
@@ -274,8 +315,8 @@ A plugin is a program, so it runs only once you have approved **exactly this ver
   folder, the **exact command it will run** and its [permissions](#permissions): **Allow** remembers the hash and runs it, **Don't Allow** runs nothing (it asks
   again next time). The in-app agent's runs ask the same way.
 - **Over MCP and the CLI nothing asks**: an unapproved or changed plugin is an error naming the plugin and saying it is not
-  approved. That holds for the app's own MCP server too: another program cannot get a command approved by putting a dialog in
-  front of you. Approve a plugin in **Settings ▸ General ▸ Plugins** (its switch, or **Review…**, then **Approve**), in the
+  approved. That holds for the app's own MCP server and its App Intents (Shortcuts, Siri) too: another program cannot get a
+  command approved by putting a dialog in front of you. Approve a plugin in **Settings ▸ General ▸ Plugins** (its switch, or **Review…**, then **Approve**), in the
   alert on its first use in the app, or with `silverpoint plugins install <folder> --approve` in your own terminal (which prints
   the command).
 - `silverpoint plugins check <folder>` runs the folder you name once without approval: checking it is your explicit act.
@@ -288,8 +329,8 @@ every file that hash covers, and only **Approve** there approves it (as it is on
 nothing is approved and it shows the plugin again). Turning the switch off revokes that plugin's approval and no other entry.
 **Install…** copies a plugin folder in, never approved (a leftover approval for its id is removed); **Remove…** asks, then deletes
 the folder and its approval; **Reveal Folder** shows the plugins folder in Finder, and **Reload** reads it again (the section
-also reads it when the window opens or comes to the front). Installing or removing a code target takes effect after you relaunch
-Silverpoint; exporters and importers show in the menus at once. Every approval, there, in the alert and with `--approve`, goes
+also reads it when the window opens or comes to the front). Installing or removing a code target or an image provider takes
+effect after you relaunch Silverpoint; exporters and importers show in the menus at once. Every approval, there, in the alert and with `--approve`, goes
 through `PluginHost.approve`; nothing the agent or an MCP client can reach approves a plugin.
 
 Beyond approval, the only limits are its [permissions](#permissions): an approved plugin runs as you, and one that declares
@@ -315,26 +356,36 @@ Beyond approval, the only limits are its [permissions](#permissions): an approve
 - `remove` deletes the installed plugin and its approval; an unknown id exits 1.
 - `check` validates the manifest and prints, after the `command:` line, `permissions: <ids, comma-separated | none | legacy>`
   and each scope's line indented two spaces (`  Read your variables, styles and themes`), then runs a code target on a built-in sample model (two screens, a component, tokens) or an
-  exporter on the sample document (with its renders when the manifest asks), or an importer on `--input <file>`, and checks the
+  exporter on the sample document (with its renders when the manifest asks), an importer on `--input <file>`, or an image
+  provider on a sample prompt (square, its first model; it prints `image: png (<bytes> bytes)`), and checks the
   answer against the protocol. It prints what came back and exits 0 when it is clean; a protocol error is one line on stderr and
   exit 1. An importer without `--input` gets its manifest checked only (`manifest only: …`, exit 0). Nothing is written.
 - `silverpoint mcp`, `call` and `tools` register the installed code targets first, so `tools --json` lists `plugin:<id>` in
   `export_code`'s `format`, and `call <file> export_code '{"format":"plugin:flutter"}'` runs it (once approved).
-  `call <file> import_file '{"path": "/abs/file.json"}'` runs an importer.
+  `call <file> import_file '{"path": "/abs/file.json"}'` runs an importer. They register the installed image providers into
+  their own image provider registry too: `call <file> generate_image '{"id": "hero", "prompt": "…"}' --image-provider
+  plugin:<id>` (or `SILVERPOINT_IMAGE_PROVIDER=plugin:<id>`) runs one, and `generate_image`'s `provider` lists them.
 
 ## In the app
 
-- Code targets join the built-ins in **File ▸ Export Code or Tokens…**, the hand-off's target picker and `export_code`.
+- Code targets join the built-ins in **File ▸ Export Code or Tokens…**, the hand-off's target picker and `export_code`. Export
+  Code runs a target off the main actor, once per format: while the save panel is up (to count its files, which picks a file or
+  a folder name) and again at Save only if the document or the selection changed meanwhile. The app stays responsive while a
+  slow plugin runs; past a moment Save shows a progress sheet whose **Cancel** stops the plugin's process and writes nothing,
+  and closing the panel stops a run it started. A plugin that needs approval still asks with the app's alert.
 - **File ▸ Export As** has one item per exporter (its manifest `name`): it asks for a folder and writes the files there.
 - **File ▸ Import** lists **From Figma…**, **From Mermaid…**, **From Excalidraw…**, **From draw.io…** (the last three built in, not plugins), then one item per importer,
   whose open panel offers the importer's `fileTypes`; the import is one undo step.
 - `import_file` (`path`, optional `plugin`; otherwise the first importer, by id, whose `fileTypes` has the file's extension)
   returns `{plugin, created, report}`: `created` are the new top-level node ids.
+- Image providers join the built-ins in **Settings ▸ General ▸ Images ▸ Provider** (with a note saying the provider is a
+  plugin and runs once approved), so `generate_image` and the ✨ button use the one chosen there; `generate_image`'s `provider`
+  takes `plugin:<id>` for one call.
 
 ## The samples
 
-Two sample plugins are in the repository, under `Examples/plugins/` (nothing installs them; they are also the tests' fixtures).
-Both use only the system's `/usr/bin/python3` and its standard library.
+Three sample plugins are in the repository, under `Examples/plugins/` (nothing installs them; they are also the tests' fixtures).
+All use only the system's `/usr/bin/python3` and its standard library.
 
 - **`flutter-skeleton`** (id `flutter`, a code target, `.dart`): one file per screen and component under `lib/`, each importing
   `package:flutter/material.dart` and holding a `StatelessWidget` named after the root (frames become `Column`, `Row` or `Stack`,
@@ -354,6 +405,15 @@ Both use only the system's `/usr/bin/python3` and its standard library.
       silverpoint plugins check Examples/plugins/shapes-json --input Examples/plugins/shapes-json/sample.json
       silverpoint plugins install Examples/plugins/shapes-json --approve
       silverpoint call design.silverpoint import_file "{\"path\": \"$PWD/Examples/plugins/shapes-json/sample.json\"}"
+
+- **`swatch-image`** (id `swatch-image`, an image provider, models `indigo` and `coral`): answers a small solid-color PNG built
+  with `zlib`, the same every time, with no network: 16×16 for `square`, 24×16 for `landscape`, 16×24 for `portrait`, in the
+  model's color (the prompt is ignored). It needs nothing of yours, so it declares `"permissions": []`.
+
+      silverpoint plugins check Examples/plugins/swatch-image
+      silverpoint plugins install Examples/plugins/swatch-image --approve
+      silverpoint call design.silverpoint generate_image '{"id": "hero", "prompt": "a swatch"}' \
+        --image-provider plugin:swatch-image --image-model coral
 
 ## Not yet
 

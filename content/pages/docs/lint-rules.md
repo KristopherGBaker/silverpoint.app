@@ -49,8 +49,8 @@ member is always inside its lane.
 
 `device-reserved-region` (`warning`, no fix) reports, in a device frame (`device`, e.g. `iphone-duo-half`; see the schema), a
 visible text or a node that looks tappable (it has interactions or a link, or its name or its instance's component's says
-"button") whose box overlaps the device's system bar (iPhone Duo's 84 strip down the trailing edge, or the 82 bar along the top
-of the open display in portrait) or the fold (the 40-wide band down the middle when partly folded), once per node and region.
+"button") whose box overlaps the device's system bar (iPhone Duo's 84 strip down the trailing edge, the leading one on a
+landscape frame whose `deviceSide` is `leading`, or the 82 bar along the top of the open display in portrait) or the fold (the 40-wide band down the middle when partly folded), once per node and region.
 A control's own children are not checked again, and the home indicator is not checked. A frame whose `device` this build does
 not know is not checked.
 

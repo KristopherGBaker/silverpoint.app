@@ -125,8 +125,12 @@ These are added to the environment Silverpoint was started with and your hook's 
 
 - **Off the main actor, after the event.** The save or export has finished and its result is available before the hook starts. A hook that
   fails to launch, exits non-zero or times out is recorded; it never throws into the save or export.
-- **Timeout.** A hook that runs longer than its `timeout` is sent SIGTERM, then SIGKILL two seconds later, and recorded as `timed out`.
-  Only the hook's own process is signalled: with `shell: true`, a program the script started in the background can outlive it.
+- **Timeout.** A hook runs as the leader of a process group of its own. One that runs longer than its `timeout` has its whole group sent
+  SIGTERM, then SIGKILL if any of it is left two seconds later, and is recorded as `timed out`. So a program it started (a `shell: true`
+  script's background job, a tool's helper) ends with it, unless that program left the group itself (`setsid`, a daemon). A hook that
+  exits in time is not followed up: a background job it leaves behind keeps running.
+- **Quitting.** Quitting Silverpoint ends every hook still running the same way (its whole group, SIGTERM, then SIGKILL after two
+  seconds) before the app is gone, starts no more and shows no notice for them. Closing a document does not stop its hooks.
 - **Coalescing.** A hook (per document and hook id) that is still running is not started again by the next save or export. The trigger
   waits, a second one replaces it, and **one** more run starts when the first finishes, with the latest payload. A burst of ten
   saves while a hook runs costs one extra run, not ten.
@@ -161,6 +165,8 @@ A hook is a command that runs on your Mac with your permissions. So:
   hooks you approved in the app. Without the flag nothing is read from or written to the approvals or the log.
 - **The app's own MCP server never runs hooks**, whatever a client asks: another program is driving those tools. The in-app agent is
   you directing the app, so its exports run hooks like the menu commands do.
+- **Shortcuts and Siri never run hooks either**: an App Intent (Export Frame, Save Version and the others) is the `intent` origin,
+  another program driving the call, so an export it makes runs none, as over MCP.
 - **No tool approves, writes or toggles a hook** (only you, in Settings). `list_hooks` is read-only: it returns each hook's id, event, filter, command,
   `shell`, `cwd`, `timeout`, `enabled`, `source` (`user` or `document`) and `approval` (`trusted`, `approved` or `notApproved`),
   and the hooks that did not validate. An agent can suggest a hook for you to add; it cannot add one.

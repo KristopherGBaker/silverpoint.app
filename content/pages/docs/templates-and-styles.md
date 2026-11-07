@@ -70,11 +70,19 @@ File ▸ **Reveal Templates in Finder** opens the folder (creating it first if i
 context menu asks first, then moves the file to the **Trash** (it is not deleted). The card's menu also has Open and
 Reveal in Finder.
 
-Settings ▸ General ▸ **Templates and Styles** (in the Design systems group) lists both folders: each one's path with
-Reveal in Finder (creating the folder if it is missing), your entries, a row for each file that does not load with the
-reason (the same warning `silverpoint templates` and `silverpoint styles` print), then the built-in entries: the Start from
-templates and every bundled style preset. A style of yours with a bundled preset's name says it replaces it. The section is
-read-only (edit the folders in Finder); it reads them again when the Settings window shows or becomes key, and on Reload.
+Settings ▸ General ▸ **Templates and Styles** (in the Design systems group) lists your templates and styles folders, and
+your font pairings and products folders (the section keeps its name: pairings and palettes are part of a style): each
+one's path with Reveal in Finder (creating the folder, and the products folder's `palettes/`, if missing), your entries,
+and a row for each file that does not load with the reason (the same warning `silverpoint templates` and `silverpoint
+styles` print). Templates and styles then list the built-in entries: the Start from templates and every bundled style
+preset. **Font pairings** counts yours and the built-in ones (`2 yours · 35 built-in`, and `· 1 not loaded`) and lists
+yours by slug. **Palettes and product types** does the same for the palettes in `palettes/` and the product types in the
+folder's tables (a bad table row is its own row, named by file and line), and under each of your palettes lists the
+[contrast checks](#contrast-checks-on-your-palettes) it fails: the pair, the mode and the ratio against the minimum
+(`Low contrast: onAccent on accent, dark, 2.31:1 (needs 4.5:1)`). An entry of yours with a bundled one's name says it
+replaces it. The section is read-only (edit the folders in Finder); it reads them again, off the main actor, when the
+Settings window shows or becomes key, and on Reload. Its model (`TemplatesStylesSettingsModel`) reads only the folders it
+is given: the app passes the standard ones (`TemplatesStylesSettingsModel.standard()`), and tests pass temporary ones.
 
 ## Style presets
 
@@ -251,11 +259,35 @@ first wins. A file in the user folder or a package's `pairings/` has the bundled
 `summary`, `heading` and `body`; a file that lacks one, has no front matter or is not UTF-8 text is skipped with a warning
 that names it (two files with one slug: the first filename in byte order wins and the other is a warning), and the rest
 still load. Its moods and uses are free words: the bundled vocabularies above bind only the bundled pairings, and a
-filter matches whatever a pairing says. The faces are not checked: name families that are installed, or the design falls
+filter matches whatever a pairing says. The faces of a file you write yourself are not checked (`save_font_pairing`
+checks them): name families that are installed, or the design falls
 back to the system font, or font library families with `fonts: library` (and a `fallback:`), which `add_library_font`
 with `pairing` carries like a bundled library pairing's. `get_font_pairing` resolves the layers when it runs, so a file added to the folder between turns is there
 on the next call; its description and `name` choices list the pairings as they were when the tool list was built. The
 agent, MCP (`silverpoint mcp`) and `silverpoint call` all read the same folder.
+
+### Saving a pairing: `save_font_pairing`
+
+"Save these fonts as a pairing": the agent calls `save_font_pairing` with `name`, `title`, `summary`, `heading`, `body`,
+an optional `mono`, `moods` and `uses` (lists), `notes` (the Markdown after the front matter: sizes and weights per role,
+what to avoid), and for a library pairing `fonts: "library"`, a `fallback` and the `products` it suits. It writes
+`<slug>.md` into your pairings folder in the bundled form (front matter, then `# <title>` and the notes), which
+`get_font_pairing` serves at once. It is one tool in the shared catalog (the agent, MCP, `silverpoint call`), with
+`save_style`'s confirm flow and its rule for an existing name:
+
+- **In the app** it never writes. The same card as a style's shows the file (or a diff against the pairing it replaces)
+  with Save and Discard; Save writes it.
+- **Over MCP and `silverpoint call`** without `confirm: true` it returns a preview (`{written: false, slug, title,
+  replaces, text, diff}`) and writes nothing; with it, it writes and returns `written: true`.
+- **A bundled name** is allowed, like a style's: your file then replaces the bundled pairing for every document (the
+  bundled file is never touched). It is never silent: the preview and the card say `replaces: bundled` (or `package`,
+  `user`) with a diff, before anything is written. A pairing of yours that came from a file with another name
+  (`My Pair.md`) is rewritten in place.
+- **Refused, with the reason, writing nothing:** a name with no letters or digits; an empty title, summary, heading,
+  body, moods, uses or notes; `fonts` other than `installed` or `library`; an installed pairing naming a family that is not
+  installed on this Mac (one in the font library says to use `fonts: "library"`); a library pairing naming a family that
+  is neither in the font library nor installed; a `fallback` that is not an installed pairing; a product that is not a
+  product type; and a setup with no pairings folder.
 
 ### Fonts in the document
 
@@ -437,9 +469,32 @@ Nothing in these folders is an error. A row with the wrong number of cells or an
 or avoid (title and the moods may be empty), a second row with a slug the layer already has, a row after a blank line
 (which ends a table) and a file with no product table are skipped with a warning that names the file and the row's line (`skipped mine.md line 5: has 4 cells, not 8`). A
 palette with no `## Colors` section, a role missing or a role not written as `#RRGGBB / #RRGGBB` is skipped with a warning
-naming the file and the roles, and does not claim its family, so the bundled or package palette still applies. Only the
-structure is checked: the contrast checks the bundled palettes pass are not run on yours. The warnings show on
-`silverpoint styles --product` and `--products` (stderr); the agent and MCP skip what does not load.
+naming the file and the roles, and does not claim its family, so the bundled or package palette still applies. The
+warnings show on `silverpoint styles --product` and `--products` (stderr) and in Settings; the agent and MCP skip what
+does not load.
+
+#### Contrast checks on your palettes
+
+A palette that loads is checked against WCAG AA in light and in dark (`PaletteContrast`, SilverpointAgent), with the
+ratio the `contrast` lint rule and the `lowContrast` layout problem use (`RGBA.contrast(with:)`). The pairs, each
+foreground on the background it is drawn on:
+
+| Foreground | Background | Minimum |
+| --- | --- | --- |
+| `ink` (surface foreground) | `background`, `surface` | 4.5:1 |
+| `muted` (muted foreground) | `background`, `surface` | 4.5:1 |
+| `onAccent` | `accent` | 4.5:1 |
+| `onDestructive` | `destructive` | 4.5:1 |
+| `destructive` (error text) | `background` | 4.5:1 |
+| `accent` (a control's fill) | `background` | 3:1 |
+| `focus` (the focus ring) | `background`, `surface` | 3:1 |
+
+`border` is decorative and has no check. A failure never keeps a palette from loading: it is a warning, shown as the
+pair, the mode and the ratio cut to two places (never rounded up to the minimum), `onAccent on accent, dark: 2.31:1
+(needs 4.5:1)`, in three places: under the palette's row in Settings, after the palette in what `get_style` with
+`product` returns (`Contrast warnings (this user palette fails WCAG AA; …)`, so the agent and MCP see it), and on stderr
+from `silverpoint styles --product` and `--products` (`palette pets (user): …`). Your palettes and a linked package's are
+checked; every bundled palette passes every check (`PaletteContrastTests`).
 
 A product may name a family that has no palette in any layer: its direction then ends with `Palette (<family>): no palette
 for this family.` A preset or pairing it names that is not in the resolved styles or pairings is left out of its list,
@@ -464,6 +519,8 @@ of `{slug, title, summary, source, overrides}`; `--show <name>` prints the text 
 unknown name). `--product <slug>` prints what `get_style` with `product` returns (with `--json`, `{slug, title, family,
 body}`; an unknown product exits 1 with the tool's error), and `--products` lists the product types, `slug<TAB>family<TAB>title`
 by family and then slug (with `--json`, an array of `{slug, title, family}`); beside either, the only flag is `--json`.
+Both print, on stderr, the products folder's warnings and then each failed contrast check of your palettes and linked
+packages' ([Contrast checks on your palettes](#contrast-checks-on-your-palettes)).
 `--pairings` lists the font pairings `get_font_pairing` serves, `slug<TAB>layer<TAB>fonts<TAB>title` (fonts is `installed`
 or `library`), installed first and then by slug, or with `--json` an array of `{slug, title, summary, source, fonts,
 heading, body, mono, fallback}`; `--fonts` keeps one kind. It reads `SILVERPOINT_PAIRINGS_DIR` and never downloads.

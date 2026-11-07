@@ -1,16 +1,16 @@
 ---
 title: "コマンドプラグイン"
-description: "コマンドプラグインは、Swift を書かずにアプリをビルドし直すこともなく、Silverpoint にコードターゲット、エクスポーター、インポーターを追加します。plugin.json マニフェストとコマンドを入れたフォルダで、Silverpoint は JSON のリクエストを 1 つ stdin に渡し、JSON の答えを 1 つ stdout から読み取ります。"
-summary: "コマンドプラグインは、Swift を書かずにアプリをビルドし直すこともなく、Silverpoint にコードターゲット、エクスポーター、インポーターを追加します。plugin.json マニフェストとコマンドを入れたフォルダで、Silverpoint は JSON のリクエストを 1 つ stdin に渡し、JSON の答えを 1 つ stdout から読み取ります。"
+description: "コマンドプラグインは、Swift を書かずにアプリをビルドし直すこともなく、Silverpoint にコードターゲット、エクスポーター、インポーター、画像プロバイダを追加します。plugin.json マニフェストとコマンドを入れたフォルダで、Silverpoint は JSON のリクエストを 1 つ stdin に渡し、JSON の答えを 1 つ stdout から読み取ります。"
+summary: "コマンドプラグインは、Swift を書かずにアプリをビルドし直すこともなく、Silverpoint にコードターゲット、エクスポーター、インポーター、画像プロバイダを追加します。plugin.json マニフェストとコマンドを入れたフォルダで、Silverpoint は JSON のリクエストを 1 つ stdin に渡し、JSON の答えを 1 つ stdout から読み取ります。"
 layout: doc
 toc: true
 ---
 
-コマンドプラグインは、Swift を書かずにアプリをビルドし直すこともなく、Silverpoint にコードターゲット、エクスポーター、インポーターを追加します。中身は `plugin.json` マニフェストとコマンドを入れたフォルダです。Silverpoint はコマンドを実行して JSON のリクエストを 1 つ stdin に渡し、JSON の答えを 1 つ stdout から読み取ります（プロトコル 1、後述）。コードターゲットは、Flutter や独自のコンポーネントマークアップのようなプラットフォームを `export_code`、コードの書き出しパネル、ハンドオフに追加します。エクスポーターは **ファイル ▸ 別の形式で書き出す** に項目を追加し、インポーターは**ファイル ▸ 読み込む** に項目を追加します。`import_file` ツールが実行するのもインポーターです。
+コマンドプラグインは、Swift を書かずにアプリをビルドし直すこともなく、Silverpoint にコードターゲット、エクスポーター、インポーター、画像プロバイダを追加します。中身は `plugin.json` マニフェストとコマンドを入れたフォルダです。Silverpoint はコマンドを実行して JSON のリクエストを 1 つ stdin に渡し、JSON の答えを 1 つ stdout から読み取ります（プロトコル 1、後述）。コードターゲットは、Flutter や独自のコンポーネントマークアップのようなプラットフォームを `export_code`、コードの書き出しパネル、ハンドオフに追加します。エクスポーターは **ファイル ▸ 別の形式で書き出す** に項目を追加し、インポーターは**ファイル ▸ 読み込む** に項目を追加します。`import_file` ツールが実行するのもインポーターです。画像プロバイダは、プロンプトから `generate_image` と ✨ ボタンの画像を作ります（設定 ▸ 一般 ▸ 画像 に一覧されます）。
 
 プラグインはあなたの Mac でコードを実行するので、**プラグインはあなたが承認してから初めて実行され**、変更されるたびにもう一度承認が必要です（[信頼](#trust-and-approval)を参照）。
 
-ロジックは SilverpointKit のもの（`SilverpointCodegen/Plugins`）です。`PluginManifest`、`PluginFolder`、`PluginModelJSON`、`PluginHost`（プラグインを実行する唯一の場所）、`PluginPermissions` と `PluginEnvironment`（権限によって渡せるもの）、`CommandCodeTarget`、`PluginExport`、`PluginImport`、`PluginMenu`、`PluginCheck` があります。`import_file` は `DesignTools` にあり、CLI は `silverpoint plugins` です。
+ロジックは SilverpointKit のもの（`SilverpointCodegen/Plugins`）です。`PluginManifest`、`PluginFolder`、`PluginModelJSON`、`PluginHost`（プラグインを実行する唯一の場所）、`PluginPermissions` と `PluginEnvironment`（権限によって渡せるもの）、`CommandCodeTarget`、`PluginExport`、`PluginImport`、`PluginImage`、`PluginMenu`、`PluginCheck` があります。`import_file` は `DesignTools` にあり、画像プロバイダの生成部は SilverpointAgent の `CommandImageGenerator`（`PluginSetup.registerImageProviders` が登録します）で、CLI は `silverpoint plugins` です。
 
 ## プラグインの置き場所
 
@@ -18,7 +18,7 @@ toc: true
 
 ライブラリのコードには既定のフォルダがありません（`PluginSetup.none`）。標準のフォルダを渡すのはエントリーポイント（アプリ、`silverpoint mcp`、`call`、`tools`）だけなので、テストは常に一時フォルダを使います。
 
-コードターゲットのプラグインは、アプリの起動時に一度だけ登録されます（`silverpoint mcp`、`call`、`tools` の起動時も同じです）。インストールや削除をしたら、再起動するとターゲットの一覧に反映されます。エクスポーターとインポーターは、メニューを開くたびと`import_file` を呼ぶたびに読み直します。実行のたびにプラグインをフォルダから読み直すので、起動後に編集したプラグインは今の状態でチェック（そして実行）されます。
+コードターゲットのプラグインは、アプリの起動時に一度だけ登録されます（`silverpoint mcp`、`call`、`tools` の起動時も同じです）。インストールや削除をしたら、再起動するとターゲットの一覧に反映されます。画像プロバイダのプラグインも同じように、各エントリーポイント自身の画像プロバイダのレジストリ（アプリの設定 ▸ 一般 ▸ 画像と、`silverpoint mcp`、`call`、`tools` が `generate_image` のために作るもの）に登録され、共有のレジストリには登録されません。エクスポーターとインポーターは、メニューを開くたびと`import_file` を呼ぶたびに読み直します。実行のたびにプラグインをフォルダから読み直すので、起動後に編集したプラグインは今の状態でチェック（そして実行）されます。
 
 ## マニフェスト
 
@@ -42,9 +42,9 @@ toc: true
 | フィールド | 種類 | 意味 |
 | --- | --- | --- |
 | `protocol` | すべて | `1` でなければなりません。 |
-| `id` | すべて | 英小文字、数字、`-` で、英字か数字で始まります。Silverpoint でのコードターゲットの id は `plugin:<id>` なので、組み込みのものを隠すことはありません。 |
-| `name`、`version` | すべて | 空でない文字列です。名前はメニューやターゲットの一覧に表示されます。 |
-| `kind` | すべて | `codeTarget`、`exporter`、`importer` のいずれかです。 |
+| `id` | すべて | 英小文字、数字、`-` で、英字か数字で始まります。Silverpoint でのコードターゲットと画像プロバイダの id は `plugin:<id>` なので、組み込みのものを隠すことはありません。 |
+| `name`、`version` | すべて | 空でない文字列です。名前はメニュー、ターゲットの一覧、画像プロバイダの選択に表示されます。 |
+| `kind` | すべて | `codeTarget`、`exporter`、`importer`、`imageProvider` のいずれかです。 |
 | `command` | すべて | 空でない argv です。`command[0]` は絶対パスでなければプラグインフォルダを基準に解決されます（`./run.sh`、`/usr/bin/python3`）。ほかの引数はそのまま渡されます。コマンドはプラグインフォルダを作業ディレクトリとし、[権限](#permissions)が許す環境変数で実行されます。シェルは介しません。 |
 | `timeout` | すべて | 秒数（0 より大きく、小数も可）。これより長くかかった実行は停止されます。 |
 | `capabilities` | codeTarget（必須、`{}` でも可） | `CodeFeature` 名 → `full`、`approximated`、`unsupported`。組み込みのターゲットが宣言するのと同じ機能の一覧です（後述）。 |
@@ -52,8 +52,9 @@ toc: true
 | `fileTypes` | importer（必須） | 読み取る拡張子です（大文字小文字を区別せずに照合します）。 |
 | `renders` | exporter | `true` にすると、トップレベルのフレームごとの PNG が送られます。 |
 | `permissions` | すべて（省略可） | プラグインが必要とするスコープです。`library:read`、`comments:read`、`library:write`、`environment`（[権限](#permissions)を参照）。省略するとレガシーのプラグインになり、すべてを受け取ります。 |
+| `models` | imageProvider（省略可） | 設定 ▸ 一般 ▸ 画像が選択肢として示すモデル名で、最初のものがデフォルトです。省略すると、モデルは自由入力の欄になります。 |
 
-検証は厳密で、エラーにはフィールド名が入ります（`capabilities.sparkles: "sparkles" is not a code feature`）。`id` がない、または形式が正しくない、`kind` が 3 つ以外、`command` が空、`timeout` が 0 以下、`protocol` が 1 以外、未知の機能（またはサポートレベル）、`fileExtensions` のないコードターゲット、`fileTypes` のないインポーターは、どれも拒否されます。`permissions` が文字列の配列でない場合や、未知のスコープ、重複したスコープ、その種類では宣言できないスコープを含む場合も同じです（`permissions[1]: "comments:read" is not valid for a code target; a code target can declare library:read, environment`）。
+検証は厳密で、エラーにはフィールド名が入ります（`capabilities.sparkles: "sparkles" is not a code feature`）。`id` がない、または形式が正しくない、`kind` が 4 つ以外、`command` が空、`timeout` が 0 以下、`protocol` が 1 以外、未知の機能（またはサポートレベル）、`fileExtensions` のないコードターゲット、`fileTypes` のないインポーター、画像プロバイダ以外の種類にある `models`（または空のモデル名）は、どれも拒否されます。`permissions` が文字列の配列でない場合や、未知のスコープ、重複したスコープ、その種類では宣言できないスコープを含む場合も同じです（`permissions[1]: "comments:read" is not valid for a code target; a code target can declare library:read, environment`）。
 
 コードの機能（`CodeFeature`）: `linearGradient`、`radialGradient`、`angularGradient`、`imageFill`、`dropShadow`、`shadowSpread`、`innerShadow`、`layerBlur`、`backgroundBlur`、`strokeWidthProfile`、`nonSolidStroke`、`textRuns`、`textPath`、`strokeDash`、`strokeAlign`、`contentStroke`、`multipleFills`、`multipleStrokeFills`、`nonSolidShapeFill`、`gradientOpacity`、`imageOpacity`、`iconEffects`、`vectorEffects`、`unmappedIcon`、`alphaMask`、`luminanceMask`、`vectorMask`、`layerBlendMode`、`paintBlendMode`、`maskInLayout`、`wrapFill`、`rowAlignment`、`wrap`、`link`、`textCase`、`paragraphSpacing`、`paragraphIndent`、`textList`、`leadingTrim`、`fontVariations`。
 
@@ -73,6 +74,7 @@ toc: true
 - **一覧を宣言したエクスポーターが受け取るもの。** 常に: `version`、`children`（ノードを選択しているときは選択中のノード）、`kind`、`startScreen`、`guide`、`features`、そして `renders` フラグに応じた `renders`。`library:read` があれば: `variables`、`themes`、`textStyles`、`layerStyles`、`imports`、`packages`。`comments:read` があれば: `comments`。何を宣言しても受け取らないもの: `hooks`、`skills`、`lintRules`、`disabledLintRules`、`origins`（デザインの内容ではなく Silverpoint 自身の設定）、そして今後の Silverpoint が追加するトップレベルのキー。
 - **`library:read` のないコードターゲット** は、`tokens` を `{"variables": [], "themes": {}, "textStyles": [], "unresolvedColors": []}` として受け取るので、モデルはプロトコル 1 の形を保ちます。ノードは変わりません。変数から来た色や値には変数名が残るので（`{"token": "brand"}`）、送られていないトークンをコードから参照できます。
 - **インポーターのリクエスト**（`path`、`bytes`）は、スコープの有無にかかわらず同じです。答えに何を追加できるかは `library:write` で決まります。
+- **画像プロバイダのリクエスト**（`prompt`、`aspect`、`model`）には、ドキュメントの内容は何も入りません。宣言できるスコープは `environment` だけで、あなたの API キーでサービスを呼び出すプラグイン向けです（`"permissions": ["environment"]`）。
 - **環境変数の許可リスト**（`environment` がない場合）: `PATH`、`HOME`、`USER`、`LOGNAME`、`SHELL`、`TMPDIR`、`LANG`、`TERM`とすべての `LC_*`。それぞれ Silverpoint が持っているときだけ値をコピーし、何も追加しません。そのため `ANTHROPIC_API_KEY`、`OPENAI_API_KEY`、`SILVERPOINT_*` など、Silverpoint が引き継いだほかのものがプラグインに届くことはありません。
 - **適用する場所は 1 つ。** `PluginHost` が、アプリ、エージェント、MCP、`call`、`plugins check` からのすべての実行で、リクエスト（`PluginPermissions`）と環境変数（`PluginEnvironment`）を絞り込みます。使うのは実行時にフォルダから読み直したマニフェストです。`plugin.json` は承認のハッシュに含まれるので、**`permissions` を編集するとプラグインは `changed` になり、もう一度承認を求めます**。
 - 承認のアラート、**設定 ▸ 一般 ▸ プラグイン ▸ 確認…**、`silverpoint plugins list` と `check` は、スコープを言葉で 1 行ずつ表示します: 「変数、スタイル、テーマの読み取り」「コメントの読み取り」「変数、スタイル、テーマの追加」「環境変数の使用（API キーを含む）」。
@@ -134,9 +136,28 @@ stdout:
 - フラグメントは **1 回の取り消しステップ** として追加されます。トップレベルのノードはドキュメントのノードのあとに入り（すでに使われているノード id には新しいid が付き、それを指す `ref` も追従します）、変数、スタイル、テーマの値は、ドキュメントにまだないものが追加されます（既存のものはそのまま残ります）。
 - `report`（省略可、オブジェクト）は、そのまま `import_file` の結果に渡されます。
 
+### 画像プロバイダ
+
+stdin:
+
+```json
+{"protocol": 1, "kind": "imageProvider", "prompt": "a harbor at dawn, watercolor", "aspect": "landscape", "model": "indigo"}
+```
+
+stdout:
+
+```json
+{"image": "<the PNG or JPEG, base64>"}
+```
+
+- `aspect` は `square`、`landscape`、`portrait` のいずれかで、サイズはプラグインが決めます（ノードの画像の塗りは `cover` に設定されるので、どのサイズでも収まります）。`model` は設定 ▸ 一般 ▸ 画像（または `--image-model`）で選んだもので、なければマニフェストの `models` の最初の項目、それもなければ空です。
+- `image` は base64 としてデコードすると PNG か JPEG のバイト列でなければなりません（シグネチャで確認します）。それ以外は、プラグインを示して実行が失敗し（`plugin "swatch-image" returned an image that is not PNG or JPEG (5 bytes)`）、何も保存されません。
+- プロバイダの id は `plugin:<id>` です。**設定 ▸ 一般 ▸ 画像 ▸ プロバイダ** で選ぶ（マニフェストの `name` が表示され、`models` がモデルの選択肢に、なければ自由入力のモデル欄になり、キーの欄はありません）か、`generate_image` の `provider` に渡すか、コマンドラインで `--image-provider plugin:<id>`（または `SILVERPOINT_IMAGE_PROVIDER`）として指定します。その画像には料金が付きません。
+- どの画像も、ほかのプラグインの実行と同じく `PluginHost` を通る 1 回の実行です。コンテンツのハッシュによる承認（アプリは最初に尋ね、MCP と CLI は尋ねずにプラグインを示して失敗します）、権限に絞り込まれたリクエストと環境変数、`timeout`、そしてエージェントの停止、✨ ボタンのキャンセル、キャンセルされた MCP の呼び出しによるプロセスの終了です。
+
 ### UIModel JSON
 
-`model` は中立的な `UIModel`（`PluginModelJSON`）で、組み込みかどうかにかかわらず、すべてのコードターゲットがここからコードを生成します。プロトコル 1 の間は安定しています。キーの名前が変わったり削除されたりすることはなく、省略可能な値は `null` と書かずに省き、数値は小数点以下6 桁に丸め、バイト列はゴールデンファイルで固定しています（`Tests/SilverpointCodegenTests/Fixtures/Plugin/codeexport.uimodel.json`、`PluginUIModelJSONTests`）。トップレベルのキー:
+`model` は中立的な `UIModel`（`PluginModelJSON`）で、組み込みかどうかにかかわらず、すべてのコードターゲットがここからコードを生成します。プロトコル 1 の間は安定しています。キーの名前が変わったり削除されたりすることはなく、省略可能な値は `null` と書かずに省き、数値は小数点以下6 桁に丸め、バイト列はゴールデンファイルで固定しています（`Tests/SilverpointCodegenTests/Fixtures/Plugin/codeexport.uimodel.json` と、その横のデバイスフレーム用の `duo.uimodel.json`。`PluginUIModelJSONTests`）。トップレベルのキー:
 
 | キー | 値 |
 | --- | --- |
@@ -176,6 +197,7 @@ stdout:
 | `interactions` | `{trigger, action, target?, url?, variant?, variable?, value?, toggle?, if?}`（最後の 4 つは設定されているときだけ: `set_variable` の変数とその値または `toggle`、そしてインタラクションの条件）。 |
 | `source` | インポーターが読めなかったコードのプレースホルダー: `{file, line, text}`。 |
 | `visibleParameter`、`slotParameter` | そのノードを表示・非表示にする、またはそのノードが表示するコンポーネントのパラメータ。 |
+| `device`、`deviceSide` | デバイスフレームにだけ付きます（README の Device frames）。`device` は保存されたままの状態（`iphone-duo-closed`、`iphone-duo-open`、`iphone-duo-half`、またはこのビルドが知らない id）で、`deviceSide` はフレームが横向きのときに幅 84 のシステムのストリップが沿う長辺です。デザインが `leading` と指定しない限り `trailing` です（縦向きのフレームでは、どちらでもバーはその状態が決める位置のままです）。これらを使えば、ターゲットは組み込みの SwiftUI と UIKit の書き出しと同じことができます。閉じた `X` とその `X (Open)`（なければ `X (Half Open)`）をサイズクラスで組にし、システムバー、高さ 34 のホームインジケータ、（半開きのときは）幅 40 の折り目をセーフエリアに任せます。 |
 | `children` | ノード。 |
 
 値は `{"value": <number>, "token": "<variable>"}` で、トークンは値が変数から来たときだけ入ります。色は`{"hex": "#RRGGBB"}`（または `#RRGGBBAA`）か `{"token": "<variable>"}` です。組み込みのターゲットが必要に応じてレンダリングする画像（アイコンのPNG、マスクの SVG）はモデルに含まれません。
@@ -192,6 +214,9 @@ stdout:
 - stdout が JSON でない、オブジェクトでない、上の形でない（文字列の `path` と `contents` のない `files` の項目、未知の診断の機能）、または 256 MiB を超える。
 - ファイルのパスが空、絶対パス、または `..` で外に出る。
 - インポーターのフラグメントが有効な Silverpoint ドキュメントでない、または `library:write` なしで変数、スタイル、テーマを含む。
+- 画像プロバイダの `image` がない、base64 の文字列でない、または PNG か JPEG のバイト列でない。
+
+作業がキャンセルされた実行（コードの書き出しの進行状況での **キャンセル**、タスクがキャンセルされた `export_code`、`import_file`、`generate_image` の呼び出し、✨ ボタンのキャンセル）も同じ方法でプロセスグループ全体が停止され、何も変わりません。
 
 stdin を読まずに終了するプラグインでも問題ありません（Silverpoint がそれで SIGPIPE を受けることはありません）。CLI では、失敗したプラグインは終了ステータス 1 と stderr の 1 行になります。MCP ではツールのエラー、アプリではアラートになります。
 
@@ -202,11 +227,11 @@ stdin を読まずに終了するプラグインでも問題ありません（Si
 - 承認は、[フック](../hooks/)が使うのと同じ承認ファイル（`$SILVERPOINT_HOOK_APPROVALS_FILE`、なければ`~/Library/Application Support/Silverpoint/hook-approvals.json`）に記録されます。プラグインごとに `plugin:<id>` という対象で 1 つの項目があり、ドキュメントのフックの項目と並びます（各項目は個別に承認、置き換え、削除されます）。
 - 承認されるのはコンテンツのハッシュです。プラグインフォルダ内のすべての通常ファイル（マニフェストを含み、`.DS_Store`とシンボリックリンクは除く）に対する、相対パスごとの SHA-256 です。どのファイルでも編集、追加、削除、名前の変更をするとプラグインは `changed` になり、もう一度承認を求めます。
 - **アプリでは**、プラグインの最初の実行（と、変更後の最初の実行）で、名前、id、バージョン、種類、フォルダ、**実行する正確なコマンド**、[権限](#permissions)を示すアラートが出ます。**許可** はハッシュを記録して実行し、**許可しない** は何も実行しません（次回また尋ねます）。アプリ内のエージェントによる実行も同じように尋ねます。
-- **MCP と CLI では何も尋ねません**。承認されていない、または変更されたプラグインは、プラグインを示して承認されていないと伝えるエラーになります。これはアプリ自身の MCP サーバーでも同じです。ほかのプログラムが、あなたの前にダイアログを出してコマンドを承認させることはできません。プラグインの承認は **設定 ▸ 一般 ▸ プラグイン**（そのスイッチ、または **確認…** から **承認**）、アプリでの最初の使用時のアラート、またはあなた自身のターミナルでの `silverpoint plugins install <folder> --approve`（コマンドを表示します）で行います。
+- **MCP と CLI では何も尋ねません**。承認されていない、または変更されたプラグインは、プラグインを示して承認されていないと伝えるエラーになります。これはアプリ自身の MCP サーバーと App Intents（ショートカット、Siri）でも同じです。ほかのプログラムが、あなたの前にダイアログを出してコマンドを承認させることはできません。プラグインの承認は **設定 ▸ 一般 ▸ プラグイン**（そのスイッチ、または **確認…** から **承認**）、アプリでの最初の使用時のアラート、またはあなた自身のターミナルでの `silverpoint plugins install <folder> --approve`（コマンドを表示します）で行います。
 - `silverpoint plugins check <folder>` は、指定したフォルダを承認なしで一度だけ実行します。チェックすることがあなたの明示的な操作だからです。
 - `silverpoint plugins remove <id>` はフォルダを削除し、そのプラグインの承認だけを取り消します。
 
-**設定 ▸ 一般 ▸ プラグイン** には、インストールされたプラグインが名前、id、種類、バージョン、状態（**承認済み**、**承認が必要**、**承認後に変更あり**）とともに並び、使えるプラグインでないフォルダは理由とともに並びます。各プラグインのスイッチがその承認です。オンにすると **確認…** が開き、正確なコマンド、権限、実行するフォルダ、SHA-256、そのハッシュが対象とするすべてのファイルが表示されます。承認できるのはそこでの **承認** だけです（その時点のディスク上の状態で承認します。確認…を開いてから変更されていれば何も承認せず、プラグインをもう一度表示します）。スイッチをオフにすると、そのプラグインの承認だけが取り消され、ほかの項目は変わりません。**インストール…** はプラグインフォルダをコピーして入れ、承認はしません（その id の承認が残っていれば削除します）。**削除…** は確認してからフォルダとその承認を削除します。**フォルダを表示** はプラグインフォルダを Finder で表示し、**再読み込み** はフォルダを読み直します（このセクションはウインドウが開いたときや前面に来たときにも読み直します）。コードターゲットのインストールや削除は、Silverpoint を再起動すると反映されます。エクスポーターとインポーターはすぐにメニューに表示されます。ここ、アラート、`--approve` のどの承認も`PluginHost.approve` を通ります。エージェントや MCP クライアントが触れられるものでプラグインを承認できるものはありません。
+**設定 ▸ 一般 ▸ プラグイン** には、インストールされたプラグインが名前、id、種類、バージョン、状態（**承認済み**、**承認が必要**、**承認後に変更あり**）とともに並び、使えるプラグインでないフォルダは理由とともに並びます。各プラグインのスイッチがその承認です。オンにすると **確認…** が開き、正確なコマンド、権限、実行するフォルダ、SHA-256、そのハッシュが対象とするすべてのファイルが表示されます。承認できるのはそこでの **承認** だけです（その時点のディスク上の状態で承認します。確認…を開いてから変更されていれば何も承認せず、プラグインをもう一度表示します）。スイッチをオフにすると、そのプラグインの承認だけが取り消され、ほかの項目は変わりません。**インストール…** はプラグインフォルダをコピーして入れ、承認はしません（その id の承認が残っていれば削除します）。**削除…** は確認してからフォルダとその承認を削除します。**フォルダを表示** はプラグインフォルダを Finder で表示し、**再読み込み** はフォルダを読み直します（このセクションはウインドウが開いたときや前面に来たときにも読み直します）。コードターゲットや画像プロバイダのインストールや削除は、Silverpoint を再起動すると反映されます。エクスポーターとインポーターはすぐにメニューに表示されます。ここ、アラート、`--approve` のどの承認も`PluginHost.approve` を通ります。エージェントや MCP クライアントが触れられるものでプラグインを承認できるものはありません。
 
 承認のほかに制限となるのは [権限](#permissions)だけです。承認されたプラグインはあなたとして実行され、`environment` を宣言する（または `permissions` がまったくない）プラグインは、API キーを含めあなたの環境変数をすべて受け取ります。信頼できるプラグインだけを承認してください。
 
@@ -222,19 +247,20 @@ stdin を読まずに終了するプラグインでも問題ありません（Si
 - `list` はプラグインごとに 1 行、`id<TAB>kind<TAB>version<TAB>status<TAB>name<TAB>permissions` を表示します。状態は `approved`、`needs approval`、`changed` のいずれかで、権限はスコープの id をカンマでつないだもの（`library:write,environment`）、`[]` なら `none`、マニフェストが何も宣言していなければ `legacy` です。続いて、検証を通らないフォルダごとに `invalid<TAB><folder><TAB><reason>` を表示します。プラグインフォルダがなければ何も表示せず、0 で終了します。`--json` は `{plugins: [{id, name, kind, version, status, folder, command, permissions, permissionLines}], invalid: [{folder, reason}]}` を返します。`permissions` はスコープの id の配列（レガシーのプラグインでは `null`）、`permissionLines` は下の行です。
 - `install` はフォルダを検証し、`<plugins>/<id>` にコピーします。無効なマニフェストと、すでにインストールされている id は拒否します（終了ステータス 1、何もコピーしません）。`--approve` はコマンドを表示し、承認を記録します。
 - `remove` はインストールされたプラグインとその承認を削除します。未知の id では 1 で終了します。
-- `check` はマニフェストを検証し、`command:` 行のあとに `permissions: <ids, comma-separated | none | legacy>`と、各スコープの行を 2 スペース字下げして（`  Read your variables, styles and themes`）表示します。そのうえで、コードターゲットは組み込みのサンプルモデル（2 つの画面、1 つのコンポーネント、トークン）で、エクスポーターはサンプルドキュメント（マニフェストが求めればそのレンダーも）で、インポーターは `--input <file>` で実行し、答えをプロトコルに照らしてチェックします。返ってきたものを表示し、問題がなければ 0 で終了します。プロトコルのエラーは stderr の 1 行と終了ステータス 1 になります。`--input` のないインポーターはマニフェストだけをチェックします（`manifest only: …`、終了ステータス 0）。何も書き込みません。
-- `silverpoint mcp`、`call`、`tools` は、インストールされたコードターゲットを先に登録します。そのため `tools --json` は `export_code` の `format` に`plugin:<id>` を挙げ、`call <file> export_code '{"format":"plugin:flutter"}'` で（承認後に）実行できます。`call <file> import_file '{"path": "/abs/file.json"}'` はインポーターを実行します。
+- `check` はマニフェストを検証し、`command:` 行のあとに `permissions: <ids, comma-separated | none | legacy>`と、各スコープの行を 2 スペース字下げして（`  Read your variables, styles and themes`）表示します。そのうえで、コードターゲットは組み込みのサンプルモデル（2 つの画面、1 つのコンポーネント、トークン）で、エクスポーターはサンプルドキュメント（マニフェストが求めればそのレンダーも）で、インポーターは `--input <file>` で、画像プロバイダはサンプルのプロンプト（`square`、最初のモデル。`image: png (<bytes> bytes)` と表示します）で実行し、答えをプロトコルに照らしてチェックします。返ってきたものを表示し、問題がなければ 0 で終了します。プロトコルのエラーは stderr の 1 行と終了ステータス 1 になります。`--input` のないインポーターはマニフェストだけをチェックします（`manifest only: …`、終了ステータス 0）。何も書き込みません。
+- `silverpoint mcp`、`call`、`tools` は、インストールされたコードターゲットを先に登録します。そのため `tools --json` は `export_code` の `format` に`plugin:<id>` を挙げ、`call <file> export_code '{"format":"plugin:flutter"}'` で（承認後に）実行できます。`call <file> import_file '{"path": "/abs/file.json"}'` はインポーターを実行します。インストールされた画像プロバイダも、それぞれ自身の画像プロバイダのレジストリに登録します。`call <file> generate_image '{"id": "hero", "prompt": "…"}' --image-provider plugin:<id>`（または `SILVERPOINT_IMAGE_PROVIDER=plugin:<id>`）で実行でき、`generate_image` の `provider` にはそれらが挙がります。
 
 ## アプリでは
 
-- コードターゲットは、**ファイル ▸ コードまたはトークンを書き出す…**、ハンドオフのターゲットの選択、`export_code` で組み込みのものと並びます。
+- コードターゲットは、**ファイル ▸ コードまたはトークンを書き出す…**、ハンドオフのターゲットの選択、`export_code` で組み込みのものと並びます。コードの書き出しは、ターゲットをメインアクターの外で、形式ごとに 1 回実行します。保存パネルが表示されている間に 1 回（ファイル数を数えて、ファイル名にするかフォルダ名にするかを決めるため）、そして保存の時点で、その間にドキュメントや選択が変わっていた場合だけもう 1 回です。遅いプラグインが実行中でもアプリは操作できます。しばらくかかると、保存で進行状況のシートが表示され、その **キャンセル** でプラグインのプロセスを止めて何も書き込みません。パネルを閉じると、そのパネルが始めた実行は止まります。承認が必要なプラグインは、これまでどおりアプリのアラートで尋ねます。
 - **ファイル ▸ 別の形式で書き出す** には、エクスポーターごとに 1 つの項目（マニフェストの `name`）があります。フォルダを尋ね、そこにファイルを書き込みます。
 - **ファイル ▸ 読み込む** には **Figma から…**、**Mermaid から…**、**Excalidraw から…**、**draw.io から…**（あとの 3 つはプラグインではなく組み込み）が並び、続いてインポーターごとに 1 つの項目があります。そのオープンパネルではインポーターの `fileTypes` を選べます。読み込みは 1 回の取り消しステップです。
 - `import_file`（`path`、省略可能な `plugin`。省略すると、`fileTypes` にファイルの拡張子を持つ最初のインポーターを id 順で選びます）は `{plugin, created, report}` を返します。`created` は新しいトップレベルのノードの id です。
+- 画像プロバイダは、**設定 ▸ 一般 ▸ 画像 ▸ プロバイダ** で組み込みのものと並びます（プロバイダがプラグインで、承認後に実行されることを伝える注記が付きます）。そのため `generate_image` と ✨ ボタンはそこで選んだものを使います。`generate_image` の `provider` に `plugin:<id>` を渡すと、その呼び出しだけで使えます。
 
 ## サンプル
 
-リポジトリの `Examples/plugins/` に 2 つのサンプルプラグインがあります（何もインストールしません。テストのフィクスチャも兼ねています）。どちらもシステムの `/usr/bin/python3` とその標準ライブラリだけを使います。
+リポジトリの `Examples/plugins/` に 3 つのサンプルプラグインがあります（何もインストールしません。テストのフィクスチャも兼ねています）。どれもシステムの `/usr/bin/python3` とその標準ライブラリだけを使います。
 
 - **`flutter-skeleton`**（id `flutter`、コードターゲット、`.dart`）: 画面とコンポーネントごとに `lib/` の下に 1 つのファイルを作ります。それぞれ`package:flutter/material.dart` を import し、ルートにちなんだ名前の `StatelessWidget` を持ちます（フレームは `Column`、`Row`、`Stack` に、テキストは `Text` に、残りはサイズ付きの `Container` になります）。宣言している機能はわずかで（ドロップシャドウは full、画像の塗りと複数の塗りは approximated、内側のシャドウは unsupported で、これは自分で報告します）、残りは Silverpoint が報告します。モデルの `tokens` で塗りの色の変数を探して値を書くので、`library:read` を宣言しています。
 
@@ -247,6 +273,13 @@ stdin を読まずに終了するプラグインでも問題ありません（Si
       silverpoint plugins check Examples/plugins/shapes-json --input Examples/plugins/shapes-json/sample.json
       silverpoint plugins install Examples/plugins/shapes-json --approve
       silverpoint call design.silverpoint import_file "{\"path\": \"$PWD/Examples/plugins/shapes-json/sample.json\"}"
+
+- **`swatch-image`**（id `swatch-image`、画像プロバイダ、モデルは `indigo` と `coral`）: `zlib` で作った小さな単色の PNG を、ネットワークを使わずに毎回同じように返します。`square` なら 16×16、`landscape` なら 24×16、`portrait` なら 16×24 で、色はモデルの色です（プロンプトは無視します）。あなたのものを何も必要としないので、`"permissions": []` を宣言しています。
+
+      silverpoint plugins check Examples/plugins/swatch-image
+      silverpoint plugins install Examples/plugins/swatch-image --approve
+      silverpoint call design.silverpoint generate_image '{"id": "hero", "prompt": "a swatch"}' \
+        --image-provider plugin:swatch-image --image-model coral
 
 ## まだできないこと
 
