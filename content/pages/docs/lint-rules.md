@@ -1,15 +1,17 @@
 ---
 title: "Custom lint rules"
-description: "Silverpoint's design check (lint, the inspector's Design Check, silverpoint score, the agent's self-check) runs eighteen built-in rules: raw-color, off-grid, text-style, tiny-text, contrast, clipped, empty-mask, brand-drift, missing-font, lane-membership, device-reserved-region, variable-alias, var…"
-summary: "Silverpoint's design check (lint, the inspector's Design Check, silverpoint score, the agent's self-check) runs eighteen built-in rules: raw-color, off-grid, text-style, tiny-text, contrast, clipped, empty-mask, brand-drift, missing-font, lane-membership, device-reserved-region, variable-alias, var…"
+description: "Silverpoint's design check (lint, the inspector's Design Check, silverpoint score, the agent's self-check) runs twenty-seven built-in rules: raw-color, off-grid, text-style, tiny-text, contrast, clipped, empty-mask, brand-drift, missing-font, lane-membership, device-reserved-region, variable-alias,…"
+summary: "Silverpoint's design check (lint, the inspector's Design Check, silverpoint score, the agent's self-check) runs twenty-seven built-in rules: raw-color, off-grid, text-style, tiny-text, contrast, clipped, empty-mask, brand-drift, missing-font, lane-membership, device-reserved-region, variable-alias,…"
 layout: doc
 toc: true
 ---
 
-Silverpoint's design check (`lint`, the inspector's **Design Check**, `silverpoint score`, the agent's self-check) runs eighteen
-built-in rules: `raw-color`, `off-grid`, `text-style`, `tiny-text`, `contrast`, `clipped`, `empty-mask`, `brand-drift`,
+Silverpoint's design check (`lint`, the inspector's **Design Check**, `silverpoint score`, the agent's self-check) runs
+twenty-seven built-in rules: `raw-color`, `off-grid`, `text-style`, `tiny-text`, `contrast`, `clipped`, `empty-mask`, `brand-drift`,
 `missing-font`, `lane-membership`, `device-reserved-region`, `variable-alias`, `variable-expression`, `shader`, `shader-unused`,
-`shader-uniform-default`, `shader-uniform-range` and `shader-export`. **Custom lint rules**
+`shader-uniform-default`, `shader-uniform-range` and `shader-export`, and the nine [craft rules](#craft) (`flat-hierarchy`,
+`heading-rhythm`, `line-length`, `tight-leading`, `nested-card`, `gray-on-color`, `gradient-text`, `emoji-icon`,
+`uniform-gaps`). **Custom lint rules**
 add a team's own conventions to the same check: "buttons use the 8 or 12 radius", "every screen is 390 wide", "icon names are
 kebab-case".
 
@@ -80,6 +82,32 @@ Compose and UIKit do); `shader-unused` (`info`, on the document) is
 a library shader nothing uses; and `shader-uniform-default` (`info`, on the document) is a uniform a paint sets that states no
 `@default`, so it starts at zero. The last two run only on the whole document, not under a node. `contrast` also checks a
 text on a shader fill against the shader's own colors under it (sampled small with Metal), at its least contrasting spot.
+
+### Craft
+
+The craft rules (BACKLOG 81, after ideas in [impeccable](https://github.com/pbakaus/impeccable), in our own words) are a
+group of their own: advisory, every one `info`, none with a fix. Each is a measurement on the laid-out canvas, and its message
+says what was measured and what would change it. Whether the design wants the change is a judgment, so **`fix_lint` never
+applies them** and says how many craft issues it left. Each is switched off on its own like any built-in
+(`set_builtin_lint_rule`, or its switch in Settings, where they sit under a **Craft** heading). A component is checked where
+it is defined, not again in each instance; a frame's measurements count what its instances show.
+
+| Rule | Fires when | Quiet when |
+|---|---|---|
+| `flat-hierarchy` | In a top-level frame with three or more texts, the largest heading-like text (larger than the body size, or semibold or heavier at it) is under 1.25 times the body size (the size carrying the most characters, 40 or more). On the frame. | Something is 1.25 times the body or more, or nothing reads as a heading (one size, regular). |
+| `heading-rhythm` | A heading (short text 1.15 times the size of the text after it, or bold over regular) in a vertical stack has less space above it, to the content before it, than below it, to the next sibling. Space above counts through the plain stacks the heading opens. | Nothing comes before it, or it opens a card (a stack with a fill, border or shadow): the card's edge is not content. |
+| `line-length` | Body text (20 pt or less, under semibold) runs more than 80 characters a line: the fewer of what its box holds (its width over about half an em a character, a full em for CJK) and its longest paragraph. | The box is narrower, or no paragraph is that long. |
+| `tight-leading` | Body text over two or more lines sets a `lineHeight` under 1.3. | One line, a heading, 1.3 or more, or no `lineHeight` (the font's own leading differs by family, so it is not judged). |
+| `nested-card` | A card-like frame inside another: two or more of fill, rounded corners, border and drop shadow (one of them not just rounding), at least 120 wide and over 60 tall, holding two or more things, text among them. On the inner card. | The inner one is plain, a button, chip or field (too small, or one thing), a specimen without text, or the outer one is the top-level frame (the screen). |
+| `gray-on-color` | A text whose color, over the fill behind it, is a mid neutral gray (chroma under 0.05, lightness 0.25 to 0.8) on a saturated fill (chroma 0.35 or more, saturation 0.45 or more). Translucent fills are composited. | The text is white, near-black or tinted; the fill is pale; or a gradient or image is behind it. |
+| `gradient-text` | A text filled with a gradient. | A solid text fill (a gradient behind the text is fine). |
+| `emoji-icon` | A text of one to three emoji and nothing else, beside a text label in a horizontal stack, or within three levels of a node whose name has a control or row word (button, row, item, nav, navbar, tab, cell, menu, list, link, chip, toolbar, sidebar and their plurals; whole words, camel case split: "ShareButton" counts, "Arrow" does not) or with interactions or a link. | Emoji inside prose, a lone emoji in a plain frame, digits and `#`, symbols without emoji presentation. |
+| `uniform-gaps` | In a top-level frame, three or more stacks set a gap or padding and every one they set is the same value. On the frame. | Two values or more, or fewer than three stacks. |
+
+On the bundled templates the craft rules are quiet. Silverpoint's own site and design system raise `line-length` where their
+lines do run long: the site's three body paragraphs at 17 pt across a 720 pt column (about 85 characters), and the design
+system's page subtitle and backdrop caption. Not taken from impeccable: checks that need a browser, a list of banned fonts
+(Silverpoint uses the fonts you have), a ban on glass (Liquid Glass is the platform's look) and dice-rolled directions.
 
 A rule is **declarative JSON**. Nothing a rule says is ever executed as code: Silverpoint reads it, validates it and runs its
 own checks. You add, change or remove rules without rebuilding Silverpoint.
@@ -253,7 +281,8 @@ Where problems show: the Design Check section lists them under the issues, `lint
 silverpoint lint-rules [<file.silverpoint>] [--json] [--check <file.json>]
 ```
 
-- Without options it lists every rule in force, built-in rules included, one line each: `id<TAB>source[ (overrides X)][ (disabled)]<TAB>severity`.
+- Without options it lists every rule in force, built-in rules included, one line each: `id<TAB>source[ (overrides X)][ (disabled)]<TAB>severity[<TAB>group]`;
+  a craft rule ends in `craft` (`line-length<TAB>built-in<TAB>info<TAB>craft`), and `--json` gives each rule a `group` (`"craft"` or null).
   With a document it uses that document's rules and its libraries'; without one, the user folder's.
 - Problems go to stderr, as `<file>: <id|->: <reason>`. The exit status is 0 when there are none and 1 when there are any (the
   valid rules are still listed).
@@ -268,6 +297,8 @@ silverpoint lint-rules [<file.silverpoint>] [--json] [--check <file.json>]
 ## From the agent and MCP
 
 - `lint` and `fix_lint` run built-in and custom rules together. `rules` limits them to some ids, built-in or custom.
+  `fix_lint` never changes a craft issue; its result says how many it left (`3 craft issues are left as they are: craft
+  rules are judgment calls and never auto-fixed.`).
 - `save_lint_rule {scope, rule, confirm}` drafts a rule from a convention you state ("all cards have 16 padding"). It first
   **previews**: the rule, whether it is valid, which lower layer it would override, whether a higher one would shadow it, and the
   issues it would raise on the current document. Nothing is written until you confirm. In the app the agent shows the rule on a
@@ -380,7 +411,8 @@ own, with the file, the rule id and the reason. With no design open, only the bu
 
 Each built-in rule has a switch: turning it off turns the built-in rule off for the frontmost document only, as one undo step
 (the same change `set_builtin_lint_rule` makes), and the document keeps the choice. A document made with a newer Silverpoint
-is read-only, so its switches are off. Custom rules have no switch: replace or delete them instead.
+is read-only, so its switches are off. Custom rules have no switch: replace or delete them instead. The craft rules come last,
+under a **Craft** heading that says they are advisory judgment calls fixing lint never changes.
 
 **Add Rule…** writes a starter file into your folder (`new-rule.json`, then `new-rule-2.json`…, never over a file that is
 there): the `icon-kebab-case` sample above at severity `info`, with the file's name as its id, and shows it in Finder to edit.
