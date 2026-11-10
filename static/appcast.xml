@@ -5,6 +5,41 @@
     <description>Silverpoint's updates</description>
     <language>en</language>
     <item>
+      <title>Silverpoint 2026.46.1 (2026.46.1)</title>
+      <pubDate>Tue, 10 Nov 2026 03:19:56 +0000</pubDate>
+      <sparkle:version>2026.46.1</sparkle:version>
+      <sparkle:shortVersionString>2026.46.1</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>26.0</sparkle:minimumSystemVersion>
+      <description sparkle:format='markdown'>## Silverpoint 2026.46.1
+
+The third beta build. Installing it starts the beta's 60 days again.
+
+**New in this build**
+
+- **Slash commands in the composer.** Type / in the agent panel to see the commands. /variants, /critique, /fix-lint and
+  /handoff set up a turn for you. /history, /attach, /export and /new act at once and say what they did. A document can
+  carry its own commands, and you can add your own as command files.
+- **Critique without changes.** /critique only looks at the design, with every backend. On Claude Code and Codex, that
+  turn has no tool that can change the design.
+- **A closer design review.** The review now judges in two stages and checks the design against what you asked for. Its
+  item in the agent panel shows the outcome, a fidelity table and the personas it reviewed as. In a second round, it
+  shows which findings were fixed. A finding that is still open keeps blocking.
+- **Craft checks.** Nine new lint rules point out common weak spots: a flat hierarchy, an uneven heading rhythm, long
+  lines, tight line spacing, cards inside cards, gray text on color, gradient text, emoji used as icons and gaps that
+  are all the same. They only advise, and Fix Lint leaves them alone. Settings lists them in their own group, in English
+  and Japanese.
+
+**Also**
+
+- The agent steers away from generic looks, and plans color, surfaces and interactive states more carefully.
+- A design with nested components no longer crashes Silverpoint while the agent edits it.
+- If a reply reaches the model's output limit before the agent acts, the agent carries on instead of stopping silently.
+- The design review has room to finish with reasoning models that think at length.
+</description>
+      <enclosure url='https://github.com/KristopherGBaker/silverpoint.app/releases/download/v2026.46.1/Silverpoint-2026.46.1.dmg' length='34311457' type='application/octet-stream' sparkle:edSignature='jEV7gVlOffaKD2NaVJnXkRvzw8XmupmXK7rz82CXz+XcAjTDSpQoc2Afd6G3CnN7yw7KmWpU+lIhACl6bU63AQ=='/>
+    </item>
+    
+    <item>
       <title>Silverpoint 2026.45.2 (2026.45.2)</title>
       <pubDate>Sat, 07 Nov 2026 21:04:09 +0000</pubDate>
       <sparkle:version>2026.45.2</sparkle:version>
@@ -46,6 +81,7 @@ The second beta build. Installing it starts the beta's 60 days again.
       <enclosure url='https://github.com/KristopherGBaker/silverpoint.app/releases/download/v2026.45.2/Silverpoint-2026.45.2.dmg' length='33812848' type='application/octet-stream' sparkle:edSignature='rb6L/lqYzjLrtz0ToDgvnqVS0hshT3KdCFTf8G7KAhh4Yk9Aa86Qn4mikM+f2SHDC4JOuG1atxoBPMMIuB4xAQ=='/>
     </item>
     
+    
     <item>
       <title>Silverpoint 2026.45.1 (2026.45.1)</title>
       <pubDate>Thu, 05 Nov 2026 19:14:20 +0000</pubDate>
@@ -83,6 +119,7 @@ canvas; edit it by hand or keep talking to it. It is free while it is in beta.
 </description>
       <enclosure url='https://github.com/KristopherGBaker/silverpoint.app/releases/download/v2026.45.1/Silverpoint-2026.45.1.dmg' length='32303531' type='application/octet-stream' sparkle:edSignature='XZQFTUvTqwuVWePQ5SBjYYAf67Um0wjOWf1WuTVvZsIgVLMckHrNl1u4qLYNaNIBpn/IwYQNBQW7cebcg+v6AQ=='/>
     </item>
+  
   
   
   </channel>
