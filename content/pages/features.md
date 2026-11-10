@@ -12,7 +12,9 @@ toc: true
 
 Ask in the agent panel and the agent builds frames, components and variables right on your canvas. Let it ask before each change, or just let it work; every turn is one undo step. It runs on your Claude Code or Codex, an API key (Claude, OpenAI or any OpenAI-compatible server), Apple's on-device model or a local model, and on Claude it can search the web while it works, on every site or only the ones you choose.
 
-Turn on **design review** and a second model reviews each turn that changed the design; the agent then fixes what the review says must change, on any backend.
+Type **/** in the agent panel for slash commands. /variants, /critique, /fix-lint and /handoff set up a turn for you; /history, /attach, /export and /new act at once and say what they did. A document can carry its own commands, and you can add your own as command files. **/critique** only looks at the design, on every backend; on Claude Code and Codex, that turn has no tool that can change it.
+
+Turn on **design review** and a second model reviews each turn that changed the design, in two stages, and checks it against what you asked for; the agent then fixes what the review says must change, on any backend. The review shows its outcome, a fidelity table and the personas it reviewed as, and in a second round which findings were fixed. A finding that is still open keeps blocking.
 
 ![Conversation History](/assets/images/agent-history-light.png)
 
@@ -20,7 +22,7 @@ Conversation History keeps every conversation with what it cost, so you can pick
 
 ## A real canvas
 
-Frames with auto layout and grids (named areas included), components with variants and properties, variables with light and dark themes, text styles, masks, blend modes and vector editing. Lint checks contrast, spacing and colors as you go. The canvas is composited on the GPU, so panning and zooming stay smooth in large documents, and with a layer selected you can hold ⌥ to measure the distance to any other layer, as in Figma. While you drag, layers snap to equal gaps between their neighbors, with the gaps and distances shown.
+Frames with auto layout and grids (named areas included), components with variants and properties, variables with light and dark themes, text styles, masks, blend modes and vector editing. Lint checks contrast, spacing and colors as you go, and **craft checks** advise on common weak spots: a flat hierarchy, an uneven heading rhythm, long lines, tight line spacing, cards inside cards, gray text on color, gradient text, emoji used as icons and gaps that are all the same. The canvas is composited on the GPU, so panning and zooming stay smooth in large documents, and with a layer selected you can hold ⌥ to measure the distance to any other layer, as in Figma. While you drag, layers snap to equal gaps between their neighbors, with the gaps and distances shown.
 
 ![The main window with Aurora, a weather app designed in Silverpoint](/assets/images/aurora-canvas-light.png)
 

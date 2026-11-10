@@ -5,6 +5,26 @@ summary: "What changed in each build of the Silverpoint beta, newest first."
 layout: article
 ---
 
+## 2026.46.1
+
+November 10, 2026.
+
+The third beta build. Installing it starts the beta's 60 days again.
+
+### New in this build
+
+- **Slash commands in the composer.** Type / in the agent panel to see the commands. /variants, /critique, /fix-lint and /handoff set up a turn for you. /history, /attach, /export and /new act at once and say what they did. A document can carry its own commands, and you can add your own as command files.
+- **Critique without changes.** /critique only looks at the design, with every backend. On Claude Code and Codex, that turn has no tool that can change the design.
+- **A closer design review.** The review now judges in two stages and checks the design against what you asked for. Its item in the agent panel shows the outcome, a fidelity table and the personas it reviewed as. In a second round, it shows which findings were fixed. A finding that is still open keeps blocking.
+- **Craft checks.** Nine new lint rules point out common weak spots: a flat hierarchy, an uneven heading rhythm, long lines, tight line spacing, cards inside cards, gray text on color, gradient text, emoji used as icons and gaps that are all the same. They only advise, and Fix Lint leaves them alone. Settings lists them in their own group, in English and Japanese.
+
+### Also
+
+- The agent steers away from generic looks, and plans color, surfaces and interactive states more carefully.
+- A design with nested components no longer crashes Silverpoint while the agent edits it.
+- If a reply reaches the model's output limit before the agent acts, the agent carries on instead of stopping silently.
+- The design review has room to finish with reasoning models that think at length.
+
 ## 2026.45.2
 
 November 8, 2026.
