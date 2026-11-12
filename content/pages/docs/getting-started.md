@@ -45,3 +45,5 @@ Add it to Claude Code with the line Settings ▸ MCP shows, then ask Claude Code
 Then read on:
 [skills](../skills/) teach the agent your conventions, [templates and styles](../templates-and-styles/) start new documents,
 and [design-system packages](../design-system-packages/) share components between them.
+
+Next: the [tutorial](../tutorial/) designs an app and its website from start to finish.
