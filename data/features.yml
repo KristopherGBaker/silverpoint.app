@@ -25,4 +25,4 @@
 - body: "Export SwiftUI, UIKit, Compose, React or HTML, read edited code back, and bring in Figma files. They work, but they are less tested than the rest of the beta, so expect rough edges."
   detail: "export_code  import_figma"
   num: "XI"
-  title: "Code and Figma, both ways (early)"
+  title: "Code both ways, and Figma import (early)"
