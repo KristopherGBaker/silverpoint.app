@@ -156,13 +156,32 @@ A hook is a command that runs on your Mac with your permissions. So:
   hook off and on keeps the approval. Editing any one hook, or adding, removing or reordering one, makes **all** of that document's
   hooks unapproved until you allow them again (the unchanged ones stop too). The same hooks in a copy at another path, or after a
   move or rename, are not approved (a new path needs a new approval; nothing is migrated). The approvals file holds one entry per
-  document path: `{"approvals": {"/path/to/Doc.silverpoint": "<sha256>"}}`.
+  document path: `{"approvals": {"/path/to/Doc.silverpoint": "<sha256>"}}`. The same file keeps the plugins you approved
+  (`plugin:<id>`) and the context attachments you attached or allowed (`context:<attachment id>`, a hash of the attachment's
+  bookmark; see [Attached context](features.md)).
+- **The approval covers the hook, not the bytes it runs.** So a hook is never run on a file the agent wrote: when an export by
+  the in-app agent, or by a Claude Code or Codex turn, wrote a file that any word of the hook's command names (its executable
+  `./after-export.sh`, a script in `/bin/sh -x after-export.sh` or `python3 build.py`, a word anywhere in a `sh -c` or
+  `shell: true` script, after `;`, `&&`, `|`, inside `$(…)` or backquotes, an environment value such as `BASH_ENV`), by path, through
+  a symbolic link, or by the same file name, or whose command or environment holds that file's name anywhere, as written or as the
+  shell's quoting reads it (`$'after\x2dexport.sh'`, `"after"'-export.sh'`, `'after;export.sh'`, a line continuation), in that export or an earlier one
+  of the same session, the hook is not run. The log says
+  why (`not run: the agent's export just wrote …`) and the failure notice appears; the hook stays approved, and you can run it
+  yourself. This is deliberately cautious: a hook that only takes the exported file as an argument is held too (it gets the
+  exported files in its payload). A hook whose command names no file the agent wrote runs, but fenced off from every file the
+  agent's exports wrote in that session: it, and everything it starts, cannot read, map or run them, nor hand anything to
+  another app (through `/usr/bin/sandbox-exec`; its log's error output starts with a line saying so). So a hook that reaches an
+  agent-written file only as it runs (a variable, a glob, a command's output, a Makefile or a script that runs it) cannot run
+  those bytes either, and a hook that reads the exported files (to copy or upload them) cannot read them after an agent's
+  export: run it yourself (Run Now) for those. Your own exports, and Run Now, are not fenced. The in-app agent's write card
+  names every path before the agent writes it.
 - **A change you make in Settings' hook form is approved as you save it**, when the document's list was approved before it (see
   [Settings](#settings)); any other change, an undo or a redo asks again.
 - **Review** the state any time in Settings ▸ General ▸ Hooks: the document's hooks share one state, Approved or Not approved, and
   Review… shows the sheet again.
 - **`silverpoint call` and `silverpoint mcp` run no hook unless you pass `--run-hooks`**, and then only your hooks and the document
-  hooks you approved in the app. Without the flag nothing is read from or written to the approvals or the log.
+  hooks you approved in the app. Without the flag no hook approval is read or written and nothing goes to the log (the file's
+  `context:` entries are still read, so the context tools see the attachments you allowed).
 - **The app's own MCP server never runs hooks**, whatever a client asks: another program is driving those tools. The in-app agent is
   you directing the app, so its exports run hooks like the menu commands do.
 - **Shortcuts and Siri never run hooks either**: an App Intent (Export Frame, Save Version and the others) is the `intent` origin,

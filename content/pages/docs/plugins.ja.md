@@ -197,7 +197,7 @@ stdout:
 | `interactions` | `{trigger, action, target?, url?, variant?, variable?, value?, toggle?, if?}`（最後の 4 つは設定されているときだけ: `set_variable` の変数とその値または `toggle`、そしてインタラクションの条件）。 |
 | `source` | インポーターが読めなかったコードのプレースホルダー: `{file, line, text}`。 |
 | `visibleParameter`、`slotParameter` | そのノードを表示・非表示にする、またはそのノードが表示するコンポーネントのパラメータ。 |
-| `device`、`deviceSide` | デバイスフレームにだけ付きます（README の Device frames）。`device` は保存されたままの状態（`iphone-duo-closed`、`iphone-duo-open`、`iphone-duo-half`、またはこのビルドが知らない id）で、`deviceSide` はフレームが横向きのときに幅 84 のシステムのストリップが沿う長辺です。デザインが `leading` と指定しない限り `trailing` です（縦向きのフレームでは、どちらでもバーはその状態が決める位置のままです）。これらを使えば、ターゲットは組み込みの SwiftUI と UIKit の書き出しと同じことができます。閉じた `X` とその `X (Open)`（なければ `X (Half Open)`）をサイズクラスで組にし、システムバー、高さ 34 のホームインジケータ、（半開きのときは）幅 40 の折り目をセーフエリアに任せます。 |
+| `device`、`deviceSide` | デバイスフレームにだけ付きます（`docs/features.md` の Device frames）。`device` は保存されたままの状態（`iphone-duo-closed`、`iphone-duo-open`、`iphone-duo-half`、またはこのビルドが知らない id）で、`deviceSide` はフレームが横向きのときに幅 84 のシステムのストリップが沿う長辺です。デザインが `leading` と指定しない限り `trailing` です（縦向きのフレームでは、どちらでもバーはその状態が決める位置のままです）。これらを使えば、ターゲットは組み込みの SwiftUI と UIKit の書き出しと同じことができます。閉じた `X` とその `X (Open)`（なければ `X (Half Open)`）をサイズクラスで組にし、システムバー、高さ 34 のホームインジケータ、（半開きのときは）幅 40 の折り目をセーフエリアに任せます。 |
 | `children` | ノード。 |
 
 値は `{"value": <number>, "token": "<variable>"}` で、トークンは値が変数から来たときだけ入ります。色は`{"hex": "#RRGGBB"}`（または `#RRGGBBAA`）か `{"token": "<variable>"}` です。組み込みのターゲットが必要に応じてレンダリングする画像（アイコンのPNG、マスクの SVG）はモデルに含まれません。

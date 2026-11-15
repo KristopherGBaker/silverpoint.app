@@ -302,7 +302,8 @@ silverpoint lint-rules [<file.silverpoint>] [--json] [--check <file.json>]
 - `save_lint_rule {scope, rule, confirm}` drafts a rule from a convention you state ("all cards have 16 padding"). It first
   **previews**: the rule, whether it is valid, which lower layer it would override, whether a higher one would shadow it, and the
   issues it would raise on the current document. Nothing is written until you confirm. In the app the agent shows the rule on a
-  card with **Save** and **Discard**; over MCP (and `silverpoint call`) it writes only with `confirm: true`. `scope: "document"` stores it
+  card with **Save** and **Discard** (on a Claude Code or Codex turn too: the session's route refuses `confirm: true`); over MCP
+  (and `silverpoint call`) it writes only with `confirm: true`. `scope: "document"` stores it
   in the document as one undo step; `scope: "user"` writes `<lint folder>/<id>.json`. If a file in the user folder already
   defines the id, that file is rewritten in place (the rule replaced, its other rules kept) and the preview names it. An invalid
   rule is an error and nothing is written.

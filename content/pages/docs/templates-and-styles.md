@@ -163,7 +163,8 @@ so a style saved between turns is found at once.
 `confirm`. It is one tool in the shared catalog, with the same confirm flow as `save_skill`:
 
 - **In the app** it never writes. A card shows the text (or a diff against the style it replaces) with Save and Discard;
-  Save writes `<name>.md` into your styles folder.
+  Save writes `<name>.md` into your styles folder. A Claude Code or Codex turn gets the same card: its session's route
+  refuses `confirm: true`.
 - **Over MCP and `silverpoint call`** without `confirm: true` it returns a preview (`{written: false, slug, title,
   replaces, text, diff}`) and writes nothing; with it, it writes and returns `written: true`. `replaces` is `user` or
   `bundled` when the style replaces one.
@@ -276,7 +277,7 @@ what to avoid), and for a library pairing `fonts: "library"`, a `fallback` and t
 `save_style`'s confirm flow and its rule for an existing name:
 
 - **In the app** it never writes. The same card as a style's shows the file (or a diff against the pairing it replaces)
-  with Save and Discard; Save writes it.
+  with Save and Discard; Save writes it. A Claude Code or Codex turn gets the same card, as for a style.
 - **Over MCP and `silverpoint call`** without `confirm: true` it returns a preview (`{written: false, slug, title,
   replaces, text, diff}`) and writes nothing; with it, it writes and returns `written: true`.
 - **A bundled name** is allowed, like a style's: your file then replaces the bundled pairing for every document (the

@@ -299,6 +299,9 @@ in the shared catalog, so the in-app agent, MCP clients and `silverpoint call` a
 - **In the app** it never writes. The agent panel shows a card with the title, the scope and the full text (or, when
   the skill replaces another, a diff against that version) and Save and Discard. Save writes it: a document skill as
   one undo step, a user skill as `<name>.md` in your folder. Discard writes nothing. The next turn lists the new skill.
+  This holds on every backend: a Claude Code or Codex turn calls the tool over its session's route, which refuses
+  `confirm: true` (the result says `written: false` and why, in `refused`) and puts the same card in the panel. The same goes
+  for `save_style`, `save_font_pairing` and `save_lint_rule`.
 - **Over MCP and `silverpoint call`** the client is the one that confirms. Without `confirm: true` the tool returns a
   preview and writes nothing; with it, it writes. MCP can write **both** scopes (a user skill is a file in your folder,
   a document skill goes through the document's undo like any edit).
