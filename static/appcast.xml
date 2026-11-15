@@ -5,6 +5,48 @@
     <description>Silverpoint's updates</description>
     <language>en</language>
     <item>
+      <title>Silverpoint 2026.46.2 (2026.46.2)</title>
+      <pubDate>Sun, 15 Nov 2026 08:28:11 +0000</pubDate>
+      <sparkle:version>2026.46.2</sparkle:version>
+      <sparkle:shortVersionString>2026.46.2</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>26.0</sparkle:minimumSystemVersion>
+      <description sparkle:format='markdown'>## Silverpoint 2026.46.2
+
+The fourth beta build. Installing it starts the beta's 60 days again.
+
+**New in this build**
+
+- **A request timeout per provider.** Settings ▸ Agent ▸ Model ▸ Request timeout sets how long the agent waits for a
+  model before giving up. Local servers (LM Studio, Ollama, and any address on your Mac or your network) wait 10 minutes
+  by default, so a local model has time to read a long prompt; cloud providers wait 2. A request that times out now says
+  so.
+- **The agent asks before it writes files.** When the agent in Silverpoint wants to export or hand off into a folder, a
+  card first names every path it will write, and waits for you to allow or deny it. On Claude Code and Codex turns,
+  saving a skill, style, font pairing or lint rule to your library shows its Save card.
+- **Hooks stay away from what the agent writes.** A hook never runs a script the agent's export just wrote. Any other
+  hook the agent's export starts runs without access to the files the agent wrote, so it cannot run them another way.
+  Run Now and your own exports work as before.
+- **Help ▸ Acknowledgements…** lists the licenses of Silverpoint and the software it includes, and **Help ▸ Silverpoint
+  Website** opens silverpoint.app.
+
+**Also**
+
+- Links in a prototype, and in the agent's replies, open only web addresses and email links. A link to a file, a network
+  share or another app is refused, and Silverpoint says why.
+- An image a design points to on disk loads only from an ordinary file of a reasonable size, and never from a network
+  folder.
+- Image downloads, and the images in an imported Figma file, are fetched only from web addresses, and follow a redirect
+  only to another web address.
+- The context files attached to a document someone sent you are not read until you allow it.
+- A design whose components contain themselves, or repeat thousands of times, opens, imports from Figma and draws
+  without hanging.
+- A very deep design no longer crashes the agent's tools.
+- A shader whose loop runs an impossible number of times is refused instead of crashing.
+</description>
+      <enclosure url='https://github.com/KristopherGBaker/silverpoint.app/releases/download/v2026.46.2/Silverpoint-2026.46.2.dmg' length='34120687' type='application/octet-stream' sparkle:edSignature='mOvYRb08Jhp1XeMMOVTmS8guChROirQF+YgHKBGnfryiuSC3xiPJrTYWjlleulICPeRpgy+eXIxtDkDVKP+eDg=='/>
+    </item>
+    
+    <item>
       <title>Silverpoint 2026.46.1 (2026.46.1)</title>
       <pubDate>Tue, 10 Nov 2026 03:19:56 +0000</pubDate>
       <sparkle:version>2026.46.1</sparkle:version>
@@ -38,6 +80,7 @@ The third beta build. Installing it starts the beta's 60 days again.
 </description>
       <enclosure url='https://github.com/KristopherGBaker/silverpoint.app/releases/download/v2026.46.1/Silverpoint-2026.46.1.dmg' length='34311457' type='application/octet-stream' sparkle:edSignature='jEV7gVlOffaKD2NaVJnXkRvzw8XmupmXK7rz82CXz+XcAjTDSpQoc2Afd6G3CnN7yw7KmWpU+lIhACl6bU63AQ=='/>
     </item>
+    
     
     <item>
       <title>Silverpoint 2026.45.2 (2026.45.2)</title>
@@ -82,6 +125,7 @@ The second beta build. Installing it starts the beta's 60 days again.
     </item>
     
     
+    
     <item>
       <title>Silverpoint 2026.45.1 (2026.45.1)</title>
       <pubDate>Thu, 05 Nov 2026 19:14:20 +0000</pubDate>
@@ -119,6 +163,7 @@ canvas; edit it by hand or keep talking to it. It is free while it is in beta.
 </description>
       <enclosure url='https://github.com/KristopherGBaker/silverpoint.app/releases/download/v2026.45.1/Silverpoint-2026.45.1.dmg' length='32303531' type='application/octet-stream' sparkle:edSignature='XZQFTUvTqwuVWePQ5SBjYYAf67Um0wjOWf1WuTVvZsIgVLMckHrNl1u4qLYNaNIBpn/IwYQNBQW7cebcg+v6AQ=='/>
     </item>
+  
   
   
   
