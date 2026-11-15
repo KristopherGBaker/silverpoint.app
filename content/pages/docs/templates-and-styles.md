@@ -529,5 +529,3 @@ heading, body, mono, fallback}`; `--fonts` keeps one kind. It reads `SILVERPOINT
 `{name, file}`; a missing folder lists nothing and exits 0. Warnings go to stderr. Both read only, honor
 `SILVERPOINT_STYLES_DIR` and `SILVERPOINT_TEMPLATES_DIR` (and `--product` and `--products` the products folder,
 `SILVERPOINT_PRODUCTS_DIR`), and exit 2 for a flag outside their set.
-
-The old `VELLUM_` spelling of these variables still works, like every `SILVERPOINT_*` variable.

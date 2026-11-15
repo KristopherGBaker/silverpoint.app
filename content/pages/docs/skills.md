@@ -225,7 +225,7 @@ The resolved list never holds two skills with one name.
     "skills": {"brand-voice": {"title": "Brand voice", "summary": "...", "body": "..."}}
 
 The key is absent when a document has none, so documents from before skills existed open and save exactly as they
-were (including `.vellum` ones).
+were.
 
 ## Turning skills off
 

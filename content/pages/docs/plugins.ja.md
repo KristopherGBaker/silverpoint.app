@@ -14,7 +14,7 @@ toc: true
 
 ## プラグインの置き場所
 
-プラグインフォルダの中に、プラグインごとに 1 つのフォルダを置きます。`$SILVERPOINT_PLUGINS_DIR` が設定されていればそこ（`ProcessEnvironment` 経由で読み、改名前の `VELLUM_PLUGINS_DIR` をフォールバックにします）、なければ `~/Library/Application Support/Silverpoint/Plugins/<id>/` です。インストールは**設定 ▸ 一般 ▸ プラグイン ▸ インストール…**（プラグインのフォルダを尋ねます）、`silverpoint plugins install <folder>`、またはフォルダをコピーして入れる方法があります。インストールしたプラグインは、あなたが承認するまで承認されていません。隠しフォルダはスキップします。マニフェストが検証を通らないフォルダや、同じ id を宣言する 2 つのフォルダは無効として一覧に出て（`silverpoint plugins list`）、実行されることはありません。
+プラグインフォルダの中に、プラグインごとに 1 つのフォルダを置きます。`$SILVERPOINT_PLUGINS_DIR` が設定されていればそこ（`ProcessEnvironment` 経由で読みます）、なければ `~/Library/Application Support/Silverpoint/Plugins/<id>/` です。インストールは**設定 ▸ 一般 ▸ プラグイン ▸ インストール…**（プラグインのフォルダを尋ねます）、`silverpoint plugins install <folder>`、またはフォルダをコピーして入れる方法があります。インストールしたプラグインは、あなたが承認するまで承認されていません。隠しフォルダはスキップします。マニフェストが検証を通らないフォルダや、同じ id を宣言する 2 つのフォルダは無効として一覧に出て（`silverpoint plugins list`）、実行されることはありません。
 
 ライブラリのコードには既定のフォルダがありません（`PluginSetup.none`）。標準のフォルダを渡すのはエントリーポイント（アプリ、`silverpoint mcp`、`call`、`tools`）だけなので、テストは常に一時フォルダを使います。
 

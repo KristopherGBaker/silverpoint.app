@@ -24,8 +24,7 @@ and the CLI is `silverpoint plugins`.
 
 ## Where plugins live
 
-One folder per plugin in the plugins folder: `$SILVERPOINT_PLUGINS_DIR` when set (read through `ProcessEnvironment`, with the
-pre-rename `VELLUM_PLUGINS_DIR` as a fallback), else `~/Library/Application Support/Silverpoint/Plugins/<id>/`. Install one with
+One folder per plugin in the plugins folder: `$SILVERPOINT_PLUGINS_DIR` when set (read through `ProcessEnvironment`), else `~/Library/Application Support/Silverpoint/Plugins/<id>/`. Install one with
 **Settings ▸ General ▸ Plugins ▸ Install…** (it asks for the plugin's folder), with `silverpoint plugins install <folder>`, or by
 copying its folder in; an installed plugin is not approved until you approve it. Hidden folders are skipped; a folder whose manifest does
 not validate, or two folders that declare the same id, are listed as invalid (`silverpoint plugins list`) and never run.

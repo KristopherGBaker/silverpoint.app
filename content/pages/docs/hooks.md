@@ -20,7 +20,7 @@ never run until you allow them: see [Trust](#trust).
 | **User** | `~/Library/Application Support/Silverpoint/hooks.json`, or the file `$SILVERPOINT_HOOKS_FILE` names | trusted: you wrote it |
 | **Document** | the `hooks` key of the `.silverpoint` document, so a team's hooks travel with the file | never runs until you allow it for that document path |
 
-The other two locations follow the same rule and can be moved with the environment (a pre-rename `VELLUM_` name works as a fallback):
+The other two locations follow the same rule and can be moved with the environment:
 
 | What | Default | Override |
 | --- | --- | --- |
