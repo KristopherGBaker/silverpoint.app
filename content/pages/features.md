@@ -10,7 +10,7 @@ toc: true
 
 ## An AI designer in your document
 
-Ask in the agent panel and the agent builds frames, components and variables right on your canvas. Let it ask before each change, or just let it work; every turn is one undo step. It runs on your Claude Code or Codex, an API key (Claude, OpenAI or any OpenAI-compatible server), Apple's on-device model or a local model, and on Claude it can search the web while it works, on every site or only the ones you choose.
+Ask in the agent panel and the agent builds frames, components and variables right on your canvas. Let it ask before each change, or just let it work; every turn is one undo step. Before it exports or hands off into a folder, it names every path it will write and waits for you to allow it. It runs on your Claude Code or Codex, an API key (Claude, OpenAI or any OpenAI-compatible server), Apple's on-device model or a local model, and on Claude it can search the web while it works, on every site or only the ones you choose. **Request timeout**, in Settings ▸ Agent ▸ Model, sets how long the agent waits for each provider: a local model gets 10 minutes by default, so it has time to read a long prompt, and a cloud provider gets 2.
 
 Type **/** in the agent panel for slash commands. /variants, /critique, /fix-lint and /handoff set up a turn for you; /history, /attach, /export and /new act at once and say what they did. A document can carry its own commands, and you can add your own as command files. **/critique** only looks at the design, on every backend; on Claude Code and Codex, that turn has no tool that can change it.
 

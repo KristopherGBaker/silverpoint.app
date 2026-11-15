@@ -5,6 +5,29 @@ summary: "What changed in each build of the Silverpoint beta, newest first."
 layout: article
 ---
 
+## 2026.46.2
+
+November 15, 2026.
+
+The fourth beta build. Installing it starts the beta's 60 days again.
+
+### New in this build
+
+- **A request timeout per provider.** Settings ▸ Agent ▸ Model ▸ Request timeout sets how long the agent waits for a model before giving up. Local servers (LM Studio, Ollama, and any address on your Mac or your network) wait 10 minutes by default, so a local model has time to read a long prompt; cloud providers wait 2. A request that times out now says so.
+- **The agent asks before it writes files.** When the agent in Silverpoint wants to export or hand off into a folder, a card first names every path it will write, and waits for you to allow or deny it. On Claude Code and Codex turns, saving a skill, style, font pairing or lint rule to your library shows its Save card.
+- **Hooks stay away from what the agent writes.** A hook never runs a script the agent's export just wrote. Any other hook the agent's export starts runs without access to the files the agent wrote, so it cannot run them another way. Run Now and your own exports work as before.
+- **Help ▸ Acknowledgements…** lists the licenses of Silverpoint and the software it includes, and **Help ▸ Silverpoint Website** opens silverpoint.app.
+
+### Also
+
+- Links in a prototype, and in the agent's replies, open only web addresses and email links. A link to a file, a network share or another app is refused, and Silverpoint says why.
+- An image a design points to on disk loads only from an ordinary file of a reasonable size, and never from a network folder.
+- Image downloads, and the images in an imported Figma file, are fetched only from web addresses, and follow a redirect only to another web address.
+- The context files attached to a document someone sent you are not read until you allow it.
+- A design whose components contain themselves, or repeat thousands of times, opens, imports from Figma and draws without hanging.
+- A very deep design no longer crashes the agent's tools.
+- A shader whose loop runs an impossible number of times is refused instead of crashing.
+
 ## 2026.46.1
 
 November 10, 2026.
