@@ -5,6 +5,34 @@
     <description>Silverpoint's updates</description>
     <language>en</language>
     <item>
+      <title>Silverpoint 2026.47.2 (2026.47.2)</title>
+      <pubDate>Wed, 18 Nov 2026 22:01:11 +0000</pubDate>
+      <sparkle:version>2026.47.2</sparkle:version>
+      <sparkle:shortVersionString>2026.47.2</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>26.0</sparkle:minimumSystemVersion>
+      <description sparkle:format='markdown'>## Silverpoint 2026.47.2
+
+The fifth beta build. Installing it starts the beta's 60 days again.
+
+**New in this build**
+
+- **Voice input in the agent panel.** Click the microphone in the composer and speak. Your words appear as composer
+  text at the caret, and you can edit them before you send. Nothing is sent until you send it yourself.
+- **Speech stays on your Mac.** Silverpoint turns speech into text on your Mac, in English or Japanese. The first time,
+  macOS asks to let Silverpoint use the microphone and speech recognition, and may download its speech model.
+
+**Also**
+
+- You can type while you dictate. Text you type before or among the spoken words stays where the caret shows it.
+- If microphone or speech recognition access is off, the composer says so and opens the right pane of System Settings.
+- If the speech model cannot be downloaded, the composer says the download failed.
+- If you stop voice input while macOS is still asking for access, no further prompt appears.
+- The tutorial and privacy pages on silverpoint.app now cover voice input.
+</description>
+      <enclosure url='https://github.com/KristopherGBaker/silverpoint.app/releases/download/v2026.47.2/Silverpoint-2026.47.2.dmg' length='34234601' type='application/octet-stream' sparkle:edSignature='zwURtbHM3D2X5s+W9DlDFbr0euQqe4AoaeNDdQqXVpbo2nO3aZCNAQbH+RHA46Q52gaNpoINcQe0155sl4nhAw=='/>
+    </item>
+    
+    <item>
       <title>Silverpoint 2026.47.1 (2026.47.1)</title>
       <pubDate>Tue, 17 Nov 2026 20:01:44 +0000</pubDate>
       <sparkle:version>2026.47.1</sparkle:version>
@@ -31,6 +59,7 @@ The fifth beta build. Installing it starts the beta's 60 days again.
 </description>
       <enclosure url='https://github.com/KristopherGBaker/silverpoint.app/releases/download/v2026.47.1/Silverpoint-2026.47.1.dmg' length='34233186' type='application/octet-stream' sparkle:edSignature='KiH8i4XHEUUiqP63nDWWrUvmGPYvI9B4Q84jrJgUo7Ul3afLVLnu7i2LAJVSJzWsM84pC2kXU2burO+VvrjvCg=='/>
     </item>
+    
     
     <item>
       <title>Silverpoint 2026.46.2 (2026.46.2)</title>
@@ -75,6 +104,7 @@ The fourth beta build. Installing it starts the beta's 60 days again.
     </item>
     
     
+    
     <item>
       <title>Silverpoint 2026.46.1 (2026.46.1)</title>
       <pubDate>Tue, 10 Nov 2026 03:19:56 +0000</pubDate>
@@ -109,6 +139,7 @@ The third beta build. Installing it starts the beta's 60 days again.
 </description>
       <enclosure url='https://github.com/KristopherGBaker/silverpoint.app/releases/download/v2026.46.1/Silverpoint-2026.46.1.dmg' length='34311457' type='application/octet-stream' sparkle:edSignature='jEV7gVlOffaKD2NaVJnXkRvzw8XmupmXK7rz82CXz+XcAjTDSpQoc2Afd6G3CnN7yw7KmWpU+lIhACl6bU63AQ=='/>
     </item>
+    
     
     
     
@@ -157,6 +188,7 @@ The second beta build. Installing it starts the beta's 60 days again.
     
     
     
+    
     <item>
       <title>Silverpoint 2026.45.1 (2026.45.1)</title>
       <pubDate>Thu, 05 Nov 2026 19:14:20 +0000</pubDate>
@@ -194,6 +226,7 @@ canvas; edit it by hand or keep talking to it. It is free while it is in beta.
 </description>
       <enclosure url='https://github.com/KristopherGBaker/silverpoint.app/releases/download/v2026.45.1/Silverpoint-2026.45.1.dmg' length='32303531' type='application/octet-stream' sparkle:edSignature='XZQFTUvTqwuVWePQ5SBjYYAf67Um0wjOWf1WuTVvZsIgVLMckHrNl1u4qLYNaNIBpn/IwYQNBQW7cebcg+v6AQ=='/>
     </item>
+  
   
   
   
