@@ -27,6 +27,10 @@ and so do the rest of these steps.
 Open the agent with **View ▸ Show Agent** (⌘J). In the composer, type `/mode ask` and press Return: the agent now asks
 before it designs (the composer's mode menu shows **Ask first**; `/mode do` is **Just do it**).
 
+You can also speak a message: click the microphone beside the paperclip, talk, and watch the words land in the composer
+(the first click asks for the microphone and speech recognition; it all happens on your Mac). Click it again, or press
+Escape, to stop; the message waits for you to read, edit and send it like a typed one.
+
 Type `/` to see every command, then send:
 
     /style warm-organic Design Tally's Today screen: today's habits, a progress summary and the streaks.
