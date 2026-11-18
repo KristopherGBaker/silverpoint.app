@@ -5,6 +5,25 @@ summary: "What changed in each build of the Silverpoint beta, newest first."
 layout: article
 ---
 
+## 2026.47.1
+
+November 19, 2026.
+
+The fifth beta build. Installing it starts the beta's 60 days again.
+
+### New in this build
+
+- **Voice input in the agent panel.** Click the microphone in the composer and speak. Your words appear as composer text at the caret, and you can edit them before you send. Nothing is sent until you send it yourself.
+- **Speech stays on your Mac.** Silverpoint turns speech into text on your Mac, in English or Japanese. The first time, macOS asks to let Silverpoint use the microphone and speech recognition, and may download its speech model.
+
+### Also
+
+- You can type while you dictate. Text you type before or among the spoken words stays where the caret shows it.
+- If microphone or speech recognition access is off, the composer says so and opens the right pane of System Settings.
+- If the speech model cannot be downloaded, the composer says the download failed.
+- If you stop voice input while macOS is still asking for access, no further prompt appears.
+- The tutorial and privacy pages on silverpoint.app now cover voice input.
+
 ## 2026.46.2
 
 November 15, 2026.

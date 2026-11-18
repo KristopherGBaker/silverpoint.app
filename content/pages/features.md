@@ -14,6 +14,8 @@ Ask in the agent panel and the agent builds frames, components and variables rig
 
 Type **/** in the agent panel for slash commands. /variants, /critique, /fix-lint and /handoff set up a turn for you; /history, /attach, /export and /new act at once and say what they did. A document can carry its own commands, and you can add your own as command files. **/critique** only looks at the design, on every backend; on Claude Code and Codex, that turn has no tool that can change it.
 
+Click the microphone in the composer for **voice input** and speak. Your words appear as text at the caret, and you can type while you dictate and edit before you send; nothing is sent until you send it yourself. Silverpoint turns speech into text on your Mac, in English or Japanese.
+
 Turn on **design review** and a second model reviews each turn that changed the design, in two stages, and checks it against what you asked for; the agent then fixes what the review says must change, on any backend. The review shows its outcome, a fidelity table and the personas it reviewed as, and in a second round which findings were fixed. A finding that is still open keeps blocking.
 
 ![Conversation History](/assets/images/agent-history-light.png)
